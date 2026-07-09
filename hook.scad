@@ -34,7 +34,10 @@ arm_t = 2.2;
 finger_len = 6.75;
 // plate extension above arm top (D7, user-measured 8.8, built as 9.0)
 plate_above = 9.0;
-// finger tip lead-in chamfer
+// slanted finger tip (original feature): the bottom face rises from the outer
+// point toward the inner face - ramps over the lip during tilt-in insertion
+tip_taper = 1.5;
+// small blunt at the tip point (printability; the aluminum original is sharper)
 tip_chamfer = 0.4;
 
 /* [Top cap and wall pad - from original, user-measured] */
@@ -111,6 +114,7 @@ assert(hook_w > 2 * side_chamfer + 1, "hook_w too small for side_chamfer");
 assert(slot_gap - fil_f - fil_p > 1.6, "fillets leave too little flat seat for the rail lip");
 assert(pad_top_drop > finger_len + 1, "wall pad must start clearly below the finger tip / rail strip");
 assert(arm_gusset_r >= 0 && arm_edge_r >= 0 && arm_edge_r < arm_t, "bad gusset/edge radius");
+assert(finger_len - tip_taper - fillet_finger_root > 1, "tip taper leaves too little straight inner face");
 assert(arm_t + gusset_r_eff < y_top - cap_h - 0.5, "arc gusset reaches the top cap");
 
 function arc_tail(c, r, a0, a1, n) =
@@ -132,8 +136,7 @@ head_pts = concat(
     : (gusset_r_eff < arm_span - 0.01 ? [[x_fb, arm_t]] : []),
   [[x_fb, y_tip + tip_chamfer],
    [x_fb + tip_chamfer, y_tip],
-   [x_ff - tip_chamfer, y_tip],
-   [x_ff, y_tip + tip_chamfer],
+   [x_ff, y_tip + tip_taper],
    [x_ff, -fil_f]]
 );
 fil_f_pts = fil_f > 0 ? arc_tail([x_ff + fil_f, -fil_f], fil_f, 180, 90, 6) : [];

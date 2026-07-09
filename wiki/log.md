@@ -105,6 +105,13 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
 - EN: Added `arm_edge_r=0.8` — rounds the claw's outer corner at the bridge edge, restoring the original's r≈0.8 round (a v1 deviation) and smoothing the tilt-in leading edge. The gusset arc auto-clamps to arm span − edge radius (effective 4.35; arc top 6.55 above the ceiling). Applied to `hook.scad` + skill `rail-mount.scad` + SKILL.md table; both render clean, all echoes unchanged.
   ZH: 新增 `arm_edge_r=0.8` —— 桥边缘外角修圆，恢复原件 r≈0.8 的外圆角（v1 的一处差异），并顺滑斜插入槽的先导边。圆弧加强自动收缩到 顶桥跨度 − 圆角半径（有效 4.35；弧顶在槽顶上方 6.55）。已应用于 `hook.scad` + skill `rail-mount.scad` + SKILL.md 表格；双文件渲染干净，自检不变。
 
+## [2026-07-09] ingest+writeback | Rail provenance (Youbang Parallel series); slanted finger tip (v5.2)
+
+- EN: Rail identified by the user and confirmed via the official page: Youbang wallboard (友邦墙板) GuaGuaQiang (挂挂墙) Parallel series (平行系列), <https://www.chinayoubang.com/productfamily/detail/195.html>. Official strip spec 3000×48×11 mm, anodized 6-series aluminum (validates the strength review's 6063 assumption); slot dims not published. Added Product Identity to `mounting-rail.md`; URL registered in `sources.md` — cite when publishing.
+  ZH: 用户指认并经官网确认轨道来源：友邦墙板「挂挂墙 · 平行系列」，<https://www.chinayoubang.com/productfamily/detail/195.html>。官方规格 功能条 3000×48×11 mm、原生六系铝阳极氧化（印证强度审查的 6063 假设）；槽口尺寸未公布。`mounting-rail.md` 新增产品身份小节；URL 登记入 `sources.md` —— 公开时引用。
+- EN: Re-read the raw photos at the user's prompt: the finger tip is a slanted chisel point (lowest at the outer face, bottom rising ≈1.5 toward the lip side) — an insertion ramp. v5.2: `tip_taper=1.5` replaces the symmetric tip chamfers in `hook.scad` + skill `rail-mount.scad` (+SKILL.md); D16 added to `rail-hook.md`; profile bullet refined. Renders clean, echoes unchanged.
+  ZH: 应用户提示重读 raw 照片：爪尖是斜凿尖（外侧最低，底面向唇侧斜升约 1.5）—— 入轨导向斜面。v5.2：`tip_taper=1.5` 取代对称倒角，`hook.scad` + skill `rail-mount.scad`（+SKILL.md）同步；`rail-hook.md` 新增 D16、修订截面描述。渲染干净，自检不变。
+
 ## [2026-07-09] writeback | Git repository initialized; artifact policy
 
 - EN: `git init` (branch main) at the user's request; initial commit contains `hook.scad`, `wiki/`, `raw/`, `AGENTS.md`, `AGENTS.md`. Policy decided: `wiki/` is always committed (it is the documentation and decision record); `out/` is gitignored — every artifact there regenerates from `hook.scad` via the docker `scad-render` command. For public sharing, distribute STLs via releases (or a deliberate snapshot dir), not by tracking `out/`; review `raw/` home photos before publishing.

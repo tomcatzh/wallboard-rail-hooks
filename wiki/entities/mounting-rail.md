@@ -4,6 +4,7 @@ type: entity
 status: active
 sources:
   - raw/assets/hook-full-view.jpg
+  - https://www.chinayoubang.com/productfamily/detail/195.html
 updated: 2026-07-09
 ---
 
@@ -13,6 +14,11 @@ updated: 2026-07-09
 
 EN: A champagne-gold aluminum strip inset horizontally into a seam of the white leather-textured wall paneling. Its front face carries fine horizontal ribs; along its top edge runs a continuous slot behind a front lip, into which claw-type hooks drop. It is existing infrastructure — the hook must adapt to it, not vice versa.
 ZH: 一条水平嵌在白色皮纹墙板接缝中的香槟金色铝条。正面有细密水平棱纹；顶缘沿全长有一条位于前唇后方的连续槽，爪式挂钩由此扣入。它是既有设施 —— 是挂钩去适配它，而不是反过来。
+
+## Product Identity（产品身份）
+
+EN: The rail is the "parallel function strip" of Youbang wallboard's (友邦墙板) GuaGuaQiang (挂挂墙) Parallel series (平行系列) — official page: <https://www.chinayoubang.com/productfamily/detail/195.html>. Published spec: strip W×H×D = 3000×48×11 mm; material "native 6-series aluminum", anodized — consistent with the 6063-class assumption used in the strength review. Wallboard is Youbang "5K wood". Colors include 古铜黄 (antique bronze), matching our photos. The page does NOT publish slot/lip dimensions — the hook-side measurements in [rail-hook](rail-hook.md) remain the fit authority. Cite this section when publishing the project.
+ZH: 挂条是友邦墙板「挂挂墙 · 平行系列」的"平行功能条" —— 官方页面：<https://www.chinayoubang.com/productfamily/detail/195.html>。公开规格：功能条 W×H×D = 3000×48×11 mm；材质"原生六系铝"、阳极氧化 —— 与强度审查中 6063 系的假设一致。墙板为友邦 5K 木。颜色含古铜黄，与我们的照片相符。页面**未**公布槽口/唇的尺寸 —— 配合仍以 [rail-hook](rail-hook.md) 中挂钩侧的实测为准。公开项目时引用本节说明来源。
 
 ## Observed Features（观察到的特征）
 
