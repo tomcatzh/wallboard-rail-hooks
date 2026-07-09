@@ -1,0 +1,5 @@
+# generated render artifacts - reproduce via docker scad-render (see wiki/outputs/hook-scad-v1.md)
+/out/
+
+# local machine noise
+.DS_Store
