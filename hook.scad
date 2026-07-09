@@ -37,8 +37,9 @@ plate_above = 9.0;
 // slanted finger tip (original feature): the bottom face rises from the outer
 // point toward the inner face - ramps over the lip during tilt-in insertion
 tip_taper = 1.5;
-// small blunt at the tip point (printability; the aluminum original is sharper)
-tip_chamfer = 0.4;
+// rounded tip point, tangent to the outer face and the slanted bottom
+// (printability; the aluminum original is sharper)
+tip_r = 0.4;
 
 /* [Top cap and wall pad - from original, user-measured] */
 // cap height at plate top
@@ -99,6 +100,8 @@ fil_f = fillet_finger_root;
 fil_p = fillet_plate_root;
 arm_span = slot_gap + finger_t;
 gusset_r_eff = min(arm_gusset_r, arm_span - arm_edge_r);
+tip_ang = atan(tip_taper / finger_t);
+tip_cy = y_tip + tip_r * (1 + sin(tip_ang)) / cos(tip_ang);
 x_sf = x_pf + shank_front_extra;
 y_ramp0 = -pad_top_drop;
 y_ramp1 = -pad_top_drop - 2.5 * shank_front_extra;
@@ -134,9 +137,11 @@ head_pts = concat(
   arm_edge_r > 0
     ? arc_tail([x_fb + arm_edge_r, arm_t - arm_edge_r], arm_edge_r, 90, 180, 6)
     : (gusset_r_eff < arm_span - 0.01 ? [[x_fb, arm_t]] : []),
-  [[x_fb, y_tip + tip_chamfer],
-   [x_fb + tip_chamfer, y_tip],
-   [x_ff, y_tip + tip_taper],
+  tip_r > 0
+    ? concat([[x_fb, tip_cy]],
+             arc_tail([x_fb + tip_r, tip_cy], tip_r, 180, 270 + tip_ang, 6))
+    : [[x_fb, y_tip]],
+  [[x_ff, y_tip + tip_taper],
    [x_ff, -fil_f]]
 );
 fil_f_pts = fil_f > 0 ? arc_tail([x_ff + fil_f, -fil_f], fil_f, 180, 90, 6) : [];

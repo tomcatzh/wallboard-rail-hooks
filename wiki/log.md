@@ -111,6 +111,8 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 用户指认并经官网确认轨道来源：友邦墙板「挂挂墙 · 平行系列」，<https://www.chinayoubang.com/productfamily/detail/195.html>。官方规格 功能条 3000×48×11 mm、原生六系铝阳极氧化（印证强度审查的 6063 假设）；槽口尺寸未公布。`mounting-rail.md` 新增产品身份小节；URL 登记入 `sources.md` —— 公开时引用。
 - EN: Re-read the raw photos at the user's prompt: the finger tip is a slanted chisel point (lowest at the outer face, bottom rising ≈1.5 toward the lip side) — an insertion ramp. v5.2: `tip_taper=1.5` replaces the symmetric tip chamfers in `hook.scad` + skill `rail-mount.scad` (+SKILL.md); D16 added to `rail-hook.md`; profile bullet refined. Renders clean, echoes unchanged.
   ZH: 应用户提示重读 raw 照片：爪尖是斜凿尖（外侧最低，底面向唇侧斜升约 1.5）—— 入轨导向斜面。v5.2：`tip_taper=1.5` 取代对称倒角，`hook.scad` + skill `rail-mount.scad`（+SKILL.md）同步；`rail-hook.md` 新增 D16、修订截面描述。渲染干净，自检不变。
+- EN: v5.3 (user request): tip point rounded — `tip_r=0.4` tangent arc replaces the flat blunt (`tip_chamfer` removed). Both files + SKILL.md synced; renders clean.
+  ZH: v5.3（用户要求）：尖点改圆角 —— `tip_r=0.4` 相切圆弧取代平切钝化（移除 `tip_chamfer`）。双文件 + SKILL.md 同步；渲染干净。
 
 ## [2026-07-09] writeback | Git repository initialized; artifact policy
 
