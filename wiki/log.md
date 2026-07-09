@@ -114,6 +114,13 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
 - EN: v5.3 (user request): tip point rounded — `tip_r=0.4` tangent arc replaces the flat blunt (`tip_chamfer` removed). Both files + SKILL.md synced; renders clean.
   ZH: v5.3（用户要求）：尖点改圆角 —— `tip_r=0.4` 相切圆弧取代平切钝化（移除 `tip_chamfer`）。双文件 + SKILL.md 同步；渲染干净。
 
+## [2026-07-09] refactor | Library + standalone designs (user direction)
+
+- EN: `hook.scad` split into `lib/rail-mount.scad` (mount library: fixed params + `rail_mount_pts()` + `rail_accessory()` + `j_hook_body()` helper, no top-level geometry) and `hooks/hook-classic.scad` (the fit-validated 17 mm design). Future accessories are standalone .scad files that include the lib — the proven mount code is never edited again.
+  ZH: `hook.scad` 拆分为 `lib/rail-mount.scad`（安装库：固定参数 + `rail_mount_pts()` + `rail_accessory()` + `j_hook_body()` 助手，无顶层几何）与 `hooks/hook-classic.scad`（已验证试装的 17 mm 设计）。以后的配件都是独立 .scad 引用该库 —— 已验证的安装代码不再被编辑。
+- EN: Refactor verified geometry-exact by STL comparison: classic vs pre-refactor baseline — same 5072 triangles, volume diff 0.000000 mm³, identical bbox. Serration option retired (recoverable via git). Skill updated to the same two-file structure (`rail-mount.scad` lib byte-identical + `example-j-hook.scad`); SKILL.md workflow rewritten.
+  ZH: 重构经 STL 对比验证几何完全一致：classic 对重构前基线 —— 三角数同 5072、体积差 0.000000 mm³、包围盒相同。锯齿选项退役（git 可找回）。skill 同步为同样的双文件结构（`rail-mount.scad` 库字节一致 + `example-j-hook.scad`）；SKILL.md 用法重写。
+
 ## [2026-07-09] writeback | Git repository initialized; artifact policy
 
 - EN: `git init` (branch main) at the user's request; initial commit contains `hook.scad`, `wiki/`, `raw/`, `AGENTS.md`, `AGENTS.md`. Policy decided: `wiki/` is always committed (it is the documentation and decision record); `out/` is gitignored — every artifact there regenerates from `hook.scad` via the docker `scad-render` command. For public sharing, distribute STLs via releases (or a deliberate snapshot dir), not by tracking `out/`; review `raw/` home photos before publishing.
