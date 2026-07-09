@@ -121,6 +121,13 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
 - EN: Refactor verified geometry-exact by STL comparison: classic vs pre-refactor baseline — same 5072 triangles, volume diff 0.000000 mm³, identical bbox. Serration option retired (recoverable via git). Skill updated to the same two-file structure (`rail-mount.scad` lib byte-identical + `example-j-hook.scad`); SKILL.md workflow rewritten.
   ZH: 重构经 STL 对比验证几何完全一致：classic 对重构前基线 —— 三角数同 5072、体积差 0.000000 mm³、包围盒相同。锯齿选项退役（git 可找回）。skill 同步为同样的双文件结构（`rail-mount.scad` 库字节一致 + `example-j-hook.scad`）；SKILL.md 用法重写。
 
+## [2026-07-09] writeback | hook-wide25: 25 mm span, plastic-sized sections
+
+- EN: User: the original's J spans 25 mm outer (print of the replica measures 16.7 ≈ the model's 17) and a plastic copy cannot simply be scaled up. Confirmed by the math: at 25 mm span the load line moves to x≈11.7, worst-case shank moment ≈505 N·mm @5 kg — 30 MPa at the original's 3.0 thickness (PETG NG), 13 MPa at 4.4 (`shank_front_extra=1.4`) ✓, ~4–5 MPa with the wall pad engaged.
+  ZH: 用户指出：原版 J 外缘跨度 25 mm（复刻打印件量得 16.7 ≈ 模型的 17），塑料不能简单放大。计算证实：25 mm 跨度下载荷线移到 x≈11.7，5 kg 最坏杆身弯矩 ≈505 N·mm —— 按原版 3.0 厚为 30 MPa（PETG 不行），4.4 厚（`shank_front_extra=1.4`）为 13 MPa ✓，凸台贴墙时 ~4–5 MPa。
+- EN: New standalone design `hooks/hook-wide25.scad` (j_r_out 12.5, j_r_in 9.3, drop 24; J wall 4.6 bottom / 3.2 tip; mouth ≈17; height 47.7; ~4.4 g). Rendered clean; echoes span 25 / shank 4.4; bbox 29.35 checks out exactly. Sizing documented in `wiki/outputs/hook-wide25.md`; `wiki/index.md` updated.
+  ZH: 新独立设计 `hooks/hook-wide25.scad`（j_r_out 12.5、j_r_in 9.3、drop 24；J 壁底 4.6/尖 3.2；钩口 ≈17；总高 47.7；约 4.4 g）。渲染零 warning；echo 跨度 25 / 杆身 4.4；包围盒 29.35 精确对上。计算写入 `wiki/outputs/hook-wide25.md`；`wiki/index.md` 已更新。
+
 ## [2026-07-09] writeback | Git repository initialized; artifact policy
 
 - EN: `git init` (branch main) at the user's request; initial commit contains `hook.scad`, `wiki/`, `raw/`, `AGENTS.md`, `AGENTS.md`. Policy decided: `wiki/` is always committed (it is the documentation and decision record); `out/` is gitignored — every artifact there regenerates from `hook.scad` via the docker `scad-render` command. For public sharing, distribute STLs via releases (or a deliberate snapshot dir), not by tracking `out/`; review `raw/` home photos before publishing.
