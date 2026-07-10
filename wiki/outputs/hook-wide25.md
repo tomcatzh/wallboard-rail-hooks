@@ -4,7 +4,7 @@ type: output
 status: active
 sources:
   - raw/assets/hook-installed-on-rail.jpg
-updated: 2026-07-09
+updated: 2026-07-10
 ---
 
 # hook-wide25（25 mm 大跨度 J 钩）
@@ -31,3 +31,10 @@ ZH: [`hooks/hook-wide25.scad`](../../hooks/hook-wide25.scad) 对齐金属原版 
   ZH: `part_w 11.9 / shank_front_extra 1.4 / shank_drop 24 / j_r_out 12.5 / j_r_in 9.3 / j_lift 0.7 / j_sweep 205`。总高 47.7；体积 ≈ 3.5 cm³（PETG 约 4.4 g）。
 - EN: Rendered clean via docker scad-render; echoes: span 25 ✓, shank 4.4 ✓; bbox x-extent 29.35 = claw 5.15 + span 25 − pad 0.8 exactly. Same print rules as the classic (flat, PETG, ≥4 perimeters).
   ZH: docker scad-render 渲染零 warning；echo：跨度 25 ✓、杆身 4.4 ✓；包围盒 x 向 29.35 = 爪 5.15 + 跨度 25 − 凸台 0.8，分毫不差。打印规则同经典版（平放、PETG、≥4 圈壁）。
+
+## v7 Shared Mount Update（v7 共享安装接口更新，2026-07-10）
+
+- EN: The shared library now supplies the selected full-width 2.0 mm lower pressure face at `Y=−16…−21`. `hook-wide25` keeps its J and 4.4 mm shank unchanged; its longer straight body allows full 1.2 mm ramps above and below the 5 mm face.
+  ZH: 共享库现提供定案的全宽 2.0 mm 下方承压面，位于 `Y=−16…−21`。`hook-wide25` 的 J 与 4.4 mm 杆身不变；其较长直杆允许在 5 mm 接触面上下都使用完整 1.2 mm 过渡。
+- EN: Re-rendered mesh is `Manifold`, `NoError`, genus 0, 2672 vertices / 5340 facets. The ≈4–5 MPa contact design case above remains conditional on a full-width physical print confirming complete seating and reliable panel contact; the ≈13 MPa no-contact result remains the conservative bound.
+  ZH: 重渲网格为 `Manifold`、`NoError`、genus 0、2672 vertices / 5340 facets。上文约 4–5 MPa 的接触设计工况仍以全宽实物确认完全就位及可靠贴墙为条件；约 13 MPa 的不接触结果仍是保守上界。

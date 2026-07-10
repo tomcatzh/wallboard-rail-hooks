@@ -6,6 +6,9 @@ Operating rules for agents working in this repository. This file is the canonica
 
 This project maintains a persistent Karpathy-style LLM Wiki. Follow these rules whenever you read, write, or answer questions against it.
 
+- EN: For every LLM Wiki bootstrap, ingest, query, writeback, or lint operation, load and follow the `llm-wiki-bilingual` skill first. This file remains the canonical project-specific schema; the skill supplies the reusable workflow.
+  ZH: 每次执行 LLM Wiki 的 bootstrap（初始化）、ingest（摄入）、query（查询）、writeback（回写）或 lint（检查）操作时，先加载并遵循 `llm-wiki-bilingual` skill。本文件仍是项目专属 schema（规范）的权威来源；skill 提供可复用工作流。
+
 ### Directory Layout（目录布局）
 
 ```text
@@ -18,6 +21,8 @@ wiki/
   topics/               # topic pages
   entities/             # entity pages
   outputs/              # synthesized answers / deliverables written back from queries
+.agents/skills/
+  wallboard-rail-mount/ # canonical reusable OpenSCAD project workflow
 AGENTS.md               # this file — canonical operating rules
 AGENTS.md               # thin pointer to AGENTS.md
 ```
@@ -26,6 +31,8 @@ AGENTS.md               # thin pointer to AGENTS.md
   ZH: `raw/` 是 source of truth（事实来源）—— 除非用户明确要求整理，否则不要修改源文件。
 - EN: `wiki/` is the compiled synthesis layer — freely create, update, split, merge, and cross-link pages.
   ZH: `wiki/` 是 compiled synthesis layer（编译后的综合层）—— 可以自由创建、更新、拆分、合并、交叉链接页面。
+- EN: `.agents/skills/wallboard-rail-mount/` is the repository-canonical reusable workflow. Keep its `rail-mount.scad` byte-identical to `lib/rail-mount.scad` and validate the skill after edits.
+  ZH: `.agents/skills/wallboard-rail-mount/` 是仓库内权威的 reusable workflow（可复用工作流）。修改后保持其中的 `rail-mount.scad` 与 `lib/rail-mount.scad` 字节完全一致，并验证该 skill。
 
 ### Bilingual Requirement（双语要求）
 

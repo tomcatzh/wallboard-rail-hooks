@@ -6,6 +6,7 @@
 //   - shank at the original 3.0 -> 30 MPa (creep NG); at 4.4 -> ~13 MPa OK,
 //     design case with the wall pad engaged ~4-5 MPa
 //   - J wall: bottom ~4.6, tip ~3.2 (classic: 3.7 / 2.8); mouth inner dia ~17
+// Shared v7 mount includes the selected 2.0 mm lower wall-contact face.
 // Full math: wiki/outputs/hook-wide25.md
 
 include <../lib/rail-mount.scad>

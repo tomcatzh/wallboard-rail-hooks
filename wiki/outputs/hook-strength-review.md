@@ -5,7 +5,7 @@ status: active
 sources:
   - raw/assets/hook-mount-dimensions.jpg
   - raw/assets/hook-full-view.jpg
-updated: 2026-07-09
+updated: 2026-07-10
 ---
 
 # Strength Review of hook.scad v1（v1 强度与应力集中审查）
@@ -66,6 +66,14 @@ ZH: 更新（v4）：应力点②（爪根）基本消解 —— 用户提议的
 
 EN: Update (v5): the root-only gusset is superseded by the user's stronger idea — a full-span tangent arc (`arm_gusset_r=5.0`) from the plate back to the bridge edge. Analysis: the finger's F-couple loads the ENTIRE arm at ≈4.2–5.1 W·mm (not just the root), so a root-only gusset left the mid-arm at ≈26 MPa @5 kg worst-case; the full arc brings mid-arm to ≈8–15 and the root region to ≈5–9, cornerless (Kt≈1). Every section of the hook now sits below ≈15 MPa in the worst case and below ≈9 MPa in the design case at 5 kg with PETG.
 ZH: 更新（v5）：仅根部的斜撑被用户更强的方案取代 —— 从主板背面到桥边缘的全跨相切圆弧（`arm_gusset_r=5.0`）。分析：爪指的力偶让整根顶桥都承担 ≈4.2–5.1 W·mm 弯矩（不只根部），仅根部加强时中段最坏工况仍 ≈26 MPa @5 kg；全跨圆弧后中段降到 ≈8–15、根部区 ≈5–9，且完全无角（Kt≈1）。至此 5 kg 下钩子所有截面最坏工况都低于 ≈15 MPa、设计工况低于 ≈9 MPa（PETG）。
+
+## 2026-07-10 Contact Correction（接触条件修订）
+
+EN: The lower wallboard sits farther behind the rail datum than the original baseline `pad_back=0.8` contour, so the original classic profile could miss the intended H reaction. The 1.6 mm candidate was superseded by 2.0/2.5 mm half-width probes; the user selected 2.0 mm.
+ZH: 轨道下方墙板比原始基准 `pad_back=0.8` 轮廓更靠后，因此原经典轮廓可能无法形成预期的 H 反力。1.6 mm 候选方案随后被 2.0/2.5 mm 半宽探针替代；用户最终选择 2.0 mm。
+
+EN: Production v7 now gives both full-width hooks a 5 mm pressure face at `X=−2.0`, `Y=−16…−21`. This restores the intended contact load path in the model without changing the validated rail clip or J datum. The contact-dependent rating remains conditional until a full-width v7 print confirms complete rail seating, firm panel contact without excessive preload, and real load behavior; use the no-contact bound whenever those conditions are not established.
+ZH: 正式 v7 现为两款全宽挂钩提供位于 `X=−2.0`、`Y=−16…−21` 的 5 mm 承压面。它在不改变已验证轨道卡扣与 J 基准的前提下，恢复了模型中预期的接触受力路径。在全宽 v7 实物确认轨道完全就位、墙板接触可靠且不过度预紧，并完成真实承载验证前，依赖接触的承载评级仍是有条件结论；条件未确认时应继续采用不接触上界。
 
 ## Method Note（方法说明）
 

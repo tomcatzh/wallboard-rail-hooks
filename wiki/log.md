@@ -2,7 +2,7 @@
 title: "Activity Log"
 type: log
 status: active
-updated: 2026-07-09
+updated: 2026-07-10
 ---
 
 # Activity Log（活动日志）
@@ -137,3 +137,44 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
 
 - EN: `git init` (branch main) at the user's request; initial commit contains `hook.scad`, `wiki/`, `raw/`, `AGENTS.md`, `AGENTS.md`. Policy decided: `wiki/` is always committed (it is the documentation and decision record); `out/` is gitignored — every artifact there regenerates from `hook.scad` via the docker `scad-render` command. For public sharing, distribute STLs via releases (or a deliberate snapshot dir), not by tracking `out/`; review `raw/` home photos before publishing.
   ZH: 应用户要求 `git init`（main 分支）；初始提交包含 `hook.scad`、`wiki/`、`raw/`、`AGENTS.md`、`AGENTS.md`。策略定案：`wiki/` 永远入库（它就是文档与决策记录）；`out/` 进 gitignore —— 其中所有产物都可由 `hook.scad` 经 docker `scad-render` 一键重渲。若公开分发，STL 走 release（或刻意的快照目录），不跟踪 `out/`；公开前自查 `raw/` 的家中照片。
+
+## [2026-07-10] writeback | Route LLM Wiki operations through the skill
+
+- EN: Updated `AGENTS.md` to require loading and following the `llm-wiki-bilingual` skill before every LLM Wiki bootstrap, ingest, query, writeback, or lint operation. Clarified that `AGENTS.md` remains the canonical project-specific schema while the skill supplies the reusable workflow.
+  ZH: 更新 `AGENTS.md`，要求每次执行 LLM Wiki 的 bootstrap（初始化）、ingest（摄入）、query（查询）、writeback（回写）或 lint（检查）前，先加载并遵循 `llm-wiki-bilingual` skill。明确 `AGENTS.md` 仍是项目专属 schema（规范）的权威来源，skill 负责提供可复用工作流。
+- EN: No raw sources, wiki knowledge pages, or OpenSCAD geometry changed; no review is needed.
+  ZH: 未修改 raw source（原始来源）、wiki 知识页或 OpenSCAD 几何；无需 review（审阅）。
+
+## [2026-07-10] ingest+writeback | Classic hook wall-pressure pad print test
+
+- EN: User supplied a WeChat installation image and estimated the lower wallboard ≈1.6 mm behind the rail contact plane (image remains in chat, not under `raw/`). This revises the earlier uniform ≈0.8 mm inference: the classic `pad_back=0.8` may leave ≈0.8 mm clearance, so contact-dependent strength claims are now explicitly conditional.
+  ZH: 用户提供 WeChat 安装图片，并估计轨道接触基准面到下方墙板约后退 1.6 mm（图片仍在聊天中，未存入 `raw/`）。这修订了此前统一约 0.8 mm 的推论：经典版 `pad_back=0.8` 可能仍留约 0.8 mm 空隙，因此依赖墙面接触的强度结论现明确标为有条件成立。
+- EN: Added `hooks/hook-classic-wallpad16.scad`, a separate copy-derived 17 mm classic test variant; the validated library and `hook-classic.scad` remain untouched. Local pad geometry: total X=−1.6; 5 mm flat face at Y=−16…−21; top starts 8 mm below the estimated rail lower edge; 0.8 mm 1:1 ramps.
+  ZH: 新增 `hooks/hook-classic-wallpad16.scad`，作为独立派生的 17 mm 经典小钩测试版；已验证的库与 `hook-classic.scad` 均未修改。局部承压块几何：总凸高 X=−1.6；Y=−16…−21 为 5 mm 平直面；顶端在估计轨道下缘下方 8 mm；上下为 0.8 mm 的 1:1 斜坡。
+- EN: Docker render passed with no warnings/assertions; STL is one manifold (`NoError`, genus 0, 2674 vertices / 5344 facets). Added `wiki/outputs/hook-classic-wallpad16.md`; updated `wiki/index.md`, `wiki/entities/mounting-rail.md`, and `wiki/outputs/hook-strength-review.md`. Real print/fit validation is pending; no commit was made.
+  ZH: Docker 渲染零 warning/零 assert；STL 为单一 manifold（`NoError`、genus 0、2674 vertices / 5344 facets）。新增 `wiki/outputs/hook-classic-wallpad16.md`；更新 `wiki/index.md`、`wiki/entities/mounting-rail.md` 与 `wiki/outputs/hook-strength-review.md`。等待实物打印/试装验证；未 commit。
+
+## [2026-07-10] writeback | 2.5 mm half-width fast fit probe
+
+- EN: Before printing the 1.6 mm candidate, the user reported that a caliper probe showed 1.6 mm was conservative and requested a 2.5 mm trial with width halved for speed. Added `hooks/hook-classic-wallpad25-fast.scad`: `contact_back=2.5`, contact face y=−16…−21 (5 mm), `part_w=5.95`.
+  ZH: 在打印 1.6 mm 候选版之前，用户反馈游标卡尺探测表明 1.6 mm 偏保守，并要求试做 2.5 mm、宽度减半以加快打印。新增 `hooks/hook-classic-wallpad25-fast.scad`：`contact_back=2.5`、接触面 y=−16…−21（5 mm）、`part_w=5.95`。
+- EN: A 1:1 lower ramp would enter the J arc at the larger reach, so the top/bottom transitions are 1.7/1.1 mm; the bottom retains 0.2 mm to the J datum. Docker render passed with zero warnings/assertions; STL is one manifold (`NoError`, genus 0, 2674 vertices / 5344 facets).
+  ZH: 凸高增大后，若底部继续使用 1:1 斜坡会进入 J 弧，因此上下过渡分别为 1.7/1.1 mm；底部保留 0.2 mm 到 J 基准。Docker 渲染零 warning/零 assert；STL 为单一 manifold（`NoError`、genus 0、2674 vertices / 5344 facets）。
+- EN: Added `wiki/outputs/hook-classic-wallpad25-fast.md`; marked the unprinted wallpad16 page superseded; updated the index, rail observation, and contact-dependent strength note. Fit test only, not load test; no commit was made.
+  ZH: 新增 `wiki/outputs/hook-classic-wallpad25-fast.md`；把尚未打印的 wallpad16 页面标为 superseded（已替代）；更新索引、轨道观察与依赖接触的强度说明。仅用于试装，不用于承载测试；未 commit。
+
+## [2026-07-10] writeback | Add matching 2.0 mm A/B specimen
+
+- EN: At the user's request, added `hooks/hook-classic-wallpad20-fast.scad` so 2.0 and 2.5 mm reaches can print together. It matches the 2.5 specimen in mounting interface, 17 mm J profile, y=−16…−21 contact face, 5 mm face height, and half width 5.95; only reach (and derived top ramp) differs.
+  ZH: 应用户要求新增 `hooks/hook-classic-wallpad20-fast.scad`，让 2.0 与 2.5 mm 两种凸高可同批打印。它与 2.5 样件的安装接口、17 mm J 轮廓、y=−16…−21 接触面、5 mm 接触高度及 5.95 半宽完全一致；只有凸高（及其派生的顶部斜坡）不同。
+- EN: 2.0 render passed with zero warnings/assertions; echo X=−2 / Y=−16…−21 / ramps 1.2/1.1 / width 5.95; STL is one manifold (`NoError`, genus 0, 2674 vertices / 5344 facets). Added `wiki/outputs/hook-classic-wallpad-fit-pair.md` and updated index/strength notes. Fit tests only; no commit was made.
+  ZH: 2.0 版渲染零 warning、零 assert；echo 为 X=−2 / Y=−16…−21 / 斜坡 1.2/1.1 / 宽度 5.95；STL 为单一 manifold（`NoError`、genus 0、2674 vertices / 5344 facets）。新增 `wiki/outputs/hook-classic-wallpad-fit-pair.md`，并更新索引/强度说明。仅用于试装；未 commit。
+
+## [2026-07-10] refactor | Promote 2.0 mm wall contact into production
+
+- EN: The user selected the 2.0 mm specimen from the 2.0/2.5 A/B pair. Integrated its `X=−2.0`, `Y=−16…−21`, 5 mm pressure face directly into `lib/rail-mount.scad`; retained `pad_back=0.8` as the J/body datum and added an adaptive lower ramp plus body-clearance assertions.
+  ZH: 用户从 2.0/2.5 A/B 对照组中选择了 2.0 mm 样件。已把其 `X=−2.0`、`Y=−16…−21`、高 5 mm 的承压面直接并入 `lib/rail-mount.scad`；保留 `pad_back=0.8` 作为 J/躯干基准，并新增自适应下过渡与躯干净空 assert（断言）。
+- EN: Added the repository-canonical `.agents/skills/wallboard-rail-mount/` workflow, byte-identical library copy, and runnable example; updated `AGENTS.md` and validated the skill with Codex `quick_validate.py`. Removed all three temporary wall-pad test `.scad` files while retaining their superseded wiki decision records.
+  ZH: 新增仓库内权威的 `.agents/skills/wallboard-rail-mount/` 工作流、字节一致的库副本与可运行示例；更新 `AGENTS.md`，并通过 Codex `quick_validate.py` 验证 skill。三份临时抵墙块测试 `.scad` 文件均已删除，其已废弃的 wiki 决策记录予以保留。
+- EN: Docker renders passed for `hook-classic`, `hook-wide25`, and the skill example: all are manifold `NoError`, genus 0. Classic contact ramps are 1.2/1.1; wide ramps are 1.2/1.2. A full-width physical print/load check remains open before treating contact-dependent load ratings as validated.
+  ZH: `hook-classic`、`hook-wide25` 与 skill 示例的 Docker 渲染均通过：全部为 manifold（流形）`NoError`、genus 0。经典勾接触过渡为 1.2/1.1，宽勾为 1.2/1.2。在把依赖接触的承载评级视为已验证前，仍需完成全宽实物打印/承载检查。

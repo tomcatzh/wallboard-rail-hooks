@@ -1,7 +1,8 @@
 // hook-classic.scad — replica of the original Youbang J hook（原厂同款 J 钩）
-// Span from the back face = 2 * j_r_out = 17 mm. Geometry identical to the
-// former hook.scad v5.3 (fit-validated print). Mount comes from the library;
-// only the body params below are this design's own.
+// Span from the back face = 2 * j_r_out = 17 mm. The J/body params match the
+// former hook.scad v5.3 fit-validated print; the shared v7 mount adds the
+// selected 2.0 mm lower wall-contact face. Only the body params below belong
+// to this design.
 
 include <../lib/rail-mount.scad>
 
