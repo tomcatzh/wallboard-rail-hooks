@@ -128,6 +128,11 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
 - EN: New standalone design `hooks/hook-wide25.scad` (j_r_out 12.5, j_r_in 9.3, drop 24; J wall 4.6 bottom / 3.2 tip; mouth ≈17; height 47.7; ~4.4 g). Rendered clean; echoes span 25 / shank 4.4; bbox 29.35 checks out exactly. Sizing documented in `wiki/outputs/hook-wide25.md`; `wiki/index.md` updated.
   ZH: 新独立设计 `hooks/hook-wide25.scad`（j_r_out 12.5、j_r_in 9.3、drop 24；J 壁底 4.6/尖 3.2；钩口 ≈17；总高 47.7；约 4.4 g）。渲染零 warning；echo 跨度 25 / 杆身 4.4；包围盒 29.35 精确对上。计算写入 `wiki/outputs/hook-wide25.md`；`wiki/index.md` 已更新。
 
+## [2026-07-09] writeback | J free-end domed (user request, CF/GF-friendly)
+
+- EN: `j_hook_body()` gains `tip_round=true` (default): the J's free end is now a semicircular dome tangent-capping the outer/inner arcs, replacing the flat cut with two corners. Motivation from the user: fiber-filled filaments (CF/GF) leave prickly fiber ends at sharp corners; a dome is also kinder to fabrics. Span/height unchanged (the cap bulges along the tip direction, not outward). Both designs + skill example inherit automatically; SKILL.md usage section rewritten for the lib+designs layout at the same time. All three render clean.
+  ZH: `j_hook_body()` 新增 `tip_round=true`（默认）：J 钩自由端改为与内外弧相切的半圆头，取代带两个尖角的平切口。动机来自用户：碳纤/玻纤（CF/GF）料在尖角处有扎手的纤维茬，圆头也不勾织物。跨度/总高不变（圆头沿钩尖方向鼓出，不向外扩）。两个设计与 skill 示例自动继承；同时把 SKILL.md 用法一节改写为「库+设计」新布局。三个文件渲染全部干净。
+
 ## [2026-07-09] writeback | Git repository initialized; artifact policy
 
 - EN: `git init` (branch main) at the user's request; initial commit contains `hook.scad`, `wiki/`, `raw/`, `AGENTS.md`, `AGENTS.md`. Policy decided: `wiki/` is always committed (it is the documentation and decision record); `out/` is gitignored — every artifact there regenerates from `hook.scad` via the docker `scad-render` command. For public sharing, distribute STLs via releases (or a deliberate snapshot dir), not by tracking `out/`; review `raw/` home photos before publishing.
