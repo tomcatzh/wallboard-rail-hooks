@@ -178,3 +178,12 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 新增仓库内权威的 `.agents/skills/wallboard-rail-mount/` 工作流、字节一致的库副本与可运行示例；更新 `AGENTS.md`，并通过 Codex `quick_validate.py` 验证 skill。三份临时抵墙块测试 `.scad` 文件均已删除，其已废弃的 wiki 决策记录予以保留。
 - EN: Docker renders passed for `hook-classic`, `hook-wide25`, and the skill example: all are manifold `NoError`, genus 0. Classic contact ramps are 1.2/1.1; wide ramps are 1.2/1.2. A full-width physical print/load check remains open before treating contact-dependent load ratings as validated.
   ZH: `hook-classic`、`hook-wide25` 与 skill 示例的 Docker 渲染均通过：全部为 manifold（流形）`NoError`、genus 0。经典勾接触过渡为 1.2/1.1，宽勾为 1.2/1.2。在把依赖接触的承载评级视为已验证前，仍需完成全宽实物打印/承载检查。
+
+## [2026-07-13] writeback | Prepare public project documentation
+
+- EN: Added `README.md`, `README.zh_CN.md`, and `LICENSE` to prepare the project for public MIT distribution. The two READMEs describe the fixed rail interface, current classic/wide hook variants, rendering, print safety, extension contract, and the remaining full-width v7 physical validation.
+  ZH: 新增 `README.md`、`README.zh_CN.md` 与 `LICENSE`，为项目按 MIT 公开发布做准备。两份 README 说明固定轨道接口、当前经典/宽勾变体、渲染方式、打印安全、扩展约定，以及 v7 全宽实物验证仍未完成的状态。
+- EN: Reviewed the tracked reference images for public-readiness; they show the rail and hook only, with no visible personal identifiers. Corrected the stale index note so D6/D7 are recorded as measured and only D5 remains inferred.
+  ZH: 已审阅受版本控制的参考图是否适合公开；图片只展示轨道与挂钩，没有可见个人身份信息。修正索引中的过时说明：D6/D7 已标记为实测，只有 D5 仍为推定值。
+- EN: Proposed public repository name: `wallboard-rail-hooks`; the local `gh` session for `tomcatzh` is authenticated and the initial remote publication is ready to proceed.
+  ZH: 拟定公开仓库名为 `wallboard-rail-hooks`；本地 `gh` 会话已认证 `tomcatzh`，可继续进行首次远端发布。
