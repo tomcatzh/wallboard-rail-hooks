@@ -35,10 +35,10 @@ ZH: 目标：复刻这个轨道挂钩（见 [rail-hook](../entities/rail-hook.md
   ZH: 2026-07-09（再稍后）—— 用户放行建模（"外部挂钩做个大概，未来参数化"）。`hook.scad` v1 已完成，经 docker 工具链 headless 渲染验证，零 warning，尺寸 echo 自检通过。见 [hook-scad-v1](../outputs/hook-scad-v1.md)。
 - EN: 2026-07-09 (test print) — user printed the first version and calipered the original: D7 = 8.8 (build 9.0); top cap 0.5×3.0 and wall pad 3.0 identified, both 0.8 wall-ward. hook.scad v3 models them; the earlier step-direction misreading is corrected, and a ≈25% photo-vertical foreshortening is now accounted for in remaining estimates.
   ZH: 2026-07-09（试打印后）—— 用户打印初版并对原件卡尺复测：D7 = 8.8（按 9.0 建模）；确认顶部小帽 0.5×3.0 与抵墙凸台 3.0，均向墙凸 0.8。hook.scad v3 已建模；纠正了此前台阶方向误读，其余照片估计按 ≈25% 竖直透视压缩重新理解。
-- EN: 2026-07-09 (fit success) — the v3 print seats correctly on the real rail ("效果不错"). Width measured 11.9, now the `hook_w` default. The validated mount interface was first extracted into the reusable skill at `.agents/skills/wallboard-rail-mount/`.
-  ZH: 2026-07-09（试装成功）—— v3 打印件在真实挂条上正确就位（“效果不错”）。宽度实测 11.9，已设为 `hook_w` 默认值。验证过的安装接口最初沉淀到 `.agents/skills/wallboard-rail-mount/` 作为可复用 skill。
-- EN: 2026-07-10 — the 2.0 mm lower wall-contact reach was selected from a 2.0/2.5 mm fit pair and integrated into the shared production library. The repository-canonical skill now lives at `.agents/skills/wallboard-rail-mount/`; the legacy `.agents/skills/` copy is a synchronized mirror.
-  ZH: 2026-07-10 —— 从 2.0/2.5 mm 试装对照中定案 2.0 mm 下方抵墙凸高，并将其并入共享正式库。仓库内权威 skill 现位于 `.agents/skills/wallboard-rail-mount/`；旧的 `.agents/skills/` 副本作为同步镜像保留。
+- EN: 2026-07-09 (fit success) — the v3 print seats correctly on the real rail ("效果不错"). Width measured 11.9, now the `hook_w` default. The validated mount interface was extracted into the reusable `wallboard-rail-mount` skill.
+  ZH: 2026-07-09（试装成功）—— v3 打印件在真实挂条上正确就位（“效果不错”）。宽度实测 11.9，已设为 `hook_w` 默认值。验证过的安装接口已沉淀为可复用的 `wallboard-rail-mount` skill。
+- EN: 2026-07-10 — the 2.0 mm lower wall-contact reach was selected from a 2.0/2.5 mm fit pair and integrated into the shared production library. The repository-canonical skill lives at `.agents/skills/wallboard-rail-mount/` and is synchronized with the production library.
+  ZH: 2026-07-10 —— 从 2.0/2.5 mm 试装对照中定案 2.0 mm 下方抵墙凸高，并将其并入共享正式库。仓库内权威 skill 位于 `.agents/skills/wallboard-rail-mount/`，并与正式库保持同步。
 
 ## Measurement Wishlist（待测量清单）
 

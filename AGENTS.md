@@ -1,6 +1,6 @@
 # AGENTS.md — work-hook
 
-Operating rules for agents working in this repository. This file is the canonical schema; `AGENTS.md` points here.
+Operating rules for agents working in this repository. This file is the canonical schema and operating entry point.
 
 ## LLM Wiki
 
@@ -24,7 +24,6 @@ wiki/
 .agents/skills/
   wallboard-rail-mount/ # canonical reusable OpenSCAD project workflow
 AGENTS.md               # this file — canonical operating rules
-AGENTS.md               # thin pointer to AGENTS.md
 ```
 
 - EN: `raw/` is source of truth — do not modify source files unless the user explicitly asks to reorganize.

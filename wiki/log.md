@@ -14,8 +14,8 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
 
 - EN: Created `wiki/index.md`, `wiki/log.md`, `wiki/sources.md`, and empty `wiki/topics/`, `wiki/entities/`, `wiki/outputs/` directories.
   ZH: 创建了 `wiki/index.md`、`wiki/log.md`、`wiki/sources.md` 以及空的 `wiki/topics/`、`wiki/entities/`、`wiki/outputs/` 目录。
-- EN: Created `AGENTS.md` with the LLM Wiki operating rules; added `AGENTS.md` as a thin pointer to `AGENTS.md`.
-  ZH: 创建了 `AGENTS.md` 记录 LLM Wiki 操作规则；添加 `AGENTS.md` 作为指向 `AGENTS.md` 的 thin pointer（薄指针）。
+- EN: Created `AGENTS.md` with the LLM Wiki operating rules as the canonical project schema.
+  ZH: 创建了 `AGENTS.md` 记录 LLM Wiki 操作规则，并将其作为项目 canonical schema（权威规范）。
 - EN: Existing `raw/assets/` already contains three JPEG source files from a prior session (`hook-full-view.jpg`, `hook-mount-dimensions.jpg`, `hook-installed-on-rail.jpg`). They are NOT registered in `wiki/sources.md` yet — do not register or ingest until the user directs.
   ZH: 现有 `raw/assets/` 已经有 3 个 JPEG 源文件（来自之前的会话）：`hook-full-view.jpg`、`hook-mount-dimensions.jpg`、`hook-installed-on-rail.jpg`。**尚未** 登记到 `wiki/sources.md`；等用户指示再登记 / ingest。
 
@@ -81,8 +81,8 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
 
 - EN: User photos confirm the v3 print seats correctly on the real rail — the mount interface is physically validated. Width calipered at 11.9 (= print height in the flat orientation); `hook_w` default updated 8 → 11.9 (worst-case shank stress improves to ≈0.392 MPa/N). Project re-rendered clean.
   ZH: 用户照片确认 v3 打印件在真实挂条上正确就位 —— 安装接口实物验证通过。宽度卡尺实测 11.9（平放打印时即打印高度）；`hook_w` 默认 8 → 11.9（杆身最坏应力降至 ≈0.392 MPa/N）。项目重渲干净。
-- EN: Created the reusable skill `.agents/skills/wallboard-rail-mount/`: SKILL.md (fixed-vs-flexible contract, dims table with rationale, docker render command, print rules) + `rail-mount.scad` (complete code: FIXED `rail_mount_pts()` outline + `rail_accessory()` extruder with side chamfers + replaceable example J body). Skill's scad render-verified: zero warnings, echoes 7.35 / 2.2 / cap 3.0 / pad 3.0.
-  ZH: 创建可复用 skill `.agents/skills/wallboard-rail-mount/`：SKILL.md（固定/灵活约定、带理由的尺寸表、docker 渲染命令、打印规则）+ `rail-mount.scad`（完整代码：固定的 `rail_mount_pts()` 轮廓 + 带侧倒角的 `rail_accessory()` 挤出模块 + 可替换的 J 钩示例躯干）。skill 内代码已渲染验证：零 warning，echo 7.35 / 2.2 / 帽 3.0 / 凸台 3.0。
+- EN: Created the reusable `wallboard-rail-mount` skill: SKILL.md (fixed-vs-flexible contract, dims table with rationale, docker render command, print rules) + `rail-mount.scad` (complete code: FIXED `rail_mount_pts()` outline + `rail_accessory()` extruder with side chamfers + replaceable example J body). Skill's scad render-verified: zero warnings, echoes 7.35 / 2.2 / cap 3.0 / pad 3.0.
+  ZH: 创建可复用的 `wallboard-rail-mount` skill：SKILL.md（固定/灵活约定、带理由的尺寸表、docker 渲染命令、打印规则）+ `rail-mount.scad`（完整代码：固定的 `rail_mount_pts()` 轮廓 + 带侧倒角的 `rail_accessory()` 挤出模块 + 可替换的 J 钩示例躯干）。skill 内代码已渲染验证：零 warning，echo 7.35 / 2.2 / 帽 3.0 / 凸台 3.0。
 - EN: Updated `wiki/entities/rail-hook.md` (D10 measured, fit-validation evidence), requirements page (status, wishlist), `wiki/outputs/hook-scad-v1.md` (v3.1 addendum), `wiki/index.md` (skill pointer in Outputs).
   ZH: 更新 `wiki/entities/rail-hook.md`（D10 实测、试装验证证据）、需求页（状态、待测清单）、`wiki/outputs/hook-scad-v1.md`（v3.1 补充）、`wiki/index.md`（Outputs 增加 skill 指针）。
 
@@ -135,8 +135,8 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
 
 ## [2026-07-09] writeback | Git repository initialized; artifact policy
 
-- EN: `git init` (branch main) at the user's request; initial commit contains `hook.scad`, `wiki/`, `raw/`, `AGENTS.md`, `AGENTS.md`. Policy decided: `wiki/` is always committed (it is the documentation and decision record); `out/` is gitignored — every artifact there regenerates from `hook.scad` via the docker `scad-render` command. For public sharing, distribute STLs via releases (or a deliberate snapshot dir), not by tracking `out/`; review `raw/` home photos before publishing.
-  ZH: 应用户要求 `git init`（main 分支）；初始提交包含 `hook.scad`、`wiki/`、`raw/`、`AGENTS.md`、`AGENTS.md`。策略定案：`wiki/` 永远入库（它就是文档与决策记录）；`out/` 进 gitignore —— 其中所有产物都可由 `hook.scad` 经 docker `scad-render` 一键重渲。若公开分发，STL 走 release（或刻意的快照目录），不跟踪 `out/`；公开前自查 `raw/` 的家中照片。
+- EN: `git init` (branch main) at the user's request; initial commit contains the OpenSCAD model, `wiki/`, `raw/`, and `AGENTS.md`. Policy decided: `wiki/` is always committed (it is the documentation and decision record); `out/` is gitignored — every artifact there regenerates from the model via the docker `scad-render` command. For public sharing, distribute STLs via releases (or a deliberate snapshot dir), not by tracking `out/`; review `raw/` home photos before publishing.
+  ZH: 应用户要求 `git init`（main 分支）；初始提交包含 OpenSCAD 模型、`wiki/`、`raw/` 与 `AGENTS.md`。策略定案：`wiki/` 永远入库（它就是文档与决策记录）；`out/` 进 gitignore —— 其中所有产物都可由模型经 docker `scad-render` 一键重渲。若公开分发，STL 走 release（或刻意的快照目录），不跟踪 `out/`；公开前自查 `raw/` 的家中照片。
 
 ## [2026-07-10] writeback | Route LLM Wiki operations through the skill
 
@@ -194,3 +194,10 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 创建公开 GitHub 仓库 [tomcatzh/wallboard-rail-hooks](https://github.com/tomcatzh/wallboard-rail-hooks)，并推送完整本地 `main` 历史。该分支现通过 HTTPS 跟踪 `origin/main`。
 - EN: The public repository includes the English/Chinese READMEs, MIT License, OpenSCAD models, reusable project skill, bilingual wiki, and reviewed reference photos. Generated `out/` artifacts remain excluded and can be reproduced locally.
   ZH: 公开仓库包含英文/中文 README、MIT License、OpenSCAD 模型、可复用项目 skill、双语 wiki 与已审阅的参考照片。生成的 `out/` 产物仍被排除在版本控制外，可在本地重新生成。
+
+## [2026-07-13] refactor | Clean public repository identity
+
+- EN: Removed the obsolete root compatibility pointer, the agent-specific local-ignore entry, and legacy skill-path references. `AGENTS.md` is now the sole canonical project entry point, and `.agents/skills/wallboard-rail-mount/` is the sole repository skill location.
+  ZH: 删除已废弃的根目录 compatibility pointer（兼容指针）、agent-specific local-ignore entry（智能体专用本地忽略项）与旧 skill 路径引用。`AGENTS.md` 现为唯一 canonical project entry point（项目权威入口），`.agents/skills/wallboard-rail-mount/` 是仓库内唯一 skill 位置。
+- EN: Rewrote all ten commits reachable from public `main` and force-pushed the cleaned branch at the user's request. Commit structure and `Tomcat <i@zxf.io>` author/committer identity were preserved; reachable paths, blobs, and commit messages were scanned before publication.
+  ZH: 应用户要求重写 public `main` 可达的全部十个 commit（提交），并 force-push（强制推送）清理后的分支。提交结构与 `Tomcat <i@zxf.io>` author/committer（作者/提交者）身份保持不变；发布前已扫描全部可达路径、blob（对象内容）与 commit message（提交信息）。
