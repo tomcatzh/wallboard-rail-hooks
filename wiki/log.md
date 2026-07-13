@@ -201,3 +201,10 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 删除已废弃的根目录 compatibility pointer（兼容指针）、agent-specific local-ignore entry（智能体专用本地忽略项）与旧 skill 路径引用。`AGENTS.md` 现为唯一 canonical project entry point（项目权威入口），`.agents/skills/wallboard-rail-mount/` 是仓库内唯一 skill 位置。
 - EN: Rewrote all ten commits reachable from public `main` and force-pushed the cleaned branch at the user's request. Commit structure and `Tomcat <i@zxf.io>` author/committer identity were preserved; reachable paths, blobs, and commit messages were scanned before publication.
   ZH: 应用户要求重写 public `main` 可达的全部十个 commit（提交），并 force-push（强制推送）清理后的分支。提交结构与 `Tomcat <i@zxf.io>` author/committer（作者/提交者）身份保持不变；发布前已扫描全部可达路径、blob（对象内容）与 commit message（提交信息）。
+
+## [2026-07-13] source-update | Recreate public repository after stale contributor cache
+
+- EN: After the complete history rewrite, GitHub's repository landing page continued to serve a stale contributor fragment even though the REST contributor API and a fresh mirror clone were clean. Deleted repository ID `1298828857` and recreated the same public URL as repository ID `1299164315`.
+  ZH: 完整重写历史后，尽管 REST contributor API（贡献者接口）与全新 mirror clone（镜像克隆）均已干净，GitHub 仓库首页仍继续返回 stale contributor fragment（过期贡献者片段）。因此删除 repository ID `1298828857`，并以 repository ID `1299164315` 重建相同 public URL（公开地址）。
+- EN: Restored the repository description and settings, then pushed the clean `main` history. The public contributor fragment and an independent Chromium page load both show `Contributors 1` with only `tomcatzh`; reachable paths, blobs, and commit messages remain clean.
+  ZH: 已恢复仓库 description（描述）与设置，并推送干净的 `main` 历史。公开 contributor fragment 与独立 Chromium 页面加载均显示 `Contributors 1`，且只有 `tomcatzh`；全部可达路径、blob 与 commit message 仍保持干净。
