@@ -187,3 +187,10 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 已审阅受版本控制的参考图是否适合公开；图片只展示轨道与挂钩，没有可见个人身份信息。修正索引中的过时说明：D6/D7 已标记为实测，只有 D5 仍为推定值。
 - EN: Proposed public repository name: `wallboard-rail-hooks`; the local `gh` session for `tomcatzh` is authenticated and the initial remote publication is ready to proceed.
   ZH: 拟定公开仓库名为 `wallboard-rail-hooks`；本地 `gh` 会话已认证 `tomcatzh`，可继续进行首次远端发布。
+
+## [2026-07-13] source-update | Publish GitHub repository
+
+- EN: Created the public GitHub repository [tomcatzh/wallboard-rail-hooks](https://github.com/tomcatzh/wallboard-rail-hooks) and pushed the complete local `main` history. The branch now tracks `origin/main` over HTTPS.
+  ZH: 创建公开 GitHub 仓库 [tomcatzh/wallboard-rail-hooks](https://github.com/tomcatzh/wallboard-rail-hooks)，并推送完整本地 `main` 历史。该分支现通过 HTTPS 跟踪 `origin/main`。
+- EN: The public repository includes the English/Chinese READMEs, MIT License, OpenSCAD models, reusable project skill, bilingual wiki, and reviewed reference photos. Generated `out/` artifacts remain excluded and can be reproduced locally.
+  ZH: 公开仓库包含英文/中文 README、MIT License、OpenSCAD 模型、可复用项目 skill、双语 wiki 与已审阅的参考照片。生成的 `out/` 产物仍被排除在版本控制外，可在本地重新生成。
