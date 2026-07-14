@@ -80,22 +80,28 @@ docker run --rm \
   bash /usr/local/bin/scad-render <input.scad> out <output-stem>
 ```
 
-Render at minimum:
+Choose the smallest validation set that exercises the changed dependency surface. Inspect `git status --short` before rendering, including untracked files.
 
-```text
-hooks/hook-classic.scad
-hooks/hook-wide25.scad
-.agents/skills/wallboard-rail-mount/example-j-hook.scad
-```
+- **Documentation, wiki, or raw-source metadata only:** do not render.
+- **One accessory body only (`hooks/<name>.scad`):** render only that accessory. Do not rerender unrelated accessories or the skill example when the shared library is unchanged.
+- **Shared interface or helper change (`lib/rail-mount.scad` or the skill library copy):** sync the two library copies, then render every production accessory plus `.agents/skills/wallboard-rail-mount/example-j-hook.scad`.
+- **Renderer/toolchain change:** render `hook-classic`, one non-J custom accessory, and the skill example; expand only when the changed path requires it.
+- **Mixed or ambiguous change:** start with the directly affected models and expand only when a shared dependency, assertion, warning, or visual defect gives a concrete reason.
 
-Require all of the following:
+For every rendered target:
 
-- OpenSCAD reports no errors or warnings.
-- Mesh checks report `Manifold`, `NoError`, and genus 0.
-- Echo shows `plate_t=2.2`, head depth 7.35, cap/base-pad total 3.0, and wall contact 2.0 at `Y=-16..-21`.
-- Classic lower ramp is 1.1; wide-hook lower ramp is 1.2.
-- Inspect iso and top PNGs for a continuous pressure pad, a fully formed claw, and no self-intersection.
+- Require OpenSCAD to report no errors or warnings.
+- Require the mesh check to report `Manifold`, `NoError`, and genus 0.
+- Inspect only the views needed to verify the changed geometry; default to iso plus the most informative orthographic view rather than all views.
+
+For a shared-interface regression, additionally:
+
+- Confirm echoes show `plate_t=2.2`, head depth 7.35, cap/base-pad total 3.0, and wall contact 2.0 at `Y=-16..-21`.
+- Confirm the classic lower ramp is 1.1 and the wide-hook lower ramp is 1.2.
+- Inspect the representative iso and top PNGs for a continuous pressure pad, a fully formed claw, and no self-intersection.
 - Run `cmp -s lib/rail-mount.scad .agents/skills/wallboard-rail-mount/rail-mount.scad`.
+
+Keep successful verification output token-efficient: report one concise result line per target and do not copy repeated echo/render logs into chat. Show detailed log excerpts only for failures or unexpected differences.
 
 ## Print
 

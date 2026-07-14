@@ -12,14 +12,16 @@
 |---|---|---|
 | 经典款 | `hooks/hook-classic.scad` | 基于原始轮廓的 17 mm 跨度 J 勾 |
 | 宽 25 款 | `hooks/hook-wide25.scad` | 25 mm 跨度 J 勾，长悬出位置采用 4.4 mm 加强杆身 |
+| 圆杆 6 款 | `hooks/hook-round6.scad` | 25 mm 跨度 J 勾，前端过渡为居中的无螺纹 Ø6 mm 圆杆，并保留球面圆头 |
+| 钥匙孔 9 款 | `hooks/hook-keyhole9.scad` | 为 9.5/4.0 mm 钥匙孔挂片设计的 8 mm 短蘑菇头，采用 Ø9 头与 Ø3.8 捕获颈 |
 
-两款模型都使用 [`lib/rail-mount.scad`](lib/rail-mount.scad)。它包含固定轨道接口、通用挤出模块，以及参数化 J 勾辅助函数。
+四款配件都使用 [`lib/rail-mount.scad`](lib/rail-mount.scad)。它包含固定轨道接口、通用挤出模块，以及参数化 J 勾辅助函数。
 
 ## 适配范围与当前状态
 
 - 轨道卡爪几何已在作者的友邦挂挂墙平行系列墙板轨道上完成试装。它是特定五金件的配合设计，不应假定能直接适配其他轨道。
 - 固定接口采用 2.40 mm 后爪、2.75 mm 槽宽和 7.35 mm 安装头总深；这几个尺寸需要作为一个整体保留。
-- v7 在两款正式挂钩中共享一段高 5 mm、总后伸 2.0 mm 的下方抵墙承压面，用于把一部分悬挂载荷转化为墙板压力。
+- v7 在四款正式配件中共享一段高 5 mm、总后伸 2.0 mm 的下方抵墙承压面，用于把一部分悬挂载荷转化为墙板压力。
 - 当前模型均已渲染为流形实体。v7 承压面仍需要全宽实物确认完全就位，并进行承载测试后，才能依赖与抵墙接触相关的承载结论。
 
 ## 渲染模型
@@ -29,13 +31,17 @@
 ```bash
 openscad -o hook-classic.stl hooks/hook-classic.scad
 openscad -o hook-wide25.stl hooks/hook-wide25.scad
+openscad -o hook-round6.stl hooks/hook-round6.scad
+openscad -o hook-keyhole9.stl hooks/hook-keyhole9.scad
 ```
 
 项目也保留了用于验证的 Docker 渲染流程。完整命令和网格检查要求见 [项目 Skill](.agents/skills/wallboard-rail-mount/SKILL.md)。
 
 ## 打印建议
 
-- 按模型姿态侧面朝下打印，截面位于 XY 平面。这样无需支撑，主要弯曲应力也留在层平面内。
+- 经典款与宽 25 款按模型姿态侧面朝下打印，截面位于 XY 平面；它们无需支撑，主要弯曲应力也留在层平面内。
+- 圆杆 6 款保持相同的安装头朝向，但居中的 Ø6 mm 圆杆最低点高出热床 2.95 mm；需要在圆杆和圆头下方使用局部支撑。
+- 钥匙孔 9 款同样保持安装头侧面朝下；Ø9 mm 头部最低点高出热床 1.45 mm，需要在蘑菇头下方增加一小块局部支撑。
 - 长期承载请选择 PETG 或 ASA，PLA 容易蠕变。
 - 功能测试建议至少 4 圈壁，或使用 100% 填充。
 - 挂重物前先确认卡爪完全坐入轨道。应从轻载静置开始，检查蠕变、层间开裂和墙板压痕。
@@ -59,6 +65,8 @@ rail_accessory(-22.3, body, w = 11.9);
 lib/rail-mount.scad                    共享、固定的轨道接口
 hooks/hook-classic.scad                17 mm 经典 J 勾
 hooks/hook-wide25.scad                 加强版 25 mm J 勾
+hooks/hook-round6.scad                 居中 Ø6 mm 圆杆的 25 mm J 勾
+hooks/hook-keyhole9.scad               Ø9/Ø3.8 短钥匙孔蘑菇头
 raw/assets/                            参考照片
 wiki/                                  测量、决策与验证历史
 .agents/skills/wallboard-rail-mount/   可复用的设计与渲染工作流
@@ -70,6 +78,8 @@ wiki/                                  测量、决策与验证历史
 
 - [模型版本史与 v7 集成](wiki/outputs/hook-scad-v1.md)
 - [25 mm 挂钩尺寸说明](wiki/outputs/hook-wide25.md)
+- [Ø6 mm 圆杆挂钩原型](wiki/outputs/hook-round6.md)
+- [Ø9/Ø3.8 短钥匙孔蘑菇头](wiki/outputs/hook-keyhole9.md)
 - [强度审查与限制](wiki/outputs/hook-strength-review.md)
 
 ## 许可

@@ -208,3 +208,35 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 完整重写历史后，尽管 REST contributor API（贡献者接口）与全新 mirror clone（镜像克隆）均已干净，GitHub 仓库首页仍继续返回 stale contributor fragment（过期贡献者片段）。因此删除 repository ID `1298828857`，并以 repository ID `1299164315` 重建相同 public URL（公开地址）。
 - EN: Restored the repository description and settings, then pushed the clean `main` history. The public contributor fragment and an independent Chromium page load both show `Contributors 1` with only `tomcatzh`; reachable paths, blobs, and commit messages remain clean.
   ZH: 已恢复仓库 description（描述）与设置，并推送干净的 `main` 历史。公开 contributor fragment 与独立 Chromium 页面加载均显示 `Contributors 1`，且只有 `tomcatzh`；全部可达路径、blob 与 commit message 仍保持干净。
+
+## [2026-07-14] writeback | hook-round6: centered Ø6 mm round-rod J hook
+
+- EN: Added `hooks/hook-round6.scad`, a user-requested 25 mm-span experiment that preserves the validated mount and 2.0 mm pressure face, then blends the 11.9 mm-wide body into a centered unthreaded Ø6 mm round J with a spherical free end. The broad root remains as an intentional load-spreading transition.
+  ZH: 新增 `hooks/hook-round6.scad`：按用户要求尝试 25 mm 跨度版本，保留已验证安装接口与 2.0 mm 承压面，再把 11.9 mm 宽主体过渡为居中的无螺纹 Ø6 mm 圆杆 J 钩，并用球体形成自由端圆头。宽根部作为有意保留的传力过渡。
+- EN: Docker render passed with no warnings/assertions; the mesh is one manifold `NoError`, genus 0, 4424 vertices / 8844 facets. Echoes confirm rod 6, span 25, height 47.7, support gap 2.95, and unchanged fixed-interface values. Regression renders for both existing hooks and the skill example passed; the two library copies remain byte-identical.
+  ZH: Docker 渲染零 warning、零 assertion；网格为单一 manifold `NoError`、genus 0、4424 vertices / 8844 facets。echo 确认圆杆 6、跨度 25、总高 47.7、支撑空隙 2.95，固定接口数值不变。两款现有挂钩与 skill 示例回归通过；两份库继续字节一致。
+- EN: A first-order section check gives `Z≈21.2 mm³`, about 55% of `hook-wide25`'s reinforced shank and about 24 MPa at the prior 5 kg no-contact moment. The 5 kg assumption is explicitly not transferred; physical print, support removal, seating, and progressive light-load tests remain open. Updated both READMEs, `wiki/outputs/hook-round6.md`, and `wiki/index.md`.
+  ZH: 一级截面检查得到 `Z≈21.2 mm³`，约为 `hook-wide25` 加强杆身的 55%；套用此前 5 kg 无接触弯矩时约为 24 MPa。明确不沿用 5 kg 假设；仍待实物打印、拆支撑、就位与逐级轻载测试。已更新两份 README、`wiki/outputs/hook-round6.md` 与 `wiki/index.md`。
+
+## [2026-07-14] ingest+writeback | hook-keyhole9 short mushroom peg
+
+- EN: Ingested the user-provided keyhole-plate photo unchanged as `raw/assets/keyhole-hanger-reference.jpg`; the supplied opening measurements are approximately 9.5/4.0 mm. Added `hooks/hook-keyhole9.scad` with the selected Ø9.0 head, Ø3.8 capture neck, and exact 8.0 mm projection while preserving the validated rail interface and 2.0 mm pressure face.
+  ZH: 将用户提供的钥匙孔挂片照片原样 ingest（摄入）为 `raw/assets/keyhole-hanger-reference.jpg`；用户给出的开口尺寸约为 9.5/4.0 mm。新增 `hooks/hook-keyhole9.scad`，采用选定的 Ø9.0 头、Ø3.8 捕获颈与严格 8.0 mm 凸出，同时保留已验证 rail interface（轨道接口）和 2.0 mm 承压面。
+- EN: Limited the Ø3.8 section to a 3.0 mm capture length, then tapered it into a Ø7 × 1.4 mm root. The 2.4 mm head keeps a flat rear shoulder and a 0.8 mm rounded front. First-order neck math is `Z≈5.39 mm³` and ≈27.3 MPa at 5 kg before margins, so no load rating is assigned.
+  ZH: 将 Ø3.8 细段限制为 3.0 mm 捕获长度，再通过锥段并入 Ø7 × 1.4 mm 根部。2.4 mm 厚头部保留平直后肩与 0.8 mm 圆前端。细颈一级计算为 `Z≈5.39 mm³`，5 kg 时未计余量约 27.3 MPa，因此不赋予承载评级。
+- EN: Docker render passed with no warnings/assertions; the mesh is one manifold `NoError`, genus 0, 2348 vertices / 4692 facets. All existing accessory and skill-example regressions passed; library copies remain byte-identical. Updated `wiki/sources.md`, `wiki/outputs/hook-keyhole9.md`, `wiki/index.md`, and both READMEs. Physical fit and progressive light-load testing remain open.
+  ZH: Docker 渲染零 warning、零 assertion；网格为单一 manifold `NoError`、genus 0、2348 vertices / 4692 facets。全部现有配件与 skill 示例回归通过；库副本保持字节一致。已更新 `wiki/sources.md`、`wiki/outputs/hook-keyhole9.md`、`wiki/index.md` 与两份 README。仍待实物配合与逐级轻载测试。
+
+## [2026-07-14] writeback | compact hook-keyhole9 vertical envelope
+
+- EN: Moved the mushroom-peg axis upward from `Y=-23` to `Y=-19` and shortened the lower body to end at `Y=-23.5`, exactly aligned with the Ø9 head envelope. The overall vertical envelope is now 34.7 mm, 4.0 mm shorter than the initial version, while the Ø9 head, Ø3.8 capture neck, 8.0 mm projection, Ø7 root, rail claw, and 2.0 mm pressure face remain unchanged.
+  ZH: 将蘑菇头轴线由 `Y=-23` 上移至 `Y=-19`，并将下部主体缩短到 `Y=-23.5`，与 Ø9 圆头包络精确对齐。整体竖向包络现为 34.7 mm，比初版缩短 4.0 mm；Ø9 头、Ø3.8 捕获颈、8.0 mm 凸出、Ø7 根部、导轨卡爪与 2.0 mm 承压面均保持不变。
+- EN: The revised STL passed with no warnings/assertions and is one manifold `NoError`, genus 0 mesh with 2344 vertices / 4684 facets. Regression renders for the classic, wide25, round6, and skill-example models also passed. Physical clearance between the mounted keyhole plate and the rail remains to be checked on the first print.
+  ZH: 修订后的 STL 零 warning、零 assertion，并为单一 manifold（流形）`NoError`、genus 0 网格，含 2344 vertices / 4684 facets。经典款、wide25、round6 与 skill 示例的回归渲染也全部通过。首次打印仍需实测挂片装入后与导轨之间的间隙。
+
+## [2026-07-14] writeback | impact-scoped render validation
+
+- EN: Revised `.agents/skills/wallboard-rail-mount/SKILL.md` so validation follows the changed dependency surface: documentation-only work does not render, an accessory-body change renders only that accessory, and only shared interface/helper changes trigger the full production and skill-example regression.
+  ZH: 修订 `.agents/skills/wallboard-rail-mount/SKILL.md`，使验证范围跟随 changed dependency surface（变更依赖面）：仅文档工作不渲染，配件主体变化只渲染该配件，只有共享接口/helper（辅助模块）变化才触发全部正式模型与 skill 示例回归。
+- EN: Added `wiki/topics/render-validation-strategy.md` and required successful render output to remain concise, with detailed echo/render logs shown only for failures or unexpected differences. This replaces the prior unqualified minimum-render wording.
+  ZH: 新增 `wiki/topics/render-validation-strategy.md`，并要求成功渲染只保留简洁结果；仅在失败或出现意外差异时展开 echo/render 详细日志。该规则取代此前未限定适用范围的最小渲染措辞。
