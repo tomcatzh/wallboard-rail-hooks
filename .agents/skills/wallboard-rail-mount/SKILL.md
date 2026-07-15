@@ -67,6 +67,8 @@ For a custom body, continue the outline from `(-pad_back, body_back_y)`, below t
 
 For PETG load-bearing bodies, keep sections at least 3 mm thick, keep the room-side bending-tension face smooth, and thicken the shank when reach grows. Treat wall contact as a load path only after the printed part sits firmly against the panel without preventing full rail seating.
 
+Classify every corner from the final union outline before adding a fillet. At an obtuse/re-entrant junction where a diagonal gusset meets a plate or platform underside, construct a tangent concave inner arc between the two boundary lines. Do not round the corner of a standalone gusset polygon with a generic offset and then union it: that produces an outward bulb at the final junction. Keep positive-volume overlap as a separate connection requirement, and inspect the side profile to confirm the arc curves into the joint rather than away from it.
+
 ## Render And Verify
 
 There is no local OpenSCAD CLI. From `~/openscad/work-hook`, use the installed Docker image and mount the renderer explicitly:
@@ -93,7 +95,7 @@ For every rendered target:
 
 - Require OpenSCAD to report no errors or warnings.
 - Require the mesh check to report `Manifold`, `NoError`, and genus 0.
-- Inspect only the views needed to verify the changed geometry; default to iso plus the most informative orthographic view rather than all views.
+- Inspect only the views needed to verify the changed geometry; default to iso plus the most informative orthographic view rather than all views. For gussets and fillets, verify both tangency and curvature direction on the final union silhouette.
 
 For a shared-interface regression, additionally:
 

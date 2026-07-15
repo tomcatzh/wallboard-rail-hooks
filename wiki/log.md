@@ -301,3 +301,21 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 用户反馈首件 `frame-ribba22` 已成功打印，并正在承托旧款 RIBBA 18288 相框。已将设计页标记为 active（活跃），并记录该特定相框、导轨、打印机与材料组合下的实物配合验证。
 - EN: The successful initial installation is not treated as a sustained-load rating. Long-term observation for creep, layer separation, rail unseating, edge marking, and outward lean remains open.
   ZH: 首次成功挂装不视为持续承载额定。仍需长期观察螺变、层间开裂、导轨脱位、边缘压痕与外倾。
+
+## [2026-07-15] writeback | Raise RIBBA platform for visual coverage
+
+- EN: Superseded the physically tested low-platform placement with a raised visual-cover revision. The free bearing edge is now exactly 12.0 mm below the unchanged fixed mount top (`Y=-0.8` versus `y_top=11.2`), while the 22 mm flat reach, 1.5° inward slope, 24 mm width, rear claw, 2.0 mm pressure face, `body_back_y=-22.4`, and 33.6 mm overall envelope remain unchanged.
+  ZH: 用抬高的视觉遮挡版取代已完成实物试装的低平台位置。自由端承托上缘现精确位于未改动的固定安装头顶部下方 12.0 mm（`Y=-0.8`，`y_top=11.2`）；22 mm 平直伸入量、1.5° 向内斜度、24 mm 宽度、后方卡爪、2.0 mm 承压面、`body_back_y=-22.4` 与 33.6 mm 总包络均保持不变。
+- EN: Modeled the high platform as a separate profile with 0.25 mm of positive overlap into the fixed front plate. Retained the upper R1.0 root fillet, added R1.0 radii to both exposed lower corners, and retained the R1.2 lip-free nose.
+  ZH: 高位平台改为独立轮廓，并向固定前板内实体重叠 0.25 mm。保留上方 R1.0 根部圆角，底部两处外露转角新增 R1.0 圆角，自由端继续使用无上翻唇的 R1.2 圆头。
+- EN: Impact-scoped validation rendered only `frame-ribba22`, with no warnings/assertions and `Manifold` / `NoError` / genus 0. Visual inspection confirmed the raised connected arm and all requested radii; direct STL audit reports one component, zero boundary/non-manifold edges, Euler characteristic 2, 188 vertices, and 372 triangles. The new platform height still requires a physical fit check.
+  ZH: 按影响范围仅渲染 `frame-ribba22`，零 warning、零 assertion，并通过 `Manifold` / `NoError` / genus 0 检查。外观检查确认抬高托臂连接完整，且所有要求的圆角已形成；直接 STL 检查为 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2、188 个顶点与 372 个三角面。新平台高度仍需实物试装。
+
+## [2026-07-15] writeback | Use inner fillets on reinforced RIBBA gusset
+
+- EN: Added a full-width diagonal support beneath the raised RIBBA platform: 24 mm wide, 13 mm nominal reach, 10 mm nominal drop, and 0.6 mm positive overlap into both the fixed plate and platform. It is a thick closed solid so slicer infill can reduce internal material without weakening the OpenSCAD connection geometry.
+  ZH: 在抬高的 RIBBA 平台下新增全宽斜撑：宽 24 mm、标称伸出 13 mm、标称下探 10 mm，并向固定竖板与平台各实体重叠 0.6 mm。它是厚实闭合体，因此切片器可用填充减少内部用料，而不会削弱 OpenSCAD 中的连接几何。
+- EN: Superseded the first generic rounded-triangle experiment because its standalone offset rounding became an outward bulb at the obtuse/re-entrant junction after union. Rebuilt both exposed junctions from the final silhouette as tangent R1.5 concave inner arcs, then recorded this final-outline classification and curvature-direction check in `.agents/skills/wallboard-rail-mount/SKILL.md`.
+  ZH: 作废首次使用通用圆角三角形的尝试，因为独立轮廓的 offset（偏移）圆角在并集后会于钝角/内凹接头形成向外鼓包。现改为根据最终轮廓重建两处外露接头，均采用相切 R1.5 内弧，并把“按最终轮廓判定角类型、检查弧向”的规则写入 `.agents/skills/wallboard-rail-mount/SKILL.md`。
+- EN: Impact-scoped validation rendered only `frame-ribba22`, with no warnings/assertions and `Manifold` / `NoError` / genus 0. Enlarged side-profile inspection confirmed both concave arc directions. Direct STL audit reports one connected component, zero boundary/non-manifold edges, Euler characteristic 2, 228 vertices, and 452 triangles. The repository skill passed `quick_validate.py`, and its bundled `rail-mount.scad` remains byte-identical to `lib/rail-mount.scad`.
+  ZH: 按影响范围仅渲染 `frame-ribba22`，零 warning、零 assertion，并通过 `Manifold` / `NoError` / genus 0。放大侧轮廓确认两处内弧方向正确。直接 STL 检查为 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2、228 个顶点与 452 个三角面。仓库 skill 已通过 `quick_validate.py`，其中随附的 `rail-mount.scad` 继续与 `lib/rail-mount.scad` 字节一致。
