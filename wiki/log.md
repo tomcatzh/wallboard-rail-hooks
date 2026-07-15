@@ -240,3 +240,64 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 修订 `.agents/skills/wallboard-rail-mount/SKILL.md`，使验证范围跟随 changed dependency surface（变更依赖面）：仅文档工作不渲染，配件主体变化只渲染该配件，只有共享接口/helper（辅助模块）变化才触发全部正式模型与 skill 示例回归。
 - EN: Added `wiki/topics/render-validation-strategy.md` and required successful render output to remain concise, with detailed echo/render logs shown only for failures or unexpected differences. This replaces the prior unqualified minimum-render wording.
   ZH: 新增 `wiki/topics/render-validation-strategy.md`，并要求成功渲染只保留简洁结果；仅在失败或出现意外差异时展开 echo/render 详细日志。该规则取代此前未限定适用范围的最小渲染措辞。
+
+## [2026-07-14] refactor | family-based accessory catalog layout
+
+- EN: Replaced the flat `hooks/` directory with only the two families that currently exist: `accessories/hooks/` for the three J-hook variants and `accessories/pegs/` for the keyhole peg. Did not create placeholder `holders/`, `shelves/`, `clips/`, `lib/geometry/`, or `scripts/` directories.
+  ZH: 将扁平 `hooks/` 目录替换为当前真实存在的两个 family（家族）：`accessories/hooks/` 保存三款 J 钩，`accessories/pegs/` 保存钥匙孔蘑菇头。未创建占位的 `holders/`、`shelves/`、`clips/`、`lib/geometry/` 或 `scripts/` 目录。
+- EN: Added `catalog/accessories.toml`; grouped rail references under `raw/rail/`, the keyhole reference under `raw/accessories/hook-keyhole9/`, and current per-accessory pages under `wiki/accessories/`. Updated includes and all current links while preserving historical paths in the append-only log and version history where context requires them.
+  ZH: 新增 `catalog/accessories.toml`；将轨道参考资料归入 `raw/rail/`，钥匙孔参考资料归入 `raw/accessories/hook-keyhole9/`，现行配件页面归入 `wiki/accessories/`。已更新 include（引用）与全部现行链接，同时在只追加日志和版本史需要上下文的位置保留历史路径。
+- EN: This is a path-only refactor: `lib/rail-mount.scad` and accessory geometry remain unchanged. Validation therefore checks include resolution and catalog/link integrity rather than rerendering unrelated meshes.
+  ZH: 本次为纯路径重构：`lib/rail-mount.scad` 与配件几何均未变化。因此验证 include 解析、catalog 与链接完整性，不重新渲染无关网格。
+
+## [2026-07-14] ingest+writeback | frame-ribba22 recessed-back saddle
+
+- EN: Ingested three user photos unchanged under `raw/accessories/frame-ribba22/`. They identify an old IKEA RIBBA `18288` frame, show its flat recessed hardboard back, and document the original straight hook currently used; the user supplied the governing 22 mm recess measurement. Current official IKEA RIBBA instructions are registered as series context only, not as proof of this 1999 variant's dimensions.
+  ZH: 将用户提供的三张照片原样 ingest（摄入）到 `raw/accessories/frame-ribba22/`。照片识别出旧款 IKEA RIBBA `18288` 相框，展示其平直凹入的硬质背板，并记录当前使用的原厂直钩；用户给出的 22 mm 凹深实测为本设计的控制尺寸。现行 IKEA RIBBA 官方说明书仅登记为系列背景，不作为这款 1999 版本尺寸的证据。
+- EN: Added `accessories/frames/ribba-22.scad`, intended as a spaced pair. Each bracket is 24 mm wide, reaches 23 mm from the frame rear plane (22 mm recess + 1 mm allowance), uses a 4.5 mm flat arm, a 5 mm rounded retaining lip, and an underside root gusset. The new real model establishes the `frames/` family without creating placeholder families.
+  ZH: 新增 `accessories/frames/ribba-22.scad`，设计为两只拉开间距配合使用。每只宽 24 mm，从相框背面基准伸入 23 mm（22 mm 凹深 + 1 mm 余量），采用 4.5 mm 平直托臂、5 mm 短圆防脱唇与根部下加强筋。这个真实模型正式建立 `frames/` family（家族），未创建任何占位 family。
+- EN: Impact-scoped Docker validation rendered only the new model. It completed with zero warnings/assertions; a direct STL audit found one connected component, zero boundary/non-manifold edges, and Euler characteristic 2 (`genus 0`). Profile inspection confirmed the flat bearing surface, underside gusset, and lip direction. The model uses `ch=0` after diagnosis found the current shared stepped-chamfer helper can leave a coplanar disconnected top shell; that helper remains unchanged for separate full-regression work. Physical fit and progressive load testing remain open, so the catalog status is `prototype` and no load rating is assigned.
+  ZH: 按影响范围仅对新模型执行 Docker 验证。渲染零 warning、零 assertion；直接 STL 检查得到 1 个连通体、0 条边界/非流形边，Euler characteristic（欧拉特征数）为 2（`genus 0`）。轮廓检查确认平直承托面、下加强筋与圆唇方向正确。诊断发现当前共享阶梯倒角 helper（辅助模块）可能留下共面但不连通的顶部壳，因此本模型使用 `ch=0`；该 helper 保持不变，留作需要全量回归的独立工作。实物配合与逐级承载测试仍未完成，因此 catalog 状态为 `prototype`，不赋予承载额定值。
+
+## [2026-07-14] writeback | Replace RIBBA retaining lip with inclined plane
+
+- EN: At the user's direction, removed the 5 mm upturned retaining lip from `accessories/frames/ribba-22.scad`. The replacement bearing surface rises 1.5° toward the room/free end, producing a 0.4347 mm rise across its 16.6 mm run; gravity therefore biases normal seating toward the wall/root. The underside remains horizontal, so the 4.5 mm root section is preserved and the arm becomes slightly thicker toward the end.
+  ZH: 按用户决定，从 `accessories/frames/ribba-22.scad` 删除 5 mm 上翻防脱唇。替代托面向房间侧/自由端抬高 1.5°，在 16.6 mm 有效长度上形成 0.4347 mm 高差；因此正常就位时重力会让相框向墙面/根部偏置。底面保持水平，从而保留 4.5 mm 根部截面，并使托臂向末端略微增厚。
+- EN: Added an R1.2 tangent nose with no protrusion above the inclined plane. The flat bearing segment still reaches 23 mm from the frame rear plane before rounding begins, preserving the 22 mm recess plus 1 mm fit allowance. This trades positive bump/lift retention for easier insertion and lower interference risk.
+  ZH: 新增 R1.2 相切圆头，且不高出倾斜托面。进入圆头前，平直承托段仍从相框背面基准伸入 23 mm，完整保留 22 mm 凹深 + 1 mm 配合余量。该方案以放弃碰撞/抬起时的刚性限位，换取更轻松的插入和更低的干涉风险。
+- EN: Impact-scoped Docker validation rendered only `frame-ribba22`; it completed with no warnings/assertions. Direct STL topology audit: one connected component, zero boundary/non-manifold edges, Euler characteristic 2 (`genus 0`), 268 triangles. Only the iso and side-profile views were inspected; the shared mount and library were unchanged.
+  ZH: 按影响范围仅渲染 `frame-ribba22`；过程零 warning、零 assertion。直接 STL 拓扑检查：1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2（`genus 0`）、268 triangles（三角面）。仅检查等轴图与侧轮廓；共享安装接口和库均未修改。
+
+## [2026-07-14] writeback | Raise and shorten RIBBA platform
+
+- EN: Raised the 1.5° platform until its highest point is `Y=-21.2`, leaving the minimum modeled 0.2 mm clearance below the shared wall-contact face ending at `Y=-21`. Reduced the underside root-gusset drop from 3.0 to 1.5 mm while retaining the 24 mm width, 4.5 mm platform root thickness, 23 mm flat bearing reach, and R1.2 rounded nose.
+  ZH: 将 1.5° 平台上移到最高点 `Y=-21.2`，在截止于 `Y=-21` 的共享抵墙承压面下方保留模型设定的最小 0.2 mm 净空。根部下加强筋下探由 3.0 mm 减至 1.5 mm，同时保留 24 mm 宽度、4.5 mm 平台根部厚度、23 mm 平直承托伸入量与 R1.2 圆头。
+- EN: Renamed the accessory's body thickness from `arm_t` to `platform_t`. The old global name shadowed the included fixed-library `arm_t=2.2`, inflating the rail-claw envelope to 11.25 mm. The corrected model restores the 8.95 mm claw against its 9.0 mm target and, together with the raised platform, reduces overall height from about 45.0 to 38.8347 mm (−6.17 mm) without changing `lib/rail-mount.scad`.
+  ZH: 将配件主体厚度变量由 `arm_t` 改名为 `platform_t`。旧的全局名称遮蔽了 include（包含）进来的固定库 `arm_t=2.2`，曾把导轨卡爪包络增高到 11.25 mm。修正模型把卡爪恢复为 8.95 mm（目标 9.0 mm）；再结合平台上移，总高由约 45.0 mm 降到 38.8347 mm（减少 6.17 mm），且未修改 `lib/rail-mount.scad`。
+- EN: Impact-scoped Docker validation rendered only `frame-ribba22` with no warnings/assertions. Iso and side-profile inspection confirmed the compact continuous gusset and raised platform. Direct STL topology audit remains one connected component, zero boundary/non-manifold edges, Euler characteristic 2 (`genus 0`), 268 triangles.
+  ZH: 按影响范围仅渲染 `frame-ribba22`，零 warning、零 assertion。等轴图与侧轮廓确认紧凑而连续的加强筋和上移平台。直接 STL 拓扑检查仍为 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2（`genus 0`）、268 triangles（三角面）。
+
+## [2026-07-15] writeback | Align RIBBA platform underside to pressure-face edge
+
+- EN: At the user's direction, aligned the platform underside with the rear wall-contact pressure face's lower edge at `Y=-21`. Removed the separate 1.5 mm lower gusset drop; the fixed interface's ramp/body endpoint at `Y=-22.4` now connects diagonally straight to the 4.5 mm-thick platform root.
+  ZH: 按用户决定，将平台底面与后方抵墙承压凸起下缘共同对齐 `Y=-21`。删除独立的 1.5 mm 下方加强筋下探；固定接口位于 `Y=-22.4` 的过渡/主体端点现直接斜接到 4.5 mm 厚的平台根部。
+- EN: The unchanged 1.5° surface now reaches a highest point of `Y=-16.0653`; its vertical datum remains 0.0653 mm below the pressure-face upper edge at `Y=-16`, while the features are separated in X. Overall height falls from 38.8347 to 33.6 mm (−5.23 mm), which is the minimum envelope allowed by the unchanged `body_back_y=-22.4` and fixed `y_top=11.2`.
+  ZH: 保持不变的 1.5° 托面现达到最高点 `Y=-16.0653`；其竖向基准仍比承压面上缘 `Y=-16` 低 0.0653 mm，且两处特征在 X 方向分离。总高由 38.8347 mm 降到 33.6 mm（减少 5.23 mm），这是 `body_back_y=-22.4` 与固定 `y_top=11.2` 不变时允许的最小包络。
+- EN: Impact-scoped Docker validation rendered only `frame-ribba22` with no warnings/assertions. Iso and side-profile inspection found no self-intersection and confirmed the aligned underside. Direct STL audit: one connected component, zero boundary/non-manifold edges, Euler characteristic 2 (`genus 0`), 268 triangles; the shared library remains unchanged.
+  ZH: 按影响范围仅渲染 `frame-ribba22`，零 warning、零 assertion。等轴图与侧轮廓未发现自交，并确认底面对齐。直接 STL 检查：1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2（`genus 0`）、268 triangles；共享库保持不变。
+
+## [2026-07-15] writeback | Flatten and fillet RIBBA front; set 22 mm bearing reach
+
+- EN: Removed the former 2.2 mm room-side root projection by setting `root_front_x=x_pf`, leaving a continuous vertical front face for the light picture-frame load. Added a tangent R1.0 root fillet to soften the platform junction without restoring a protruding boss.
+  ZH: 通过设置 `root_front_x=x_pf` 删除原有 2.2 mm 房间侧根部凸出，针对轻载相框保留连续垂直正面。增加相切 R1.0 根部圆角，缓和平台交界处的转角，但不恢复外凸加强块。
+- EN: Set `depth_clearance=0`, so the flat inclined bearing reach is exactly the measured 22.0 mm. Only the tangent R1.2 nose continues to a 23.2314 mm outer reach; its 1.2314 mm overrun is curved transition geometry rather than additional flat platform.
+  ZH: 将 `depth_clearance=0`，使倾斜平直托面精确伸入实测的 22.0 mm。只有相切 R1.2 圆头继续到 23.2314 mm 最外缘；多出的 1.2314 mm 是曲面过渡几何，不是额外平直平台。
+- EN: Impact-scoped validation rerendered only `frame-ribba22` with no warnings/assertions. Visual inspection confirmed the flush face and R1.0 fillet; direct STL audit reports one connected component, zero boundary/non-manifold edges, Euler characteristic 2 (`genus 0`), and 300 triangles. The shared library remains unchanged.
+  ZH: 按影响范围仅重新渲染 `frame-ribba22`，零 warning、零 assertion。外观检查确认齐平正面与 R1.0 圆角；直接 STL 检查为 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2（`genus 0`）、300 triangles。共享库保持不变。
+
+## [2026-07-15] source-update | Confirm physical fit of RIBBA saddle
+
+- EN: The user reported that the first `frame-ribba22` print completed successfully and is now carrying the old RIBBA 18288 frame. Marked the design page active and recorded the fit as physically validated for this specific frame, rail, printer, and material setup.
+  ZH: 用户反馈首件 `frame-ribba22` 已成功打印，并正在承托旧款 RIBBA 18288 相框。已将设计页标记为 active（活跃），并记录该特定相框、导轨、打印机与材料组合下的实物配合验证。
+- EN: The successful initial installation is not treated as a sustained-load rating. Long-term observation for creep, layer separation, rail unseating, edge marking, and outward lean remains open.
+  ZH: 首次成功挂装不视为持续承载额定。仍需长期观察螺变、层间开裂、导轨脱位、边缘压痕与外倾。

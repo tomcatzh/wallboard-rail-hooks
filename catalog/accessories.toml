@@ -1,0 +1,46 @@
+schema_version = 1
+
+[[accessory]]
+id = "hook-classic"
+family = "hooks"
+source = "accessories/hooks/classic.scad"
+output_stem = "hook-classic"
+wiki = "wiki/outputs/hook-scad-v1.md"
+status = "production"
+support = "none"
+
+[[accessory]]
+id = "hook-wide25"
+family = "hooks"
+source = "accessories/hooks/wide-25.scad"
+output_stem = "hook-wide25"
+wiki = "wiki/accessories/hook-wide25.md"
+status = "production"
+support = "none"
+
+[[accessory]]
+id = "hook-round6"
+family = "hooks"
+source = "accessories/hooks/round-6.scad"
+output_stem = "hook-round6"
+wiki = "wiki/accessories/hook-round6.md"
+status = "prototype"
+support = "localized"
+
+[[accessory]]
+id = "hook-keyhole9"
+family = "pegs"
+source = "accessories/pegs/keyhole-9.scad"
+output_stem = "hook-keyhole9"
+wiki = "wiki/accessories/hook-keyhole9.md"
+status = "prototype"
+support = "localized"
+
+[[accessory]]
+id = "frame-ribba22"
+family = "frames"
+source = "accessories/frames/ribba-22.scad"
+output_stem = "frame-ribba22"
+wiki = "wiki/accessories/frame-ribba22.md"
+status = "prototype"
+support = "none"
