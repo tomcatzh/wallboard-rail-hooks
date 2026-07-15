@@ -319,3 +319,12 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 作废首次使用通用圆角三角形的尝试，因为独立轮廓的 offset（偏移）圆角在并集后会于钝角/内凹接头形成向外鼓包。现改为根据最终轮廓重建两处外露接头，均采用相切 R1.5 内弧，并把“按最终轮廓判定角类型、检查弧向”的规则写入 `.agents/skills/wallboard-rail-mount/SKILL.md`。
 - EN: Impact-scoped validation rendered only `frame-ribba22`, with no warnings/assertions and `Manifold` / `NoError` / genus 0. Enlarged side-profile inspection confirmed both concave arc directions. Direct STL audit reports one connected component, zero boundary/non-manifold edges, Euler characteristic 2, 228 vertices, and 452 triangles. The repository skill passed `quick_validate.py`, and its bundled `rail-mount.scad` remains byte-identical to `lib/rail-mount.scad`.
   ZH: 按影响范围仅渲染 `frame-ribba22`，零 warning、零 assertion，并通过 `Manifold` / `NoError` / genus 0。放大侧轮廓确认两处内弧方向正确。直接 STL 检查为 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2、228 个顶点与 452 个三角面。仓库 skill 已通过 `quick_validate.py`，其中随附的 `rail-mount.scad` 继续与 `lib/rail-mount.scad` 字节一致。
+
+## [2026-07-15] ingest+source-update | Confirm raised RIBBA fit and visual concealment
+
+- EN: Preserved two new user photos byte-for-byte as `raw/accessories/frame-ribba22/raised-reinforced-pair-installed.jpg` and `raw/accessories/frame-ribba22/frame-conceals-raised-saddles.jpg`, then registered both in `wiki/sources.md`. The first records the current reinforced pair installed with practical spacing; the second records the frame covering the mounts after installation.
+  ZH: 将用户新增的两张照片逐字节原样保存为 `raw/accessories/frame-ribba22/raised-reinforced-pair-installed.jpg` 与 `raw/accessories/frame-ribba22/frame-conceals-raised-saddles.jpg`，并在 `wiki/sources.md` 登记。第一张记录当前加强版成对安装及实际间距，第二张记录相框挂装后遮住托架的效果。
+- EN: The user reports that the result works very well. The installed evidence closes the current raised revision's fit and visual-coverage checks for this specific RIBBA 18288, rail, printer, and material setup: the pair mounts successfully and the frame conceals it at the selected 12 mm datum without apparent interference.
+  ZH: 用户反馈效果很好。实装证据关闭了当前抬高版在这套特定 RIBBA 18288、挂条、打印机与材料组合下的配合及视觉遮挡检查：成对托架可正常挂装，相框能在选定的 12 mm 基准处将其遮住，且未见明显干涉。
+- EN: This successful installation is not a sustained-load rating. Continue observing for creep, layer separation, rail unseating, hardboard-edge marking, or visible outward lean; no additional geometry render was needed for this documentation-only ingest.
+  ZH: 此次成功挂装不构成持续承载额定。仍需继续观察蠕变、层间开裂、导轨脱位、硬质背板边缘压痕或可见外倾；本次仅摄入文档与照片，无需额外几何渲染。

@@ -46,7 +46,7 @@ The project also has a Docker-based render workflow used for verification. See [
 - Print the Classic and Wide 25 side-face-down as modeled, with the profile in the XY plane. They need no supports and keep the principal bending stresses within the layer plane.
 - Round 6 keeps the same mount orientation, but its centered Ø6 mm rod starts 2.95 mm above the bed; use localized supports under the round body and tip.
 - Keyhole 9 also keeps the mount side-face-down; its Ø9 mm head starts 1.45 mm above the bed, so add a small localized support beneath the mushroom peg.
-- RIBBA 22 prints side-face-down without support and is used as a spaced pair. Its full-width gusset is a closed solid, so the slicer controls internal material through perimeter and infill settings. The prior low-platform revision fit the user's old RIBBA 18288 frame; the current raised reinforced revision needs a new fit check and has no long-term load rating.
+- RIBBA 22 prints side-face-down without support and is used as a spaced pair. Its full-width gusset is a closed solid, so the slicer controls internal material through perimeter and infill settings. The current raised reinforced revision has been printed and installed on the user's old RIBBA 18288 frame; it fits and is concealed by the frame at the selected 12 mm datum, but still has no long-term load rating.
 - Use PETG or ASA for sustained loads. PLA is prone to creep.
 - Use at least four perimeters or 100% infill for functional tests.
 - Verify that the hook fully seats on the rail before hanging anything meaningful. Start with a light static test and inspect for creep, layer separation, or panel damage.
