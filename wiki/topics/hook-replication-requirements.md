@@ -3,9 +3,9 @@ title: "Hook Replication Requirements"
 type: topic
 status: active
 sources:
-  - raw/assets/hook-mount-dimensions.jpg
-  - raw/assets/hook-installed-on-rail.jpg
-  - raw/assets/hook-full-view.jpg
+  - raw/rail/hook-mount-dimensions.jpg
+  - raw/rail/hook-installed-on-rail.jpg
+  - raw/rail/hook-full-view.jpg
 updated: 2026-07-10
 ---
 

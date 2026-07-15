@@ -3,7 +3,7 @@ title: "hook-round6 — 25 mm span J hook with Ø6 mm round rod"
 type: output
 status: active
 sources:
-  - raw/assets/hook-installed-on-rail.jpg
+  - raw/rail/hook-installed-on-rail.jpg
 updated: 2026-07-14
 ---
 
@@ -11,8 +11,8 @@ updated: 2026-07-14
 
 ## Summary（摘要）
 
-EN: [`hooks/hook-round6.scad`](../../hooks/hook-round6.scad) is the user-requested round-body experiment. It preserves the fit-validated rail claw, the selected 2.0 mm lower wall-contact face, the 11.9 mm mount width, and the 25 mm outer J envelope of [hook-wide25](hook-wide25.md). Below the pressure face, the broad shank blends into a centered plain Ø6.0 mm rod; the free end is closed by a sphere. “M6” is used here only as the 6 mm nominal diameter—the model contains no thread.
-ZH: [`hooks/hook-round6.scad`](../../hooks/hook-round6.scad) 是用户要求尝试的圆杆主体版本。它保留已通过试装的 rail claw（轨道卡爪）、定案的 2.0 mm 下方抵墙承压面、11.9 mm 安装头宽度，以及 [hook-wide25](hook-wide25.md) 的 25 mm J 钩外包络。承压面以下，宽杆身过渡到居中的普通 Ø6.0 mm 圆杆；自由端用球体封成圆头。这里的 “M6” 只表示 6 mm nominal diameter（名义直径），模型中没有螺纹。
+EN: [`accessories/hooks/round-6.scad`](../../accessories/hooks/round-6.scad) is the user-requested round-body experiment. It preserves the fit-validated rail claw, the selected 2.0 mm lower wall-contact face, the 11.9 mm mount width, and the 25 mm outer J envelope of [hook-wide25](hook-wide25.md). Below the pressure face, the broad shank blends into a centered plain Ø6.0 mm rod; the free end is closed by a sphere. “M6” is used here only as the 6 mm nominal diameter—the model contains no thread.
+ZH: [`accessories/hooks/round-6.scad`](../../accessories/hooks/round-6.scad) 是用户要求尝试的圆杆主体版本。它保留已通过试装的 rail claw（轨道卡爪）、定案的 2.0 mm 下方抵墙承压面、11.9 mm 安装头宽度，以及 [hook-wide25](hook-wide25.md) 的 25 mm J 钩外包络。承压面以下，宽杆身过渡到居中的普通 Ø6.0 mm 圆杆；自由端用球体封成圆头。这里的 “M6” 只表示 6 mm nominal diameter（名义直径），模型中没有螺纹。
 
 ## Geometry（几何）
 

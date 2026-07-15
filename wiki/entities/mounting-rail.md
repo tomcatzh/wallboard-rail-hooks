@@ -3,7 +3,7 @@ title: "Mounting Rail (wall panel insert strip)"
 type: entity
 status: active
 sources:
-  - raw/assets/hook-full-view.jpg
+  - raw/rail/hook-full-view.jpg
   - https://www.chinayoubang.com/productfamily/detail/195.html
 updated: 2026-07-10
 ---

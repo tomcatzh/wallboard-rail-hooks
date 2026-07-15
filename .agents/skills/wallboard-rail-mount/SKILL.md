@@ -14,9 +14,9 @@ Read `~/openscad/work-hook/wiki/index.md` first when project history or design r
 - `~/openscad/work-hook/lib/rail-mount.scad` is the production source of truth.
 - This skill's `rail-mount.scad` must remain byte-identical to the production library.
 - This skill's `example-j-hook.scad` is a runnable 17 mm-span example.
-- Production bodies live in `~/openscad/work-hook/hooks/`.
+- Production bodies live under `~/openscad/work-hook/accessories/<family>/`; define only families that have real models.
 
-When the interface changes, edit the production library first, sync the skill copy, render both production hooks and the skill example, then update the bilingual wiki.
+When the interface changes, edit the production library first, sync the skill copy, render every production accessory and the skill example, then update the bilingual wiki.
 
 ## Geometry Contract
 
@@ -57,7 +57,7 @@ Do not assume one wall plane from the old 0.8 mm contour. The upper cap remains 
 
 ## Build An Accessory
 
-1. Include the library. In `hooks/*.scad`, use `include <../lib/rail-mount.scad>`.
+1. Include the library. In `accessories/<family>/*.scad`, use `include <../../lib/rail-mount.scad>`.
 2. For a J hook, call `j_hook_body(drop, r_out, r_in, lift, sweep, front_extra, tip_round)`. The nominal span is `2*r_out`.
 3. Keep `tip_round=true`, especially for CF/GF materials.
 4. Use `front_extra` when reach grows. The 25 mm hook uses `front_extra=1.4`, producing a 4.4 mm shank rather than scaling the classic hook blindly.
@@ -83,7 +83,8 @@ docker run --rm \
 Choose the smallest validation set that exercises the changed dependency surface. Inspect `git status --short` before rendering, including untracked files.
 
 - **Documentation, wiki, or raw-source metadata only:** do not render.
-- **One accessory body only (`hooks/<name>.scad`):** render only that accessory. Do not rerender unrelated accessories or the skill example when the shared library is unchanged.
+- **Path-only move or include rewrite with unchanged geometry:** compile each moved entry point to CSG/AST to verify path resolution, syntax, and assertions; do not regenerate STL or PNG artifacts.
+- **One accessory body only (`accessories/<family>/<name>.scad`):** render only that accessory. Do not rerender unrelated accessories or the skill example when the shared library is unchanged.
 - **Shared interface or helper change (`lib/rail-mount.scad` or the skill library copy):** sync the two library copies, then render every production accessory plus `.agents/skills/wallboard-rail-mount/example-j-hook.scad`.
 - **Renderer/toolchain change:** render `hook-classic`, one non-J custom accessory, and the skill example; expand only when the changed path requires it.
 - **Mixed or ambiguous change:** start with the directly affected models and expand only when a shared dependency, assertion, warning, or visual defect gives a concrete reason.
@@ -105,7 +106,7 @@ Keep successful verification output token-efficient: report one concise result l
 
 ## Print
 
-- Print side-face-down as modeled, with the XY profile in each layer; no supports.
+- Follow each accessory's print notes. Keep profile-only J hooks side-face-down; centered rods or pegs may require localized support.
 - Prefer PETG or ASA for sustained loads; avoid PLA creep.
 - Use at least four perimeters or 100% infill for load-bearing tests.
 - Print fixed dimensions verbatim on the owner's calibrated printer. Correct machine-specific fit with slicer flow or horizontal expansion, not library geometry.

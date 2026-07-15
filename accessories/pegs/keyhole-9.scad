@@ -1,4 +1,4 @@
-// hook-keyhole9.scad — short mushroom peg for a 9.5/4.0 mm keyhole slot
+// keyhole-9.scad — short mushroom peg for a 9.5/4.0 mm keyhole slot
 // （适配 9.5/4.0 mm 钥匙孔挂片的短蘑菇头挂钩）
 //
 // User-selected fit diameters: 9.0 mm head and 3.8 mm capture neck.
@@ -7,7 +7,7 @@
 // carry the load into the full-width body. The head has a flat rear shoulder
 // and a shallow rounded front for easy insertion through the large opening.
 
-include <../lib/rail-mount.scad>
+include <../../lib/rail-mount.scad>
 
 /* [Keyhole fit] */
 head_d = 9.0;

@@ -7,7 +7,7 @@
 //
 // This file defines NO geometry at top level - it is meant to be included:
 //
-//   include <../lib/rail-mount.scad>
+//   include <../../lib/rail-mount.scad>
 //   body = j_hook_body(drop, r_out, r_in, lift, sweep, front_extra);
 //   rail_accessory(-drop, body, w = 11.9);
 //

@@ -3,7 +3,7 @@ title: "hook-wide25 — 25 mm span J hook, plastic-sized"
 type: output
 status: active
 sources:
-  - raw/assets/hook-installed-on-rail.jpg
+  - raw/rail/hook-installed-on-rail.jpg
 updated: 2026-07-10
 ---
 
@@ -11,8 +11,8 @@ updated: 2026-07-10
 
 ## Summary（摘要）
 
-EN: [`hooks/hook-wide25.scad`](../../hooks/hook-wide25.scad) matches the metal original's 25 mm outer span (the classic replica is 17 mm — the photo-derived J was undersized, as the user's caliper showed). Per the user's insight, a scaled copy would NOT work in plastic: the load hangs ~1.5× further out while PETG has ~1/10 the strength of the 6-series aluminum — so the sections are re-sized where the moment lives, not scaled.
-ZH: [`hooks/hook-wide25.scad`](../../hooks/hook-wide25.scad) 对齐金属原版 25 mm 的外缘跨度（复刻版是 17 mm —— 照片推出的 J 偏小，用户卡尺证实）。按用户的判断，塑料不能简单放大：载荷悬出远了约 1.5 倍，而 PETG 强度只有六系铝的约 1/10 —— 所以按弯矩所在位置重配截面，而不是等比缩放。
+EN: [`accessories/hooks/wide-25.scad`](../../accessories/hooks/wide-25.scad) matches the metal original's 25 mm outer span (the classic replica is 17 mm — the photo-derived J was undersized, as the user's caliper showed). Per the user's insight, a scaled copy would NOT work in plastic: the load hangs ~1.5× further out while PETG has ~1/10 the strength of the 6-series aluminum — so the sections are re-sized where the moment lives, not scaled.
+ZH: [`accessories/hooks/wide-25.scad`](../../accessories/hooks/wide-25.scad) 对齐金属原版 25 mm 的外缘跨度（复刻版是 17 mm —— 照片推出的 J 偏小，用户卡尺证实）。按用户的判断，塑料不能简单放大：载荷悬出远了约 1.5 倍，而 PETG 强度只有六系铝的约 1/10 —— 所以按弯矩所在位置重配截面，而不是等比缩放。
 
 ## Sizing Math（尺寸计算，5 kg 额定 / PETG）
 

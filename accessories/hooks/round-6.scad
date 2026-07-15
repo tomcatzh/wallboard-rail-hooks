@@ -1,4 +1,4 @@
-// hook-round6.scad — 25 mm-span J hook with a round 6 mm rod
+// round-6.scad — 25 mm-span J hook with a round 6 mm rod
 // （25 mm 外缘跨度、直径 6 mm 圆杆 J 钩）
 //
 // The fit-validated rail interface and 2.0 mm wall-contact face stay unchanged.
@@ -9,7 +9,7 @@
 // Printing in the library's normal side-face-down orientation leaves the round
 // rod 2.95 mm above the bed at its lowest Z point, so supports are expected.
 
-include <../lib/rail-mount.scad>
+include <../../lib/rail-mount.scad>
 
 /* [Design] */
 // Mount width along the rail; kept at the measured original width.

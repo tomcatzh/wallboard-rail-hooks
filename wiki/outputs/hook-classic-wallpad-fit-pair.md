@@ -3,7 +3,7 @@ title: "Classic hook wall-pad A/B fit pair"
 type: comparison
 status: superseded
 sources:
-  - raw/assets/hook-full-view.jpg
+  - raw/rail/hook-full-view.jpg
 updated: 2026-07-10
 ---
 

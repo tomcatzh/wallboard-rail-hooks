@@ -3,9 +3,9 @@ title: "Rail Hook (replication target)"
 type: entity
 status: active
 sources:
-  - raw/assets/hook-mount-dimensions.jpg
-  - raw/assets/hook-installed-on-rail.jpg
-  - raw/assets/hook-full-view.jpg
+  - raw/rail/hook-mount-dimensions.jpg
+  - raw/rail/hook-installed-on-rail.jpg
+  - raw/rail/hook-full-view.jpg
 updated: 2026-07-09
 ---
 
@@ -87,12 +87,12 @@ ZH: 安装时，安装爪从前方扣到挂条顶缘上：挂条上唇进入 2.7
 
 ## Evidence（证据）
 
-- EN: `raw/assets/hook-mount-dimensions.jpg` — end-on cross-section of the mounting head with the three dimension annotations; serration teeth visible on the front edge.
-  ZH: `raw/assets/hook-mount-dimensions.jpg` —— 安装头的端面截面，带三个尺寸标注；正面边缘可见锯齿。
-- EN: `raw/assets/hook-installed-on-rail.jpg` — despite its filename, shows the bare hook's full side profile on a plain background; source of the photo-scale estimates.
-  ZH: `raw/assets/hook-installed-on-rail.jpg` —— 与文件名相反，实际是纯色背景上裸钩的完整侧面轮廓；照片比例估计的来源。
-- EN: `raw/assets/hook-full-view.jpg` — despite its filename, shows the hook installed on the gold rail in the wall paneling; source for the mounting interaction and rib blending.
-  ZH: `raw/assets/hook-full-view.jpg` —— 与文件名相反，实际是挂钩安装在墙板金色挂条上的照片；安装配合与棱纹融合观察的来源。
+- EN: `raw/rail/hook-mount-dimensions.jpg` — end-on cross-section of the mounting head with the three dimension annotations; serration teeth visible on the front edge.
+  ZH: `raw/rail/hook-mount-dimensions.jpg` —— 安装头的端面截面，带三个尺寸标注；正面边缘可见锯齿。
+- EN: `raw/rail/hook-installed-on-rail.jpg` — despite its filename, shows the bare hook's full side profile on a plain background; source of the photo-scale estimates.
+  ZH: `raw/rail/hook-installed-on-rail.jpg` —— 与文件名相反，实际是纯色背景上裸钩的完整侧面轮廓；照片比例估计的来源。
+- EN: `raw/rail/hook-full-view.jpg` — despite its filename, shows the hook installed on the gold rail in the wall paneling; source for the mounting interaction and rib blending.
+  ZH: `raw/rail/hook-full-view.jpg` —— 与文件名相反，实际是挂钩安装在墙板金色挂条上的照片；安装配合与棱纹融合观察的来源。
 - EN: 2026-07-09 chat photos — a v3 print seats correctly on the real rail (claw over lip, cap and pad engaged): the mount interface is physically validated.
   ZH: 2026-07-09 对话照片 —— v3 打印件在真实挂条上正确就位（爪扣唇、帽与凸台到位）：安装接口已实物验证。
 

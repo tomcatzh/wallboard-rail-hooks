@@ -3,8 +3,8 @@ title: "Strength & stress-concentration review of hook.scad v1"
 type: output
 status: active
 sources:
-  - raw/assets/hook-mount-dimensions.jpg
-  - raw/assets/hook-full-view.jpg
+  - raw/rail/hook-mount-dimensions.jpg
+  - raw/rail/hook-full-view.jpg
 updated: 2026-07-10
 ---
 

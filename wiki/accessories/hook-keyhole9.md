@@ -3,7 +3,7 @@ title: "hook-keyhole9 — short Ø9/Ø3.8 mushroom peg"
 type: output
 status: active
 sources:
-  - raw/assets/keyhole-hanger-reference.jpg
+  - raw/accessories/hook-keyhole9/reference.jpg
   - https://www.hangmanproducts.com/shop/p/keyhole-hangers
 updated: 2026-07-14
 ---
@@ -12,8 +12,8 @@ updated: 2026-07-14
 
 ## Summary（摘要）
 
-EN: [`hooks/hook-keyhole9.scad`](../../hooks/hook-keyhole9.scad) is a short mushroom peg for the keyhole hanger plate in [`raw/assets/keyhole-hanger-reference.jpg`](../../raw/assets/keyhole-hanger-reference.jpg). A keyhole plate first passes its large opening over a screw-like head, then slides so the narrow slot captures the smaller neck. The user measured the openings as approximately 9.5 and 4.0 mm and selected a Ø9.0 mm head, Ø3.8 mm neck, and 8.0 mm total projection.
-ZH: [`hooks/hook-keyhole9.scad`](../../hooks/hook-keyhole9.scad) 是为 [`raw/assets/keyhole-hanger-reference.jpg`](../../raw/assets/keyhole-hanger-reference.jpg) 中 keyhole hanger plate（钥匙孔挂片）设计的短蘑菇头。挂片先让大孔越过类似螺丝的头部，再下移，使窄槽捕获较细的颈部。用户实测两段开口约为 9.5 与 4.0 mm，并选定 Ø9.0 mm 头、Ø3.8 mm 颈及 8.0 mm 总凸出。
+EN: [`accessories/pegs/keyhole-9.scad`](../../accessories/pegs/keyhole-9.scad) is a short mushroom peg for the keyhole hanger plate in [`raw/accessories/hook-keyhole9/reference.jpg`](../../raw/accessories/hook-keyhole9/reference.jpg). A keyhole plate first passes its large opening over a screw-like head, then slides so the narrow slot captures the smaller neck. The user measured the openings as approximately 9.5 and 4.0 mm and selected a Ø9.0 mm head, Ø3.8 mm neck, and 8.0 mm total projection.
+ZH: [`accessories/pegs/keyhole-9.scad`](../../accessories/pegs/keyhole-9.scad) 是为 [`raw/accessories/hook-keyhole9/reference.jpg`](../../raw/accessories/hook-keyhole9/reference.jpg) 中 keyhole hanger plate（钥匙孔挂片）设计的短蘑菇头。挂片先让大孔越过类似螺丝的头部，再下移，使窄槽捕获较细的颈部。用户实测两段开口约为 9.5 与 4.0 mm，并选定 Ø9.0 mm 头、Ø3.8 mm 颈及 8.0 mm 总凸出。
 
 ## Fit And Geometry（配合与几何）
 

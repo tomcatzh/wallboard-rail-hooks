@@ -3,7 +3,7 @@ title: "hook-classic-wallpad25-fast — half-width fit test"
 type: output
 status: superseded
 sources:
-  - raw/assets/hook-full-view.jpg
+  - raw/rail/hook-full-view.jpg
 updated: 2026-07-10
 ---
 

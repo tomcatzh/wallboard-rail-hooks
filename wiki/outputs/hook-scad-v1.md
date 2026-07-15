@@ -3,17 +3,17 @@ title: "hook.scad — OpenSCAD model history"
 type: output
 status: active
 sources:
-  - raw/assets/hook-mount-dimensions.jpg
-  - raw/assets/hook-installed-on-rail.jpg
-updated: 2026-07-10
+  - raw/rail/hook-mount-dimensions.jpg
+  - raw/rail/hook-installed-on-rail.jpg
+updated: 2026-07-14
 ---
 
 # hook.scad（OpenSCAD 模型版本史）
 
 ## Summary（摘要）
 
-EN: The first OpenSCAD model of the rail hook lived at the historical repo-root `hook.scad`; v6 later replaced it with the current `lib/` + `hooks/` layout. The mounting head used the user-confirmed nominals verbatim; the body and J-hook were deliberately approximate and fully parametric, per the user's 2026-07-09 direction ("外部的挂钩也许未来可以作为参数项，现在做个大概"). It was rendered and verified headless via the Docker toolchain; artifacts live in `out/`.
-ZH: 第一版轨道挂钩 OpenSCAD 模型曾位于仓库根目录 `hook.scad`；v6 后已由现行 `lib/` + `hooks/` 布局取代。安装头严格使用用户确认的名义尺寸；躯干与 J 钩按用户 2026-07-09 的指示（"外部的挂钩也许未来可以作为参数项，现在做个大概"）刻意做成近似且完全参数化。它已通过 Docker 工具链 headless（无显示）渲染验证；产物位于 `out/`。
+EN: The first OpenSCAD model of the rail hook lived at the historical repo-root `hook.scad`; v6 split it into `lib/` + `hooks/`, and the 2026-07-14 catalog refactor moved current entry models under `accessories/<family>/`. The mounting head used the user-confirmed nominals verbatim; the body and J-hook were deliberately approximate and fully parametric, per the user's 2026-07-09 direction ("外部的挂钩也许未来可以作为参数项，现在做个大概"). It was rendered and verified headless via the Docker toolchain; artifacts live in `out/`.
+ZH: 第一版轨道挂钩 OpenSCAD 模型曾位于仓库根目录 `hook.scad`；v6 将其拆为 `lib/` + `hooks/`，2026-07-14 的 catalog（目录清单）重构又把现行入口模型迁到 `accessories/<family>/`。安装头严格使用用户确认的名义尺寸；躯干与 J 钩按用户 2026-07-09 的指示（"外部的挂钩也许未来可以作为参数项，现在做个大概"）刻意做成近似且完全参数化。它已通过 Docker 工具链 headless（无显示）渲染验证；产物位于 `out/`。
 
 ## Datum & Construction（基准与构造）
 
@@ -48,8 +48,8 @@ ZH: 默认参数下总高 = 40 mm（echo 自检验证）。所有参数在文件
 
 - EN: Rendered with docker image `openab-openscad-toolchain-base:openscad-nightly-2026.01.19.2` via `scad-render` (the helper from `~/work/openab-deploy`, mounted; no local OpenSCAD install needed). STL + 4 orthographic PNGs produced, zero warnings/errors; echo checks: head depth 7.35 ✓, derived plate 2.2 ✓, height 40 ✓.
   ZH: 用 docker 镜像 `openab-openscad-toolchain-base:openscad-nightly-2026.01.19.2` 通过 `scad-render`（挂载自 `~/work/openab-deploy` 的助手脚本；本机无需安装 OpenSCAD）渲染。产出 STL + 4 张正交 PNG，零 warning/error；echo 自检：总深 7.35 ✓、推导主板 2.2 ✓、总高 40 ✓。
-- EN: `out/hook-top.png` (the profile view) visually matches the bare-hook photo `raw/assets/hook-installed-on-rail.jpg`.
-  ZH: `out/hook-top.png`（截面视图）与裸钩照片 `raw/assets/hook-installed-on-rail.jpg` 目视一致。
+- EN: `out/hook-top.png` (the profile view) visually matches the bare-hook photo `raw/rail/hook-installed-on-rail.jpg`.
+  ZH: `out/hook-top.png`（截面视图）与裸钩照片 `raw/rail/hook-installed-on-rail.jpg` 目视一致。
 - EN: Artifacts: `out/hook.stl`, `out/hook-{iso,top,front,right}.png` (generated, re-renderable — not sources).
   ZH: 产物：`out/hook.stl`、`out/hook-{iso,top,front,right}.png`（生成物，可重渲 —— 不是 source）。
 
@@ -134,12 +134,12 @@ ZH: 按用户指示，单文件 `hook.scad` 拆分为「库 + 独立设计文件
 
 - EN: `lib/rail-mount.scad` — the mount library: fixed params, `rail_mount_pts()`, `rail_accessory()` (extrude + side chamfers, width as an argument), and the `j_hook_body()` helper. No top-level geometry. Byte-identical copy lives in the `wallboard-rail-mount` skill.
   ZH: `lib/rail-mount.scad` —— 安装接口库：固定参数、`rail_mount_pts()`、`rail_accessory()`（挤出+侧倒角，宽度作参数）、`j_hook_body()` 助手。无顶层几何。skill 里有字节一致的副本。
-- EN: `hooks/hook-classic.scad` — the fit-validated 17 mm-span hook (former `hook.scad` v5.3). Refactor verified geometry-exact: same 5072 triangles, STL volume diff 0.000000 mm³, identical bbox vs the pre-refactor render.
-  ZH: `hooks/hook-classic.scad` —— 已验证试装的 17 mm 跨度钩（原 `hook.scad` v5.3）。重构经验证几何完全一致：三角数同为 5072，STL 体积差 0.000000 mm³，包围盒相同。
+- EN: Historical `hooks/hook-classic.scad` — the fit-validated 17 mm-span hook (former `hook.scad` v5.3; now `accessories/hooks/classic.scad`). The v6 refactor verified geometry-exact: same 5072 triangles, STL volume diff 0.000000 mm³, identical bbox vs the pre-refactor render.
+  ZH: 历史路径 `hooks/hook-classic.scad` —— 已验证试装的 17 mm 跨度钩（原 `hook.scad` v5.3；现为 `accessories/hooks/classic.scad`）。v6 重构经验证几何完全一致：三角数同为 5072，STL 体积差 0.000000 mm³，包围盒相同。
 - EN: The long-dormant serration option (off since v2) was retired in the refactor; it remains recoverable from git history.
   ZH: 长期停用的锯齿选项（v2 起默认关）在重构中移除；可从 git 历史找回。
-- EN: File references above in this page (`hook.scad`) are historical; current layout is `lib/` + `hooks/`.
-  ZH: 本页前文提到的 `hook.scad` 为历史名称；现行布局为 `lib/` + `hooks/`。
+- EN: File references above in this page (`hook.scad` and `hooks/`) are historical; the current layout is `lib/` + `accessories/<family>/`.
+  ZH: 本页前文提到的 `hook.scad` 与 `hooks/` 为历史名称；现行布局为 `lib/` + `accessories/<family>/`。
 
 ## v7 — 2.0 mm Wall-Contact Production Integration（v7 — 2.0 mm 抵墙承压面正式并入，2026-07-10）
 
@@ -165,6 +165,14 @@ ZH: 用户在半宽 2.0/2.5 mm [A/B 试装对照](hook-classic-wallpad-fit-pair.
   ZH: `hook-wide25.scad`：`Manifold`、`NoError`、genus 0、2672 vertices / 5340 facets；接触面相同、过渡 `1.2/1.2`、宽 11.9。
 - EN: The skill example independently renders to the same classic mesh result. Top and isometric views show one continuous profile with no self-intersection.
   ZH: skill 示例可独立渲染，并得到与经典勾相同的网格结果。top 与 isometric（等轴测）视图显示轮廓连续、无自交。
+
+## 2026-07-14 — Accessory Catalog Layout（配件目录重构）
+
+EN: Current entry models are grouped only by families that exist: `accessories/hooks/` contains the three J-hook variants and `accessories/pegs/` contains the keyhole peg. No placeholder families are created. `catalog/accessories.toml` records stable IDs, source paths, output stems, wiki pages, status, and support requirements.
+ZH: 现行入口模型只按已经存在的 family（家族）分组：`accessories/hooks/` 保存三款 J 钩，`accessories/pegs/` 保存钥匙孔蘑菇头；不创建占位 family。`catalog/accessories.toml` 记录稳定 ID、源码路径、输出名、wiki 页面、状态与支撑要求。
+
+EN: Rail reference images now live in `raw/rail/`; the keyhole-specific photo lives in `raw/accessories/hook-keyhole9/`; current accessory design pages live in `wiki/accessories/`. The shared interface remains at `lib/rail-mount.scad` and its geometry is unchanged by this path-only refactor.
+ZH: 轨道参考图现位于 `raw/rail/`；钥匙孔专属照片位于 `raw/accessories/hook-keyhole9/`；现行配件设计页位于 `wiki/accessories/`。共享接口仍位于 `lib/rail-mount.scad`，本次纯路径重构未改变其几何。
 
 ## Open Items（待办）
 
