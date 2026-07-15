@@ -13,10 +13,11 @@
 | 经典款 | `accessories/hooks/classic.scad` | 基于原始轮廓的 17 mm 跨度 J 勾 |
 | 宽 25 款 | `accessories/hooks/wide-25.scad` | 25 mm 跨度 J 勾，长悬出位置采用 4.4 mm 加强杆身 |
 | 圆杆 6 款 | `accessories/hooks/round-6.scad` | 25 mm 跨度 J 勾，前端过渡为居中的无螺纹 Ø6 mm 圆杆，并保留球面圆头 |
+| 圆杆 6 短板款 | `accessories/hooks/round-6-short.scad` | 独立的 33.6 mm 高紧凑兄弟版本；采用精确 11.9 mm 宽 D 形根部，两侧保持打印平面，上侧清爽，下侧完整融合到 Ø6 / 25 mm J 钩包络 |
 | 钥匙孔 9 款 | `accessories/pegs/keyhole-9.scad` | 为 9.5/4.0 mm 钥匙孔挂片设计的 8 mm 短蘑菇头，采用 Ø9 头与 Ø3.8 捕获颈 |
 | RIBBA 22 款 | `accessories/frames/ribba-22.scad` | 双只使用的 24 mm 宽托架，平直托面精确伸入 22 mm；抬高后的自由端上缘距安装头顶部 12 mm，并由带相切内弧的全宽斜撑加强 |
 
-五款配件都使用 [`lib/rail-mount.scad`](lib/rail-mount.scad)。它包含固定轨道接口、通用挤出模块，以及参数化 J 勾辅助函数。
+六款配件都使用 [`lib/rail-mount.scad`](lib/rail-mount.scad)。它包含固定轨道接口、通用挤出模块，以及参数化 J 勾辅助函数。
 
 ## 适配范围与当前状态
 
@@ -33,6 +34,7 @@
 openscad -o hook-classic.stl accessories/hooks/classic.scad
 openscad -o hook-wide25.stl accessories/hooks/wide-25.scad
 openscad -o hook-round6.stl accessories/hooks/round-6.scad
+openscad -o hook-round6-short.stl accessories/hooks/round-6-short.scad
 openscad -o hook-keyhole9.stl accessories/pegs/keyhole-9.scad
 openscad -o frame-ribba22.stl accessories/frames/ribba-22.scad
 ```
@@ -42,7 +44,7 @@ openscad -o frame-ribba22.stl accessories/frames/ribba-22.scad
 ## 打印建议
 
 - 经典款与宽 25 款按模型姿态侧面朝下打印，截面位于 XY 平面；它们无需支撑，主要弯曲应力也留在层平面内。
-- 圆杆 6 款保持相同的安装头朝向，但居中的 Ø6 mm 圆杆最低点高出热床 2.95 mm；需要在圆杆和圆头下方使用局部支撑。
+- 圆杆 6 款与圆杆 6 短板款都让安装头侧面直接落在热床上，而居中的 Ø6 mm 圆杆最低点高出热床 2.95 mm；圆杆与圆头下方需要局部支撑。短板款的 11.9 mm D 形根部与安装头两侧共面，不会抬高固定安装头。原版继续作为 47.7 mm 低挂位置基线，短板款则是独立的 33.6 mm 最小高度实验版。
 - 钥匙孔 9 款同样保持安装头侧面朝下；Ø9 mm 头部最低点高出热床 1.45 mm，需要在蘑菇头下方增加一小块局部支撑。
 - RIBBA 22 款侧面朝下打印，无需支撑，使用时应将两只分开放置。全宽斜撑是闭合实体，内部用料由切片器的壁数和填充设置控制。当前抬高加强版已在用户的旧款 RIBBA 18288 上完成打印和挂装；配合正常，并能在选定的 12 mm 基准处被相框遮住，但仍无长期承载额定值。
 - 长期承载请选择 PETG 或 ASA，PLA 容易蠕变。
@@ -68,6 +70,7 @@ rail_accessory(-22.3, body, w = 11.9);
 accessories/hooks/classic.scad          17 mm 经典 J 勾
 accessories/hooks/wide-25.scad          加强版 25 mm J 勾
 accessories/hooks/round-6.scad          居中 Ø6 mm 圆杆的 25 mm J 勾
+accessories/hooks/round-6-short.scad    带全底融合偏心根部的最短板 Ø6 J 钩
 accessories/pegs/keyhole-9.scad         Ø9/Ø3.8 短钥匙孔蘑菇头
 accessories/frames/ribba-22.scad        两只配合使用的 22 mm 凹背相框托架
 catalog/accessories.toml                机器可读配件清单
@@ -86,6 +89,7 @@ wiki/                                   测量、决策与验证历史
 - [模型版本史与 v7 集成](wiki/outputs/hook-scad-v1.md)
 - [25 mm 挂钩尺寸说明](wiki/accessories/hook-wide25.md)
 - [Ø6 mm 圆杆挂钩原型](wiki/accessories/hook-round6.md)
+- [最短板 Ø6 mm 圆杆兄弟版本](wiki/accessories/hook-round6-short.md)
 - [Ø9/Ø3.8 短钥匙孔蘑菇头](wiki/accessories/hook-keyhole9.md)
 - [RIBBA 22 凹背相框托架](wiki/accessories/frame-ribba22.md)
 - [强度审查与限制](wiki/outputs/hook-strength-review.md)

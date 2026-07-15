@@ -328,3 +328,83 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 用户反馈效果很好。实装证据关闭了当前抬高版在这套特定 RIBBA 18288、挂条、打印机与材料组合下的配合及视觉遮挡检查：成对托架可正常挂装，相框能在选定的 12 mm 基准处将其遮住，且未见明显干涉。
 - EN: This successful installation is not a sustained-load rating. Continue observing for creep, layer separation, rail unseating, hardboard-edge marking, or visible outward lean; no additional geometry render was needed for this documentation-only ingest.
   ZH: 此次成功挂装不构成持续承载额定。仍需继续观察蠕变、层间开裂、导轨脱位、硬质背板边缘压痕或可见外倾；本次仅摄入文档与照片，无需额外几何渲染。
+
+## [2026-07-15] writeback | Add independent minimum-height Round 6 Short
+
+- EN: Added `accessories/hooks/round-6-short.scad` as an independent sibling; the original `round-6.scad` remains unchanged for A/B testing. Short preserves the Ø6 rod, 25 mm outer J envelope, 205° sweep, spherical tip, 11.9 mm width, fixed claw, and 2.0 mm pressure face.
+  ZH: 新增独立兄弟版本 `accessories/hooks/round-6-short.scad`；原 `round-6.scad` 保持不变，供 A/B 测试。Short 版保留 Ø6 圆杆、25 mm J 钩外包络、205° 扫掠角、球面圆头、11.9 mm 宽度、固定卡爪与 2.0 mm 承压面。
+- EN: Lifted the J center from `Y=-24` to `Y=-9.9`, aligning its 12.5 mm outer radius with the minimum fixed-body bottom at `Y=-22.4`. Replaced the long broad shank with a local full-width 4.4 mm root from `Y=-8.6` to `Y=-9.9`. Total height falls from 47.7 to 33.6 mm (−14.1 mm, −29.6%) without changing the functional J envelope or shared interface.
+  ZH: 将 J 钩中心由 `Y=-24` 抬到 `Y=-9.9`，使 12.5 mm 外半径与固定主体最低点 `Y=-22.4` 对齐。长宽杆身改为 `Y=-8.6…-9.9` 的局部全宽 4.4 mm 根部。总高由 47.7 mm 降至 33.6 mm（减少 14.1 mm、29.6%），且不改变 J 钩功能包络或共享接口。
+- EN: Impact-scoped Docker validation rendered only `hook-round6-short`. OpenSCAD reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 3785 vertices, and 7566 facets. Exact-coordinate STL audit found one component, zero bad edges, and Euler characteristic 2; Y bounds are exactly `-22.4…11.2`. Localized support remains required at the unchanged 2.95 mm bed gap, and physical A/B fit/load testing is open.
+  ZH: 按影响范围仅渲染 `hook-round6-short`。OpenSCAD 零 warning、零 assertion，并报告 `Manifold`、`NoError`、genus 0、3785 个顶点与 7566 个面。使用精确坐标的 STL 检查得到 1 个连通体、0 条坏边、Euler characteristic（欧拉特征数）2；Y 包络精确为 `-22.4…11.2`。2.95 mm 热床空隙不变，仍需局部支撑；实物 A/B 配合与承载测试保持开放。
+
+## [2026-07-15] writeback | Round the Short hook's lower root
+
+- EN: Removed the experimental upper root shelf and replaced the intermediate elliptical boss with a full-width two-lobe convex root. The Ø5.2 mm plate lobe overlaps the fixed plate; the Ø8.4 mm hook lobe is centered on the existing J path at 225°. The resulting profile follows the lower sweep, increases root area, and fills the former re-entrant plate/hook junction without changing the original `round-6.scad`.
+  ZH: 删除实验版根部上方横台，并以全宽双圆瓣凸根部替代中间椭圆凸台。Ø5.2 mm 竖板圆瓣与固定竖板重叠；Ø8.4 mm 挂钩圆瓣位于原 J 钩路径的 225° 位置。最终轮廓沿下方弧线展开、增大根部面积，并填平原先竖板/挂钩交界的凹入角；原 `round-6.scad` 未作修改。
+- EN: Impact-scoped validation again rendered only `hook-round6-short`. OpenSCAD reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 3092 vertices, and 6180 facets. Exact-coordinate STL audit found one component, zero boundary/non-manifold edges, Euler characteristic 2, and unchanged `Y=-22.4…11.2` bounds. Iso and profile inspection confirmed no upper shelf or lower stress-concentrating inside corner.
+  ZH: 按影响范围再次只渲染 `hook-round6-short`。OpenSCAD 零 warning、零 assertion，并报告 `Manifold`、`NoError`、genus 0、3092 个顶点与 6180 个面。精确坐标 STL 检查得到 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2，且 `Y=-22.4…11.2` 包络不变。等轴与轮廓检查确认不存在上方横台或下方应力集中内角。
+
+## [2026-07-15] writeback | Replace Round 6 Short boss with a curved loft
+
+- EN: Superseded the blocky two-lobe root with a dependency-free native `polyhedron()` section-ring loft. The final root starts as an 8 × 11.5 mm ellipse, uses a 0.8 mm tangent bell mouth plus hidden positive-overlap core at the fixed plate, follows a 5.335 mm-radius / 36° curved horn, and contracts both section axes to the Ø6 rod before joining the original circular J path tangentially at 234°. The original `round-6.scad` and shared library remain unchanged.
+  ZH: 用无外部依赖的原生 `polyhedron()` 截面环 loft 取代块状双圆瓣根部。最终根部以 8 × 11.5 mm 椭圆起步，在固定竖板处采用 0.8 mm 相切喇叭口及隐藏正体积重叠芯，随后沿半径 5.335 mm、转角 36° 的弯曲渐缩段同时收细两个截面轴，并在 234° 处与原圆形 J 路径相切连接成 Ø6 圆杆。原 `round-6.scad` 与共享库均保持不变。
+- EN: Integrated the rounded free end as hemisphere rings and an apex in the same polyhedron. A separate equal-radius sphere tangent to the final Ø6 ring produced a high-genus Boolean result despite a closed loft; the integrated cap removes that degeneracy. Corrected all polyhedron face winding to OpenSCAD's convention so the loft participates in the mount union as a solid rather than an independent shell.
+  ZH: 将圆润自由端以半球截面环和顶点直接并入同一 polyhedron（多面体）。独立同半径球体与末端 Ø6 圆环相切时，即使 loft 本身闭合，Boolean 结果仍会出现高 genus；集成端盖消除了该退化。同时按 OpenSCAD 约定修正全部 polyhedron 面绕序，使 loft 作为实体参与安装头并集，而不是独立壳体。
+- EN: Impact-scoped validation rendered only `hook-round6-short`. OpenSCAD reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 5771 vertices, and 11538 facets. Exact-coordinate STL audit found one component, zero boundary/non-manifold edges, Euler characteristic 2, and unchanged `Y=-22.4…11.2` bounds. Profile/iso/end inspection confirmed the continuous taper and absence of the former rear boss or exposed inside corner; physical fit and load testing remain open.
+  ZH: 按影响范围仅渲染 `hook-round6-short`。OpenSCAD 零 warning、零 assertion，并报告 `Manifold`、`NoError`、genus 0、5771 个顶点与 11538 个面。精确坐标 STL 检查得到 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2，且 `Y=-22.4…11.2` 包络不变。轮廓/等轴/端视检查确认渐缩连续，且不存在先前的后凸台或外露内角；实物配合与承载测试仍待完成。
+
+## [2026-07-15] writeback | Enlarge and lengthen the Round 6 Short root
+
+- EN: Enlarged the plate root from 8 × 11.5 mm to 12.8 × 11.8 mm. It now spans `Y=-21.7…-8.9` and leaves only 0.05 mm per side of the 11.9 mm mount width, using almost the complete available plate face while staying below the fixed `Y=-8` rail-zone datum.
+  ZH: 将贴板根部由 8 × 11.5 mm 扩大为 12.8 × 11.8 mm。它现在竖向覆盖 `Y=-21.7…-8.9`，并在 11.9 mm 安装宽度两侧各仅留 0.05 mm，在保持低于固定 `Y=-8` 轨道区基准的同时，几乎用尽可用竖板面。
+- EN: Replaced the former 0.8 mm bell mouth and approximately 3.35 mm constant-radius horn with a 1.2 mm tangent bell mouth and an approximately 8.0 mm cubic-Bezier transition. The larger section contracts smoothly in both axes and joins the original circular J path tangentially at 260°. This geometry is intended to spread plate load and reduce local section-change stress, but it does not establish a higher load rating without physical testing or FEA.
+  ZH: 用 1.2 mm 相切喇叭口及约 8.0 mm cubic-Bezier（三次贝塞尔）过渡，取代先前 0.8 mm 喇叭口与约 3.35 mm 等半径弯段。大截面沿两轴平滑收细，并在 260° 处与原圆形 J 路径相切连接。这一几何意图是扩散贴板载荷并降低局部截面变化应力，但在实物测试或 FEA（有限元分析）前不构成更高承载额定。
+- EN: Impact-scoped validation rendered only `hook-round6-short`; the original `round-6.scad` and shared library remain unchanged. OpenSCAD reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 5723 vertices, and 11442 facets. Exact-coordinate STL audit found one component, zero boundary/non-manifold edges, Euler characteristic 2, `Y=-22.4…11.2`, and `Z=0…11.9`. Iso, side-profile, and front inspection confirmed the wider, taller, gradual taper; physical fit and load testing remain open.
+  ZH: 按影响范围仅渲染 `hook-round6-short`；原 `round-6.scad` 与共享库保持不变。OpenSCAD 零 warning、零 assertion，并报告 `Manifold`、`NoError`、genus 0、5723 个顶点与 11442 个面。精确坐标 STL 检查得到 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2、`Y=-22.4…11.2`、`Z=0…11.9`。等轴、侧轮廓与正面检查确认渐缩更宽、更高且过渡平缓；实物配合与承载测试仍待完成。
+
+## [2026-07-15] writeback | Move Round 6 Short reinforcement below the upper contour
+
+- EN: Superseded the symmetric 12.8 × 11.8 mm root because it created an unnecessary upper belly. The replacement eccentric plate section keeps its upper extent exactly at the Ø6 rod's 3.0 mm radius, extends 6.4 mm below the reference centerline, and remains 11.8 mm wide. Added material is therefore confined to the lower and rail-width directions; the root now spans `Y=-21.7…-12.3`.
+  ZH: 作废对称 12.8 × 11.8 mm 根部，因为它会产生无需的上方大肚鼓包。替代后的偏心贴板截面将上侧伸出精确保持为 Ø6 圆杆的 3.0 mm 半径，在参考中心线下方延伸 6.4 mm，并继续保持 11.8 mm 宽度。因此新增材料只位于下侧和轨道宽度方向；根部现覆盖 `Y=-21.7…-12.3`。
+- EN: Removed the separate bell-mouth and main-contraction radius laws. One global parameter now drives an eccentric section-ring loft; its cubic-Bezier centerline joins the original J circle at 250° with matched tangent and curvature, and its `(1-t)^3` scale law reaches Ø6 with zero first/second derivatives. This removes the visible two-stage shoulder while preserving a plate-tangent root.
+  ZH: 删除独立的喇叭口与主收缩半径律。现在由一个全局参数驱动偏心截面环 loft；cubic-Bezier（三次贝塞尔）中心线在 250° 处以匹配的切线与曲率接入原 J 圆，`(1-t)^3` 缩放律以零一阶/二阶导数到达 Ø6。这消除了可见的两段肩部，同时保留贴板相切根部。
+- EN: Impact-scoped validation rendered only `hook-round6-short`; the original `round-6.scad` and shared library remain unchanged. OpenSCAD reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 5655 vertices, and 11306 facets. Exact-coordinate STL audit found one component, zero boundary/non-manifold edges, Euler characteristic 2, `Y=-22.4…11.2`, and `Z=0…11.9`. Analytic sampling confirmed the entire upper transition silhouette decreases monotonically from `Y=-12.3` to `Y=-16.008`, so no intermediate upper bulge remains; physical fit and load testing are still open.
+  ZH: 按影响范围仅渲染 `hook-round6-short`；原 `round-6.scad` 与共享库保持不变。OpenSCAD 零 warning、零 assertion，并报告 `Manifold`、`NoError`、genus 0、5655 个顶点与 11306 个面。精确坐标 STL 检查得到 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2、`Y=-22.4…11.2`、`Z=0…11.9`。解析采样确认整段上侧过渡轮廓由 `Y=-12.3` 单调下降至 `Y=-16.008`，不再存在中间上方鼓包；实物配合与承载测试仍待完成。
+
+## [2026-07-15] writeback | Fuse the Round 6 Short root through the true hook bottom
+
+- EN: Extended the eccentric plate root from 6.4 to 7.1 mm below its reference centerline so it begins exactly at the fixed `Y=-22.4` bottom datum. Moved the circular-path join from 250° to the true J bottom at 270°; the former rear round-rod underside is now completely replaced by the reinforced root body.
+  ZH: 将偏心贴板根部在参考中心线下方的伸出由 6.4 mm 扩大至 7.1 mm，使其精确从固定 `Y=-22.4` 最低基准开始。将圆形路径接入点由 250° 移到 270° 的 J 钩真正最低点；原本靠墙侧的圆杆底弧现已完全被加强根部主体取代。
+- EN: Solved each transition ring's lower extent from its centerline position and local normal, holding the complete world-space underside exactly at `Y=-22.4`. The upper extent remains fixed at the 3.0 mm rod radius and descends monotonically, while the 11.8 mm plate width still contracts continuously to Ø6 with matched tangent and centerline curvature at the 270° join.
+  ZH: 根据每个过渡截面环的中心线位置与局部法线反算下侧伸出，使完整世界坐标下缘精确保持在 `Y=-22.4`。上侧伸出继续固定为圆杆 3.0 mm 半径并单调下降；11.8 mm 贴板宽度仍连续收细至 Ø6，并在 270° 接入点匹配切线与中心线曲率。
+- EN: Impact-scoped validation rendered only `hook-round6-short`; the original `round-6.scad` and shared library remain unchanged. OpenSCAD reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 4979 vertices, and 9954 facets. Exact-coordinate STL audit found one component, zero boundary/non-manifold edges, Euler characteristic 2, `Y=-22.4…11.2`, and `Z=0…11.9`. Analytic sampling measured zero lower-datum error and an upper silhouette monotonically descending from `Y=-12.3` to `Y=-16.4`; physical fit and load testing remain open.
+  ZH: 按影响范围仅渲染 `hook-round6-short`；原 `round-6.scad` 与共享库保持不变。OpenSCAD 零 warning、零 assertion，并报告 `Manifold`、`NoError`、genus 0、4979 个顶点与 9954 个面。精确坐标 STL 检查得到 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2、`Y=-22.4…11.2`、`Z=0…11.9`。解析采样得到下缘基准误差为零，上侧轮廓由 `Y=-12.3` 单调下降至 `Y=-16.4`；实物配合与承载测试仍待完成。
+
+## [2026-07-15] writeback | Use the complete Round 6 Short plate width
+
+- EN: Removed the former 0.05 mm inset on each side of the eccentric root. Its width radius is now exactly `part_w/2=5.95`, so the root spans the complete `Z=0…11.9` plate width while the Ø6 rod, upper contour, and bottom-fused side profile remain unchanged.
+  ZH: 删除偏心根部左右两侧原有的各 0.05 mm 缩进。宽度半径现精确为 `part_w/2=5.95`，因此根部覆盖完整 `Z=0…11.9` 底板宽度，而 Ø6 圆杆、上侧轮廓与全底融合侧轮廓均保持不变。
+- EN: Added a source assertion that root width must equal the complete mount width. Impact-scoped validation again rendered only `hook-round6-short`; OpenSCAD reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 4979 vertices, and 9954 facets. Exact-coordinate STL audit found one component, zero boundary/non-manifold edges, Euler characteristic 2, and `Z=0…11.9`; front/iso inspection found no inset band, outward step, or seam. Physical fit and load testing remain open.
+  ZH: 在源码中新增根部宽度必须等于完整安装宽度的断言。按影响范围再次仅渲染 `hook-round6-short`；OpenSCAD 零 warning、零 assertion，并报告 `Manifold`、`NoError`、genus 0、4979 个顶点与 9954 个面。精确坐标 STL 检查得到 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2 以及 `Z=0…11.9`；正面/等轴检查未见缩进边带、向外台阶或接缝。实物配合与承载测试仍待完成。
+
+## [2026-07-15] writeback | Wrap the Round 6 Short root around the plate sides
+
+- EN: Superseded the exact-width elliptical root after final-union inspection showed that an ellipse reaches full width only at its middle and still exposes the plate's lower side corners. Replaced it with a D-shaped root whose full-width sides and flat bottom span 13.5 mm, wrapping 0.8 mm around each side of the 11.9 mm plate. A 0.6 mm embedded anchor and 0.4 mm visible full-section start are part of the same polyhedron; the former separate overlap core was removed.
+  ZH: 最终并集轮廓检查表明，等宽椭圆只在中部达到最大宽度，仍会露出底板左右下角，因此作废该方案。新根部改为 D 形，满宽直边和平底总宽 13.5 mm，在 11.9 mm 底板左右各包过 0.8 mm。0.6 mm 内嵌锚定段与 0.4 mm 可见满截面起步均属于同一个 polyhedron；原独立重叠芯已删除。
+- EN: Fifth-order smoothstep morphing now transitions the D section into the unchanged Ø6 rod with zero first/second derivatives at both ends. Impact-scoped final F6 validation rendered only `hook-round6-short` and reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 5255 vertices, and 10506 facets. Exact STL audit found one component, zero boundary/non-manifold edges, Euler characteristic 2, and bounds `Y=-22.4…11.2`, `Z=-0.8…12.7`. Physical printing, support removal, fit, and load testing remain open.
+  ZH: 现在用五阶 smoothstep（平滑阶跃）把 D 形截面过渡到未改动的 Ø6 圆杆，并在两端保持零一阶/二阶导数。按影响范围最终仅对 `hook-round6-short` 执行 F6 验证；结果为零 warning、零 assertion、`Manifold`、`NoError`、genus 0、5255 个顶点与 10506 个面。精确 STL 检查得到 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2，以及 `Y=-22.4…11.2`、`Z=-0.8…12.7` 包络。实物打印、支撑拆除、配合及承载测试仍待完成。
+
+## [2026-07-15] writeback | Restore coplanar print sides on Round 6 Short
+
+- EN: Superseded the 0.8 mm side-wrap experiment because it made the 13.5 mm root the bed-contact extremum and lifted the fixed mount during side printing. Retained the D-shaped full-width sides, flat bottom, 0.6 mm embedded anchor, and 0.4 mm full-section start, but reduced the root to the exact 11.9 mm mount width. The complete model again fits `Z=0…11.9`, so either mount side can lie directly on the bed.
+  ZH: 作废左右各包出 0.8 mm 的实验，因为 13.5 mm 根部会成为热床接触最外点，并在侧放打印时抬高固定安装头。保留 D 形满宽直边、平底、0.6 mm 内嵌锚定段与 0.4 mm 满截面起步，但把根部裁回精确 11.9 mm 安装宽度。完整模型重新落入 `Z=0…11.9`，安装头任一侧均可直接贴床。
+- EN: Impact-scoped final F6 validation rendered only `hook-round6-short` and reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 5170 vertices, and 10336 facets. Exact STL audit found one component, zero boundary/non-manifold edges, Euler characteristic 2, and bounds `Y=-22.4…11.2`, `Z=0…11.9`. The Ø6 rod still needs localized support for its 2.95 mm side-print gap; physical printing and load testing remain open.
+  ZH: 按影响范围最终仅对 `hook-round6-short` 执行 F6 验证；结果为零 warning、零 assertion、`Manifold`、`NoError`、genus 0、5170 个顶点与 10336 个面。精确 STL 检查得到 1 个连通体、0 条边界/非流形边、Euler characteristic（欧拉特征数）2，以及 `Y=-22.4…11.2`、`Z=0…11.9` 包络。Ø6 圆杆因侧放时仍有 2.95 mm 间隙而需要局部支撑；实物打印与承载测试仍待完成。
+
+## [2026-07-15] writeback | Record Round 6 Short design lessons
+
+- EN: The user reported that the final exact-width D-root revision printed perfectly. This closes physical printing and support removal for the current printer, material, and slicer setup; rail seating, real-item clearance, and progressive load tests remain open.
+  ZH: 用户反馈最终等宽 D 形根部版本打印完美。这完成了当前打印机、材料与切片配置下的实物打印和支撑拆除验证；轨道就位、真实挂物净空及逐级承载测试仍保持开放。
+- EN: Recorded reusable rules in `.agents/skills/wallboard-rail-mount/SKILL.md` and `wiki/accessories/hook-round6-short.md`: judge coverage from the final union silhouette rather than nominal section width; prefer a flat-sided D root when plate edges must stay covered; keep positive-volume embed in one loft instead of a hidden overlap core; audit bed-normal bounds before widening; and combine F6 silhouette, exact topology/bounds, and physical-print checks.
+  ZH: 已在 `.agents/skills/wallboard-rail-mount/SKILL.md` 与 `wiki/accessories/hook-round6-short.md` 记录可复用规则：按最终并集轮廓而非标称截面宽度判断覆盖；需要覆盖底板边缘时优先采用平直边 D 形根部；将正体积内嵌放入单一 loft 而非隐藏重叠芯；加宽前审计热床法向包络；并结合 F6 轮廓、精确拓扑/包络和实物打印三层检查。

@@ -28,6 +28,15 @@ status = "prototype"
 support = "localized"
 
 [[accessory]]
+id = "hook-round6-short"
+family = "hooks"
+source = "accessories/hooks/round-6-short.scad"
+output_stem = "hook-round6-short"
+wiki = "wiki/accessories/hook-round6-short.md"
+status = "prototype"
+support = "localized"
+
+[[accessory]]
 id = "hook-keyhole9"
 family = "pegs"
 source = "accessories/pegs/keyhole-9.scad"

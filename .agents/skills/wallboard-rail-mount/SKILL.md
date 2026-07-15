@@ -69,6 +69,13 @@ For PETG load-bearing bodies, keep sections at least 3 mm thick, keep the room-s
 
 Classify every corner from the final union outline before adding a fillet. At an obtuse/re-entrant junction where a diagonal gusset meets a plate or platform underside, construct a tangent concave inner arc between the two boundary lines. Do not round the corner of a standalone gusset polygon with a generic offset and then union it: that produces an outward bulb at the final junction. Keep positive-volume overlap as a separate connection requirement, and inspect the side profile to confirm the arc curves into the joint rather than away from it.
 
+For a root that morphs from a plate into a rod or hook:
+
+- Judge full-width coverage from the final union silhouette, not from a section's nominal maximum diameter. An ellipse reaches its stated width only through its middle and narrows toward its top and bottom; use a D-shaped or otherwise flat-sided root when the plate sides and bottom must remain covered.
+- Treat the intended print plane as a hard geometric constraint. Before accepting lateral reinforcement, audit the final mesh bounds along the bed-normal axis; any root extending beyond the mount's `Z=0..w` faces lifts the validated mount and creates support underneath it.
+- Prefer one embedded loft or `polyhedron()` with positive-volume overlap over a second hidden core. A separate core can emerge through the final union or create ambiguous intersection artifacts.
+- Inspect the F6 final union and the relevant orthographic silhouette. OpenCSG preview overlap can mislead, while a manifold result alone does not prove that the exterior silhouette or print-bed contact is correct.
+
 ## Render And Verify
 
 There is no local OpenSCAD CLI. From `~/openscad/work-hook`, use the installed Docker image and mount the renderer explicitly:
