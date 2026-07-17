@@ -14,16 +14,17 @@
 | 宽 25 款 | `accessories/hooks/wide-25.scad` | 25 mm 跨度 J 勾，长悬出位置采用 4.4 mm 加强杆身 |
 | 圆杆 6 款 | `accessories/hooks/round-6.scad` | 25 mm 跨度 J 勾，前端过渡为居中的无螺纹 Ø6 mm 圆杆，并保留球面圆头 |
 | 圆杆 6 短板款 | `accessories/hooks/round-6-short.scad` | 独立的 33.6 mm 高紧凑兄弟版本；采用精确 11.9 mm 宽 D 形根部，两侧保持打印平面，上侧清爽，下侧完整融合到 Ø6 / 25 mm J 钩包络 |
+| 圆杆 6 极短款 | `accessories/hooks/round-6-ultra-short.scad` | 仅由轨道承载的 28.6 mm 高实验版；关闭 5 mm 下方抵墙面，并把不变的 Ø6 / 25 mm J 钩抬到新的 `Y=-17.4` 平底 |
 | 钥匙孔 9 款 | `accessories/pegs/keyhole-9.scad` | 为 9.5/4.0 mm 钥匙孔挂片设计的 8 mm 短蘑菇头，采用 Ø9 头与 Ø3.8 捕获颈 |
 | RIBBA 22 款 | `accessories/frames/ribba-22.scad` | 双只使用的 24 mm 宽托架，平直托面精确伸入 22 mm；抬高后的自由端上缘距安装头顶部 12 mm，并由带相切内弧的全宽斜撑加强 |
 
-六款配件都使用 [`lib/rail-mount.scad`](lib/rail-mount.scad)。它包含固定轨道接口、通用挤出模块，以及参数化 J 勾辅助函数。
+七款配件都使用 [`lib/rail-mount.scad`](lib/rail-mount.scad)。它包含固定轨道接口、通用挤出模块，以及参数化 J 勾辅助函数。
 
 ## 适配范围与当前状态
 
 - 轨道卡爪几何已在作者的友邦挂挂墙平行系列墙板轨道上完成试装。它是特定五金件的配合设计，不应假定能直接适配其他轨道。
 - 固定接口采用 2.40 mm 后爪、2.75 mm 槽宽和 7.35 mm 安装头总深；这几个尺寸需要作为一个整体保留。
-- v7 在全部正式配件中共享一段高 5 mm、总后伸 2.0 mm 的下方抵墙承压面，用于把一部分悬挂载荷转化为墙板压力。
+- v7 默认启用一段高 5 mm、总后伸 2.0 mm 的下方抵墙承压面，用于把一部分悬挂载荷转化为墙板压力。圆杆 6 极短款是唯一明确例外：它关闭该承压面，并把全部载荷传给轨道。
 - 当前模型均已渲染为流形实体。v7 承压面仍需要全宽实物确认完全就位，并进行承载测试后，才能依赖与抵墙接触相关的承载结论。
 
 ## 渲染模型
@@ -35,6 +36,7 @@ openscad -o hook-classic.stl accessories/hooks/classic.scad
 openscad -o hook-wide25.stl accessories/hooks/wide-25.scad
 openscad -o hook-round6.stl accessories/hooks/round-6.scad
 openscad -o hook-round6-short.stl accessories/hooks/round-6-short.scad
+openscad -o hook-round6-ultra-short.stl accessories/hooks/round-6-ultra-short.scad
 openscad -o hook-keyhole9.stl accessories/pegs/keyhole-9.scad
 openscad -o frame-ribba22.stl accessories/frames/ribba-22.scad
 ```
@@ -44,7 +46,7 @@ openscad -o frame-ribba22.stl accessories/frames/ribba-22.scad
 ## 打印建议
 
 - 经典款与宽 25 款按模型姿态侧面朝下打印，截面位于 XY 平面；它们无需支撑，主要弯曲应力也留在层平面内。
-- 圆杆 6 款与圆杆 6 短板款都让安装头侧面直接落在热床上，而居中的 Ø6 mm 圆杆最低点高出热床 2.95 mm；圆杆与圆头下方需要局部支撑。短板款的 11.9 mm D 形根部与安装头两侧共面，不会抬高固定安装头。原版继续作为 47.7 mm 低挂位置基线，短板款则是独立的 33.6 mm 最小高度实验版。
+- 圆杆 6、短板款与极短款都让安装头侧面直接落在热床上，而居中的 Ø6 mm 圆杆最低点高出热床 2.95 mm；圆杆与圆头下方需要局部支撑。两个紧凑版本的 11.9 mm D 形根部均与安装头两侧共面。原版高 47.7 mm，短板款是已成功打印的 33.6 mm 抵墙版本，极短款则是尚未实物打印的 28.6 mm 轨道单独承载实验版。
 - 钥匙孔 9 款同样保持安装头侧面朝下；Ø9 mm 头部最低点高出热床 1.45 mm，需要在蘑菇头下方增加一小块局部支撑。
 - RIBBA 22 款侧面朝下打印，无需支撑，使用时应将两只分开放置。全宽斜撑是闭合实体，内部用料由切片器的壁数和填充设置控制。当前抬高加强版已在用户的旧款 RIBBA 18288 上完成打印和挂装；配合正常，并能在选定的 12 mm 基准处被相框遮住，但仍无长期承载额定值。
 - 长期承载请选择 PETG 或 ASA，PLA 容易蠕变。
@@ -62,7 +64,7 @@ body = j_hook_body(drop = 22.3, r_out = 8.5, r_in = 5.5);
 rail_accessory(-22.3, body, w = 11.9);
 ```
 
-自定义主体时，从下方抵墙承压面之后的 `(-pad_back, body_back_y)` 继续绘制 polygon（多边形）。如果主体起点太高、没有为承压面过渡留出空间，库会用 assert（断言）报错。
+自定义主体时，从下方抵墙承压面之后的 `(-pad_back, body_back_y)` 继续绘制 polygon（多边形）。如果主体起点太高、没有为承压面过渡留出空间，库会用 assert（断言）报错。`rail_accessory()` 默认 `wall_contact=true`；只有明确接受失去墙面稳定作用的专用轨道承载设计，才应传入 `false`。
 
 ## 目录结构
 
@@ -71,6 +73,7 @@ accessories/hooks/classic.scad          17 mm 经典 J 勾
 accessories/hooks/wide-25.scad          加强版 25 mm J 勾
 accessories/hooks/round-6.scad          居中 Ø6 mm 圆杆的 25 mm J 勾
 accessories/hooks/round-6-short.scad    带全底融合偏心根部的最短板 Ø6 J 钩
+accessories/hooks/round-6-ultra-short.scad  仅由轨道承载的 28.6 mm 高 Ø6 J 钩
 accessories/pegs/keyhole-9.scad         Ø9/Ø3.8 短钥匙孔蘑菇头
 accessories/frames/ribba-22.scad        两只配合使用的 22 mm 凹背相框托架
 catalog/accessories.toml                机器可读配件清单
@@ -90,6 +93,7 @@ wiki/                                   测量、决策与验证历史
 - [25 mm 挂钩尺寸说明](wiki/accessories/hook-wide25.md)
 - [Ø6 mm 圆杆挂钩原型](wiki/accessories/hook-round6.md)
 - [最短板 Ø6 mm 圆杆兄弟版本](wiki/accessories/hook-round6-short.md)
+- [仅由轨道承载的 28.6 mm 圆杆 6 极短款](wiki/accessories/hook-round6-ultra-short.md)
 - [Ø9/Ø3.8 短钥匙孔蘑菇头](wiki/accessories/hook-keyhole9.md)
 - [RIBBA 22 凹背相框托架](wiki/accessories/frame-ribba22.md)
 - [强度审查与限制](wiki/outputs/hook-strength-review.md)

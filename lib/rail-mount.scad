@@ -12,10 +12,10 @@
 //   rail_accessory(-drop, body, w = 11.9);
 //
 // Body contract for custom shapes: body_pts continues the outline from
-// (-pad_back, body_back_y), below the localized wall-contact pad, draws your
-// shape clockwise, and ends on the front plane; rail_accessory closes the
-// outline via (plate_t, -pad_top_drop) and up the plate front face, which keeps
-// the rail-zone face flat as the interface requires.
+// (-pad_back, body_back_y), below the optional localized wall-contact pad,
+// draws your shape clockwise, and ends on the front plane; rail_accessory
+// closes the outline via (plate_t, -pad_top_drop) and up the plate front face,
+// which keeps the rail-zone face flat as the interface requires.
 //
 // FIXED mount params are test-fit validated - do not override in design files
 // (exception: arm_gusset_r may be tuned or zeroed if the rail interior fouls).
@@ -95,9 +95,9 @@ fil_p_pts = fil_p > 0
 // ===== FIXED SECTION - the mount outline, from the plate top-front corner
 // counterclockwise: top cap, plate back, arc gusset, rounded bridge edge,
 // finger with slanted rounded tip, slot-corner fillets, lip-contact face,
-// baseline wall-pad ramp, localized pressure face, then down to body_back_y
-// where the body takes over.
-function rail_mount_pts(body_back_y) = concat(
+// baseline wall-pad ramp, optional localized pressure face, then down to
+// body_back_y where the body takes over.
+function rail_mount_pts(body_back_y, wall_contact = true) = concat(
   [[x_pf, y_top],
    [-cap_back, y_top],
    [-cap_back, y_top - cap_h],
@@ -120,28 +120,39 @@ function rail_mount_pts(body_back_y) = concat(
   fil_f_pts,
   fil_p_pts,
   [[x_pb, -pad_top_drop],
-   [-pad_back, -pad_top_drop - pad_back],
-   [-pad_back, wall_contact_top_y + wall_contact_ramp_top],
-   [-wall_contact_back, wall_contact_top_y],
-   [-wall_contact_back, wall_contact_bottom_y],
-   [-pad_back, wall_contact_bottom_y - wall_contact_ramp_bottom(body_back_y)],
-   [-pad_back, body_back_y]]
+   [-pad_back, -pad_top_drop - pad_back]],
+  wall_contact
+    ? [[-pad_back, wall_contact_top_y + wall_contact_ramp_top],
+       [-wall_contact_back, wall_contact_top_y],
+       [-wall_contact_back, wall_contact_bottom_y],
+       [-pad_back, wall_contact_bottom_y
+                   - wall_contact_ramp_bottom(body_back_y)],
+       [-pad_back, body_back_y]]
+    : [[-pad_back, body_back_y]]
 );
 
 // Extrude the mount + body outline to width w with stepped 45-deg side
 // chamfers (ch=0 disables). Lies side-face-down: already the right FDM pose.
-module rail_accessory(body_back_y, body_pts, w, ch = 0.4) {
+module rail_accessory(body_back_y, body_pts, w, ch = 0.4,
+                      wall_contact = true) {
   assert(w > 2 * ch + 1, "part width too small for the side chamfer");
-  assert(wall_contact_ramp_bottom(body_back_y) > 0,
+  assert(body_back_y < -pad_top_drop - pad_back,
+         "body must start below the baseline mount pad");
+  assert(!wall_contact || wall_contact_ramp_bottom(body_back_y) > 0,
          "body starts too high for the wall-contact bottom ramp");
-  assert(wall_contact_bottom_y - wall_contact_ramp_bottom(body_back_y)
+  assert(!wall_contact
+           || wall_contact_bottom_y - wall_contact_ramp_bottom(body_back_y)
            >= body_back_y + wall_contact_j_clearance,
          "wall-contact pad reaches the custom body; lower body_back_y");
-  pts = concat(rail_mount_pts(body_back_y), body_pts, [[x_pf, -pad_top_drop]]);
-  echo(str("rail_accessory: wall contact = ", wall_contact_back,
-           " mm at y = ", wall_contact_top_y, "..", wall_contact_bottom_y,
-           "; ramps = ", wall_contact_ramp_top, "/",
-           wall_contact_ramp_bottom(body_back_y), "; width = ", w));
+  pts = concat(rail_mount_pts(body_back_y, wall_contact), body_pts,
+               [[x_pf, -pad_top_drop]]);
+  echo(wall_contact
+    ? str("rail_accessory: wall contact = ", wall_contact_back,
+          " mm at y = ", wall_contact_top_y, "..", wall_contact_bottom_y,
+          "; ramps = ", wall_contact_ramp_top, "/",
+          wall_contact_ramp_bottom(body_back_y), "; width = ", w)
+    : str("rail_accessory: wall contact = off; baseline back = ", pad_back,
+          " mm; body bottom = ", body_back_y, "; width = ", w));
   if (ch > 0) {
     steps = 2;
     dz = ch / steps;

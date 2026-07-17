@@ -20,7 +20,7 @@ When the interface changes, edit the production library first, sync the skill co
 
 ## Geometry Contract
 
-- **FIXED mount:** preserve the rail interface and lower wall-contact dimensions exactly. Do not tolerance-compensate or override them in body files.
+- **FIXED mount:** preserve the rail interface and lower wall-contact dimensions exactly. `rail_accessory()` keeps the contact enabled by default; only a dedicated rail-only ultra-short variant may pass `wall_contact=false`. Do not tolerance-compensate or override the fixed dimensions in body files.
 - **FLEXIBLE body:** change the J geometry, peg, holder, shelf bracket, and extrusion width as needed.
 - The only mount-side tuning exception is `arm_gusset_r`; reduce it only if a physical fit test shows interference inside the rail.
 
@@ -44,14 +44,14 @@ Key fixed dimensions, in millimeters:
 | `cap_h` / `cap_back` | 0.5 / 0.8 | Upper anti-rotation cap |
 | `pad_back` / `pad_top_drop` | 0.8 / 8.0 | Baseline back contour and J-body datum; not the new pressure reach |
 | `wall_contact_back` | 2.0 | Selected total wallward reach from `X=0` |
-| `wall_contact_below_rail` / `wall_contact_h` | 8.0 / 5.0 | Pressure face starts 8 mm below the rail-bottom datum and is 5 mm tall |
+| `wall_contact_below_rail` / `wall_contact_h` | 8.0 / 5.0 | Default pressure face starts 8 mm below the rail-bottom datum and is 5 mm tall |
 | `wall_contact_j_clearance` | 0.2 | Minimum straight clearance before the custom body/J arc |
 | `fillet_finger_root` / `fillet_plate_root` | 0.6 / 0.3 | Stress relief while preserving a 1.85 mm flat lip seat |
 | `tip_taper` / `tip_r` | 1.5 / 0.4 | Tilt-in ramp and printable rounded claw tip |
 | `arm_gusset_r` / `arm_edge_r` | 5.0 / 0.8 | Bridge reinforcement and leading-edge round |
 | side chamfer | 0.4 | Two-step edge treatment for entry and elephant-foot relief |
 
-The lower pressure face is at `X=-2.0`, `Y=-16..-21`. Its top ramp is 1.2 mm. The bottom ramp adapts to `body_back_y`: 1.1 mm on `hook-classic` to retain 0.2 mm before the J arc, and the full 1.2 mm on `hook-wide25`.
+The default lower pressure face is at `X=-2.0`, `Y=-16..-21`. Its top ramp is 1.2 mm. The bottom ramp adapts to `body_back_y`: 1.1 mm on `hook-classic` to retain 0.2 mm before the J arc, and the full 1.2 mm on `hook-wide25`. Passing `wall_contact=false` to `rail_accessory()` removes that face and both ramps while preserving the 0.8 mm baseline back contour, claw, slot, bridge, and top cap. Use this only when the named design deliberately transfers its complete load through the rail and records the lost wall stabilization.
 
 Do not assume one wall plane from the old 0.8 mm contour. The upper cap remains 0.8 mm behind `X=0`; the localized lower pressure face reaches 2.0 mm.
 
@@ -61,9 +61,9 @@ Do not assume one wall plane from the old 0.8 mm contour. The upper cap remains 
 2. For a J hook, call `j_hook_body(drop, r_out, r_in, lift, sweep, front_extra, tip_round)`. The nominal span is `2*r_out`.
 3. Keep `tip_round=true`, especially for CF/GF materials.
 4. Use `front_extra` when reach grows. The 25 mm hook uses `front_extra=1.4`, producing a 4.4 mm shank rather than scaling the classic hook blindly.
-5. Extrude with `rail_accessory(body_back_y, body_pts, w=<width>)`; the original width is 11.9 mm.
+5. Extrude with `rail_accessory(body_back_y, body_pts, w=<width>, wall_contact=true)`; the original width is 11.9 mm. Omit the final argument for normal accessories.
 
-For a custom body, continue the outline from `(-pad_back, body_back_y)`, below the localized pressure pad. Traverse clockwise and finish on the front plane. `rail_accessory()` closes the polygon via `(plate_t, -pad_top_drop)`. Leave enough vertical room for the lower pressure-pad ramp; the library assertion reports a body that starts too high.
+For a custom body, continue the outline from `(-pad_back, body_back_y)`, below the localized pressure pad when enabled. Traverse clockwise and finish on the front plane. `rail_accessory()` closes the polygon via `(plate_t, -pad_top_drop)`. With the default contact enabled, leave enough vertical room for its lower ramp; the library assertion reports a body that starts too high. With contact disabled, keep `body_back_y` below the baseline pad at `Y=-8.8`.
 
 For PETG load-bearing bodies, keep sections at least 3 mm thick, keep the room-side bending-tension face smooth, and thicken the shank when reach grows. Treat wall contact as a load path only after the printed part sits firmly against the panel without preventing full rail seating.
 
@@ -107,6 +107,7 @@ For every rendered target:
 For a shared-interface regression, additionally:
 
 - Confirm echoes show `plate_t=2.2`, head depth 7.35, cap/base-pad total 3.0, and wall contact 2.0 at `Y=-16..-21`.
+- Confirm ordinary accessories still echo the default wall contact, and a deliberate rail-only target echoes `wall contact = off`.
 - Confirm the classic lower ramp is 1.1 and the wide-hook lower ramp is 1.2.
 - Inspect the representative iso and top PNGs for a continuous pressure pad, a fully formed claw, and no self-intersection.
 - Run `cmp -s lib/rail-mount.scad .agents/skills/wallboard-rail-mount/rail-mount.scad`.

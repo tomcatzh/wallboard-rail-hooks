@@ -408,3 +408,26 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 用户反馈最终等宽 D 形根部版本打印完美。这完成了当前打印机、材料与切片配置下的实物打印和支撑拆除验证；轨道就位、真实挂物净空及逐级承载测试仍保持开放。
 - EN: Recorded reusable rules in `.agents/skills/wallboard-rail-mount/SKILL.md` and `wiki/accessories/hook-round6-short.md`: judge coverage from the final union silhouette rather than nominal section width; prefer a flat-sided D root when plate edges must stay covered; keep positive-volume embed in one loft instead of a hidden overlap core; audit bed-normal bounds before widening; and combine F6 silhouette, exact topology/bounds, and physical-print checks.
   ZH: 已在 `.agents/skills/wallboard-rail-mount/SKILL.md` 与 `wiki/accessories/hook-round6-short.md` 记录可复用规则：按最终并集轮廓而非标称截面宽度判断覆盖；需要覆盖底板边缘时优先采用平直边 D 形根部；将正体积内嵌放入单一 loft 而非隐藏重叠芯；加宽前审计热床法向包络；并结合 F6 轮廓、精确拓扑/包络和实物打印三层检查。
+
+## [2026-07-17] writeback | Add rail-only Round 6 Ultra Short
+
+- EN: Added a backward-compatible `wall_contact=true` parameter to `rail_mount_pts()` and `rail_accessory()`. The `false` branch removes only the 5 mm `X=-2.0`, `Y=-16…-21` pressure face and its ramps while preserving the 0.8 mm baseline back contour and the complete validated claw. Existing callers remain unchanged; the production and skill library copies remain byte-identical.
+  ZH: 为 `rail_mount_pts()` 与 `rail_accessory()` 新增向后兼容的 `wall_contact=true` 参数。`false` 分支只删除 5 mm 高的 `X=-2.0`、`Y=-16…-21` 承压面及其 ramp，同时保留 0.8 mm 基线背面轮廓和完整的已验证卡爪。现有调用方无需修改；正式库与 skill 库副本继续逐字节一致。
+- EN: Added independent `accessories/hooks/round-6-ultra-short.scad`. It alone passes `wall_contact=false`, raises the unchanged Ø6 / 25 mm J envelope by exactly 5 mm, and uses a 3.0 / 6.4 / 11.9 mm D root from `Y=-8` to the shared flat `Y=-17.4` bottom. Overall height is 28.6 mm, 5.0 mm below Short and 19.1 mm below the original Round 6; physical printing and rail-only load testing remain open.
+  ZH: 新增独立的 `accessories/hooks/round-6-ultra-short.scad`。只有它传入 `wall_contact=false`，把不变的 Ø6 / 25 mm J 钩包络精确抬高 5 mm，并采用从 `Y=-8` 延伸到共同 `Y=-17.4` 平底的 3.0 / 6.4 / 11.9 mm D 形根部。总高为 28.6 mm，比 Short 减少 5.0 mm，比原 Round 6 减少 19.1 mm；实物打印与轨道单独承载测试仍保持开放。
+- EN: Target F6 validation reported no warnings/assertions, `Manifold`, `NoError`, genus 0, 5235 vertices, and 10466 facets. Exact STL audit found one component, zero bad edges, Euler characteristic 2, and bounds `Y=-17.4…11.2`, `Z=0…11.9`. Shared-interface regression rendered all six older production accessories plus the skill example; every target passed, and all seven legacy STL SHA-256 hashes remained byte-identical.
+  ZH: 目标 F6 验证报告零 warning/assertion、`Manifold`、`NoError`、genus 0、5235 个顶点与 10466 个面。精确 STL 审计得到 1 个连通体、0 条坏边、Euler characteristic（欧拉特征数）2，以及 `Y=-17.4…11.2`、`Z=0…11.9` 包络。共享接口回归渲染了全部 6 个旧正式配件及 skill 示例；所有目标均通过，且 7 个旧 STL 的 SHA-256 保持逐字节一致。
+
+## [2026-07-17] writeback | Prefer Ultra Short after successful print
+
+- EN: The user reported that the Round 6 Ultra Short physical print completed successfully with very good observed print quality. Updated `wiki/accessories/hook-round6-ultra-short.md` and `wiki/index.md`; no geometry or render output changed.
+  ZH: 用户反馈 Round 6 Ultra Short 实物打印成功，观察到的打印质量很好。已更新 `wiki/accessories/hook-round6-ultra-short.md` 与 `wiki/index.md`；未修改任何几何或渲染产物。
+- EN: Recorded a conditional selection rule: prefer Ultra Short first for compact applications that are suitable for rail-only loading; prefer Short when wall stabilization is wanted or rail-only rotation/load behavior remains uncertain. The successful print validates manufacturability for the current setup but does not establish rail seating, real-item clearance, or a load rating.
+  ZH: 记录条件性选型规则：适合由轨道单独承载的紧凑应用优先考虑 Ultra Short；需要墙面稳定作用，或轨道单独承载后的转动/承载表现仍不确定时，优先选择 Short。本次打印成功验证了当前配置下的可制造性，但不构成轨道就位、真实挂物净空或承载额定结论。
+
+## [2026-07-17] writeback | Confirm Ultra Short rail seating
+
+- EN: The user confirmed that Round 6 Ultra Short seats in the rail very well and judges its capacity superior to the long-plate rail-only path. Updated the accessory page and index to close unloaded rail seating and make Ultra Short the current preferred compact candidate.
+  ZH: 用户确认 Round 6 Ultra Short 卡入轨道的效果非常好，并判断其承重优于长板的轨道单独承载路径。已更新配件页面与索引，关闭无载轨道就位问题，并将 Ultra Short 定为当前优先的紧凑候选。
+- EN: Recorded the mechanics boundary explicitly: a shorter perpendicular lever arm reduces torque (`τ=r⊥F`), supporting the shorter local plate/root path; however, the unchanged 25 mm horizontal reach and removed wall contact mean the numeric capacity advantage still requires progressive load testing. No geometry or render output changed.
+  ZH: 已明确记录力学边界：更短的垂直有效力臂会降低力矩（`τ=r⊥F`），支持更短的局部板身/根部路径；但 25 mm 水平悬出保持不变，且抵墙支点已删除，因此具体承重优势仍需逐级承载测试量化。未修改任何几何或渲染产物。

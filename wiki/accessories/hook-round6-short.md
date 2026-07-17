@@ -4,7 +4,7 @@ type: output
 status: active
 sources:
   - raw/rail/hook-installed-on-rail.jpg
-updated: 2026-07-15
+updated: 2026-07-17
 ---
 
 # hook-round6-short（最短板 Ø6 mm 圆杆 J 钩）
@@ -13,6 +13,9 @@ updated: 2026-07-15
 
 EN: [`accessories/hooks/round-6-short.scad`](../../accessories/hooks/round-6-short.scad) is an independent compact sibling of [hook-round6](hook-round6.md), not a replacement. The original `round-6.scad` remains unchanged for A/B comparison. Short preserves the fixed rail claw, 2.0 mm lower wall-contact face, centered plain Ø6 load-bearing section, 25 mm circular J envelope, original bottom/front path, and rounded endpoint, while lifting the J bottom to the fixed interface's minimum body datum.
 ZH: [`accessories/hooks/round-6-short.scad`](../../accessories/hooks/round-6-short.scad) 是 [hook-round6](hook-round6.md) 的独立紧凑兄弟版本，不是替代品。原 `round-6.scad` 保持不变，供 A/B comparison（对照比较）。Short 版保留固定轨道卡爪、2.0 mm 下方抵墙承压面、居中的普通 Ø6 承载截面、25 mm 圆形 J 钩包络、原有底部/前部路径与圆头，同时把 J 钩最低点抬到固定接口允许的最低主体基准。
+
+EN: The separate [hook-round6-ultra-short](hook-round6-ultra-short.md) experiment raises the same J envelope another 5 mm by disabling the lower wall-contact face. It does not supersede this physically printed wall-contact version.
+ZH: 独立的 [hook-round6-ultra-short](hook-round6-ultra-short.md) 实验版通过关闭下方抵墙面，把相同 J 钩包络再抬高 5 mm。它不替代这个已经完成实物打印的抵墙版本。
 
 ## Compactness Decision（紧凑化决定）
 
