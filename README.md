@@ -20,7 +20,7 @@ The repository currently includes seven printable accessories:
 | Keyhole 9 | `accessories/pegs/keyhole-9.scad` | Short 8 mm mushroom peg for a 9.5/4.0 mm keyhole plate, using a Ø9 head and Ø3.8 capture neck |
 | RIBBA 22 | `accessories/frames/ribba-22.scad` | Pair-use 24 mm saddle with an exact 22 mm flat reach; its raised free bearing edge sits 12 mm below the mount top, reinforced by a full-width diagonal gusset with tangent concave inner fillets |
 
-All models use [`lib/rail-mount.scad`](lib/rail-mount.scad), which contains the fixed rail interface, a common extruder, and a parametric J-hook helper.
+All models use the fixed rail interface in [`lib/rail-mount.scad`](lib/rail-mount.scad), either directly or through the parametric J-hook helper in [`lib/j-hook.scad`](lib/j-hook.scad).
 
 ## Compatibility And Status
 
@@ -48,7 +48,7 @@ The project also has a Docker-based render workflow used for verification. See [
 ## Print Notes
 
 - Print the Classic and Wide 25 side-face-down as modeled, with the profile in the XY plane. They need no supports and keep the principal bending stresses within the layer plane.
-- Round 6, Short, and Ultra Short keep the mount side-face-down on the bed, while their centered Ø6 mm rods start 2.95 mm above it; use localized support under the round body and tip. Both compact variants keep their 11.9 mm D roots coplanar with the mount sides. The original is 47.7 mm tall, Short is the physically printed 33.6 mm wall-contact version, and Ultra Short is the unprinted 28.6 mm rail-only experiment.
+- Round 6, Short, and Ultra Short keep the mount side-face-down on the bed, while their centered Ø6 mm rods start 2.95 mm above it; use localized support under the round body and tip. Both compact variants keep their 11.9 mm D roots coplanar with the mount sides. The original is 47.7 mm tall, Short is the physically printed 33.6 mm wall-contact version, and Ultra Short is the successfully printed, excellent-seating 28.6 mm rail-only version.
 - Keyhole 9 also keeps the mount side-face-down; its Ø9 mm head starts 1.45 mm above the bed, so add a small localized support beneath the mushroom peg.
 - RIBBA 22 prints side-face-down without support and is used as a spaced pair. Its full-width gusset is a closed solid, so the slicer controls internal material through perimeter and infill settings. The current raised reinforced revision has been printed and installed on the user's old RIBBA 18288 frame; it fits and is concealed by the frame at the selected 12 mm datum, but still has no long-term load rating.
 - Use PETG or ASA for sustained loads. PLA is prone to creep.
@@ -60,7 +60,7 @@ The project also has a Docker-based render workflow used for verification. See [
 Create each real family under `accessories/<family>/`, keep the rail interface fixed, and make new accessories through `rail_accessory()`:
 
 ```scad
-include <../../lib/rail-mount.scad>
+include <../../lib/j-hook.scad>
 
 body = j_hook_body(drop = 22.3, r_out = 8.5, r_in = 5.5);
 rail_accessory(-22.3, body, w = 11.9);
@@ -80,6 +80,7 @@ accessories/pegs/keyhole-9.scad         Short Ø9/Ø3.8 keyhole mushroom peg
 accessories/frames/ribba-22.scad        Pair-use saddle for a 22 mm recessed frame back
 catalog/accessories.toml                Machine-readable accessory registry
 lib/rail-mount.scad                     Shared, fixed rail interface
+lib/j-hook.scad                         Reusable parametric J-hook body helper
 raw/rail/                               Rail and original-hook references
 raw/accessories/                        Accessory-specific references
 wiki/accessories/                       Per-accessory design records
@@ -91,7 +92,8 @@ wiki/                                   Measurements, decisions, and validation 
 
 The [`wiki/`](wiki/index.md) records the measurements, fit decisions, stress review, and version history. In particular:
 
-- [Model history and v7 integration](wiki/outputs/hook-scad-v1.md)
+- [Model history and v8 library split](wiki/outputs/hook-scad-v1.md)
+- [Library boundaries and dependency direction](wiki/topics/library-architecture.md)
 - [25 mm hook sizing notes](wiki/accessories/hook-wide25.md)
 - [Ø6 mm round-rod hook prototype](wiki/accessories/hook-round6.md)
 - [Minimum-height Ø6 mm round-rod sibling](wiki/accessories/hook-round6-short.md)

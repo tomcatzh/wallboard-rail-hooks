@@ -9,7 +9,7 @@
 // Shared v7 mount includes the selected 2.0 mm lower wall-contact face.
 // Full math: wiki/accessories/hook-wide25.md
 
-include <../../lib/rail-mount.scad>
+include <../../lib/j-hook.scad>
 
 /* [Design] */
 // width along the rail = print height

@@ -18,7 +18,7 @@
 | 钥匙孔 9 款 | `accessories/pegs/keyhole-9.scad` | 为 9.5/4.0 mm 钥匙孔挂片设计的 8 mm 短蘑菇头，采用 Ø9 头与 Ø3.8 捕获颈 |
 | RIBBA 22 款 | `accessories/frames/ribba-22.scad` | 双只使用的 24 mm 宽托架，平直托面精确伸入 22 mm；抬高后的自由端上缘距安装头顶部 12 mm，并由带相切内弧的全宽斜撑加强 |
 
-七款配件都使用 [`lib/rail-mount.scad`](lib/rail-mount.scad)。它包含固定轨道接口、通用挤出模块，以及参数化 J 勾辅助函数。
+七款配件都使用 [`lib/rail-mount.scad`](lib/rail-mount.scad) 中的固定轨道接口；参数化 J 勾则通过独立的 [`lib/j-hook.scad`](lib/j-hook.scad) 辅助库间接加载该接口。
 
 ## 适配范围与当前状态
 
@@ -46,7 +46,7 @@ openscad -o frame-ribba22.stl accessories/frames/ribba-22.scad
 ## 打印建议
 
 - 经典款与宽 25 款按模型姿态侧面朝下打印，截面位于 XY 平面；它们无需支撑，主要弯曲应力也留在层平面内。
-- 圆杆 6、短板款与极短款都让安装头侧面直接落在热床上，而居中的 Ø6 mm 圆杆最低点高出热床 2.95 mm；圆杆与圆头下方需要局部支撑。两个紧凑版本的 11.9 mm D 形根部均与安装头两侧共面。原版高 47.7 mm，短板款是已成功打印的 33.6 mm 抵墙版本，极短款则是尚未实物打印的 28.6 mm 轨道单独承载实验版。
+- 圆杆 6、短板款与极短款都让安装头侧面直接落在热床上，而居中的 Ø6 mm 圆杆最低点高出热床 2.95 mm；圆杆与圆头下方需要局部支撑。两个紧凑版本的 11.9 mm D 形根部均与安装头两侧共面。原版高 47.7 mm，短板款是已成功打印的 33.6 mm 抵墙版本，极短款则是已成功打印且轨道卡入优秀的 28.6 mm 轨道单独承载版本。
 - 钥匙孔 9 款同样保持安装头侧面朝下；Ø9 mm 头部最低点高出热床 1.45 mm，需要在蘑菇头下方增加一小块局部支撑。
 - RIBBA 22 款侧面朝下打印，无需支撑，使用时应将两只分开放置。全宽斜撑是闭合实体，内部用料由切片器的壁数和填充设置控制。当前抬高加强版已在用户的旧款 RIBBA 18288 上完成打印和挂装；配合正常，并能在选定的 12 mm 基准处被相框遮住，但仍无长期承载额定值。
 - 长期承载请选择 PETG 或 ASA，PLA 容易蠕变。
@@ -58,7 +58,7 @@ openscad -o frame-ribba22.stl accessories/frames/ribba-22.scad
 只在有真实模型时创建 `accessories/<family>/`，保持轨道接口固定，并通过 `rail_accessory()` 构建新的配件主体：
 
 ```scad
-include <../../lib/rail-mount.scad>
+include <../../lib/j-hook.scad>
 
 body = j_hook_body(drop = 22.3, r_out = 8.5, r_in = 5.5);
 rail_accessory(-22.3, body, w = 11.9);
@@ -78,6 +78,7 @@ accessories/pegs/keyhole-9.scad         Ø9/Ø3.8 短钥匙孔蘑菇头
 accessories/frames/ribba-22.scad        两只配合使用的 22 mm 凹背相框托架
 catalog/accessories.toml                机器可读配件清单
 lib/rail-mount.scad                     共享、固定的轨道接口
+lib/j-hook.scad                         可复用的参数化 J 勾主体辅助库
 raw/rail/                               轨道与原始挂钩参考资料
 raw/accessories/                        配件专属参考资料
 wiki/accessories/                       各配件设计记录
@@ -89,7 +90,8 @@ wiki/                                   测量、决策与验证历史
 
 [`wiki/`](wiki/index.md) 保存测量、配合决策、强度审查和版本记录，重点包括：
 
-- [模型版本史与 v7 集成](wiki/outputs/hook-scad-v1.md)
+- [模型版本史与 v8 库拆分](wiki/outputs/hook-scad-v1.md)
+- [库边界与依赖方向](wiki/topics/library-architecture.md)
 - [25 mm 挂钩尺寸说明](wiki/accessories/hook-wide25.md)
 - [Ø6 mm 圆杆挂钩原型](wiki/accessories/hook-round6.md)
 - [最短板 Ø6 mm 圆杆兄弟版本](wiki/accessories/hook-round6-short.md)

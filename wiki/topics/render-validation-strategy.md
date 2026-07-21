@@ -5,15 +5,15 @@ status: active
 sources:
   - .agents/skills/wallboard-rail-mount/SKILL.md
   - https://files.openscad.org/documentation/manual/OpenSCAD_User_Manual.pdf
-updated: 2026-07-14
+updated: 2026-07-17
 ---
 
 # Impact-Scoped Render Validation（按影响面渲染验证）
 
 ## Decision（决定）
 
-EN: Select render targets from the changed dependency surface. A body-only edit renders only that accessory; unrelated production models are not regression targets when `lib/rail-mount.scad` is unchanged. Documentation-only edits do not render. A path-only move compiles the moved entry points to CSG/AST without regenerating meshes or images. A shared rail-interface or helper change triggers the full production-accessory and skill-example regression.
-ZH: 根据 changed dependency surface（变更依赖面）选择渲染目标。仅修改某个主体时，只渲染该配件；`lib/rail-mount.scad` 未变化时，其他正式模型不属于回归目标。仅文档修改不渲染。纯路径迁移只把迁移后的入口编译为 CSG/AST，不重新生成网格或图片。共享轨道接口或 helper（辅助模块）变化时，才触发全部正式配件与 skill 示例回归。
+EN: Select render targets from the changed dependency surface. A body-only edit renders only that accessory; unrelated production models are not regression targets when both shared libraries (`lib/rail-mount.scad` and `lib/j-hook.scad`) are unchanged. Documentation-only edits do not render. A path-only move compiles the moved entry points to CSG/AST without regenerating meshes or images. A shared rail-interface or J-helper change triggers the full production-accessory and skill-example regression.
+ZH: 根据 changed dependency surface（变更依赖面）选择渲染目标。仅修改某个主体时，只渲染该配件；两个共享库（`lib/rail-mount.scad` 与 `lib/j-hook.scad`）均未变化时，其他正式模型不属于回归目标。仅文档修改不渲染。纯路径迁移只把迁移后的入口编译为 CSG/AST，不重新生成网格或图片。共享轨道接口或 J helper（J 辅助模块）变化时，才触发全部正式配件与 skill 示例回归。
 
 ## Output Discipline（输出约束）
 

@@ -8,8 +8,10 @@
 // This file defines NO geometry at top level - it is meant to be included:
 //
 //   include <../../lib/rail-mount.scad>
-//   body = j_hook_body(drop, r_out, r_in, lift, sweep, front_extra);
-//   rail_accessory(-drop, body, w = 11.9);
+//   rail_accessory(body_back_y, body_pts, w = 11.9);
+//
+// J-hook designs should include <../../lib/j-hook.scad> instead; that helper
+// library includes this fixed rail interface.
 //
 // Body contract for custom shapes: body_pts continues the outline from
 // (-pad_back, body_back_y), below the optional localized wall-contact pad,
@@ -167,36 +169,6 @@ module rail_accessory(body_back_y, body_pts, w, ch = 0.4,
   }
 }
 // ===== END FIXED SECTION =====
-
-// ---- Flexible body helper: the classic J-hook shape ----
-// drop: straight shank below the ceiling; r_out: J outer radius (span from the
-// back face = 2*r_out); r_in: inner radius parameter (effective r_in - extra/2);
-// lift: inner-center rise (controls thickening toward the bottom);
-// sweep: arc degrees; extra: forward shank thickening (blends into the J);
-// tip_round: dome the free end with a semicircular cap instead of a flat cut
-// with two corners - kinder to hands (esp. CF/GF prints) and to fabrics.
-function j_hook_body(drop, r_out, r_in, lift = 0.7, sweep = 205, extra = 0,
-                     tip_round = true) =
-  let (
-    xs = x_pf + extra,
-    co = [-pad_back + r_out, -drop],
-    ri = r_in - extra / 2,
-    ci = [xs + ri, -drop + lift],
-    n = ceil(sweep / 2),
-    a_end = 180 + sweep,
-    oe = co + r_out * [cos(a_end), sin(a_end)],
-    ie = ci + ri * [cos(a_end), sin(a_end)],
-    m = (oe + ie) / 2,
-    rc = norm(oe - ie) / 2,
-    ph = atan2(oe[1] - m[1], oe[0] - m[0])
-  )
-  concat(
-    [for (i = [1 : n]) let (a = 180 + sweep * i / n) co + r_out * [cos(a), sin(a)]],
-    tip_round ? arc_tail(m, rc, ph, ph + 180, 8) : [],
-    [for (i = [(tip_round ? 1 : 0) : n]) let (a = 180 + sweep * (n - i) / n)
-      ci + ri * [cos(a), sin(a)]],
-    extra > 0 ? [[xs, -pad_top_drop - 2.5 * extra]] : []
-  );
 
 echo(str("rail-mount lib: plate_t = ", plate_t, " (expect 2.2); head depth = ",
          x_pf - x_fb, " (expect ", head_depth, ")"));

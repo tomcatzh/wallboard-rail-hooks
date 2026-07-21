@@ -12,11 +12,12 @@ Read `~/openscad/work-hook/wiki/index.md` first when project history or design r
 ## Canonical Files
 
 - `~/openscad/work-hook/lib/rail-mount.scad` is the production source of truth.
-- This skill's `rail-mount.scad` must remain byte-identical to the production library.
+- `~/openscad/work-hook/lib/j-hook.scad` is the production source of truth for the reusable parametric J-hook body helper; it includes `rail-mount.scad`.
+- This skill's `rail-mount.scad` and `j-hook.scad` must each remain byte-identical to their production-library counterparts.
 - This skill's `example-j-hook.scad` is a runnable 17 mm-span example.
 - Production bodies live under `~/openscad/work-hook/accessories/<family>/`; define only families that have real models.
 
-When the interface changes, edit the production library first, sync the skill copy, render every production accessory and the skill example, then update the bilingual wiki.
+When the interface or J-hook helper changes, edit the corresponding production library first, sync its skill copy, render every production accessory and the skill example, then update the bilingual wiki.
 
 ## Geometry Contract
 
@@ -57,11 +58,12 @@ Do not assume one wall plane from the old 0.8 mm contour. The upper cap remains 
 
 ## Build An Accessory
 
-1. Include the library. In `accessories/<family>/*.scad`, use `include <../../lib/rail-mount.scad>`.
-2. For a J hook, call `j_hook_body(drop, r_out, r_in, lift, sweep, front_extra, tip_round)`. The nominal span is `2*r_out`.
-3. Keep `tip_round=true`, especially for CF/GF materials.
-4. Use `front_extra` when reach grows. The 25 mm hook uses `front_extra=1.4`, producing a 4.4 mm shank rather than scaling the classic hook blindly.
-5. Extrude with `rail_accessory(body_back_y, body_pts, w=<width>, wall_contact=true)`; the original width is 11.9 mm. Omit the final argument for normal accessories.
+1. For a custom non-J body, include the mount library with `include <../../lib/rail-mount.scad>`.
+2. For a J hook, include `include <../../lib/j-hook.scad>` instead. It loads the fixed rail interface and defines `j_hook_body()` without adding top-level geometry.
+3. Call `j_hook_body(drop, r_out, r_in, lift, sweep, front_extra, tip_round)`. The nominal span is `2*r_out`.
+4. Keep `tip_round=true`, especially for CF/GF materials.
+5. Use `front_extra` when reach grows. The 25 mm hook uses `front_extra=1.4`, producing a 4.4 mm shank rather than scaling the classic hook blindly.
+6. Extrude with `rail_accessory(body_back_y, body_pts, w=<width>, wall_contact=true)`; the original width is 11.9 mm. Omit the final argument for normal accessories.
 
 For a custom body, continue the outline from `(-pad_back, body_back_y)`, below the localized pressure pad when enabled. Traverse clockwise and finish on the front plane. `rail_accessory()` closes the polygon via `(plate_t, -pad_top_drop)`. With the default contact enabled, leave enough vertical room for its lower ramp; the library assertion reports a body that starts too high. With contact disabled, keep `body_back_y` below the baseline pad at `Y=-8.8`.
 
@@ -94,7 +96,7 @@ Choose the smallest validation set that exercises the changed dependency surface
 - **Documentation, wiki, or raw-source metadata only:** do not render.
 - **Path-only move or include rewrite with unchanged geometry:** compile each moved entry point to CSG/AST to verify path resolution, syntax, and assertions; do not regenerate STL or PNG artifacts.
 - **One accessory body only (`accessories/<family>/<name>.scad`):** render only that accessory. Do not rerender unrelated accessories or the skill example when the shared library is unchanged.
-- **Shared interface or helper change (`lib/rail-mount.scad` or the skill library copy):** sync the two library copies, then render every production accessory plus `.agents/skills/wallboard-rail-mount/example-j-hook.scad`.
+- **Shared interface or helper change (`lib/rail-mount.scad`, `lib/j-hook.scad`, or either skill library copy):** sync the corresponding production and skill copies, then render every production accessory plus `.agents/skills/wallboard-rail-mount/example-j-hook.scad`.
 - **Renderer/toolchain change:** render `hook-classic`, one non-J custom accessory, and the skill example; expand only when the changed path requires it.
 - **Mixed or ambiguous change:** start with the directly affected models and expand only when a shared dependency, assertion, warning, or visual defect gives a concrete reason.
 
@@ -110,7 +112,7 @@ For a shared-interface regression, additionally:
 - Confirm ordinary accessories still echo the default wall contact, and a deliberate rail-only target echoes `wall contact = off`.
 - Confirm the classic lower ramp is 1.1 and the wide-hook lower ramp is 1.2.
 - Inspect the representative iso and top PNGs for a continuous pressure pad, a fully formed claw, and no self-intersection.
-- Run `cmp -s lib/rail-mount.scad .agents/skills/wallboard-rail-mount/rail-mount.scad`.
+- Run `cmp -s` for both production/skill pairs: `rail-mount.scad` and `j-hook.scad`.
 
 Keep successful verification output token-efficient: report one concise result line per target and do not copy repeated echo/render logs into chat. Show detailed log excerpts only for failures or unexpected differences.
 

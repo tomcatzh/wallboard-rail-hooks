@@ -4,7 +4,7 @@
 // selected 2.0 mm lower wall-contact face. Only the body params below belong
 // to this design.
 
-include <../../lib/rail-mount.scad>
+include <../../lib/j-hook.scad>
 
 /* [Design] */
 // width along the rail = print height (original hook: 11.9)

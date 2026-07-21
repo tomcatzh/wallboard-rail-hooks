@@ -1,7 +1,7 @@
-// example-j-hook.scad — classic J hook on the canonical rail-mount library.
-// Copy this file as a body-design starting point; keep the mount library fixed.
+// example-j-hook.scad — classic J hook on the canonical helper libraries.
+// Copy this file as a body-design starting point; keep both libraries fixed.
 
-include <rail-mount.scad>
+include <j-hook.scad>
 
 /* [Design] */
 part_w = 11.9;

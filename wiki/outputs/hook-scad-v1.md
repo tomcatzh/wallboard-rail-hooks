@@ -5,7 +5,7 @@ status: active
 sources:
   - raw/rail/hook-mount-dimensions.jpg
   - raw/rail/hook-installed-on-rail.jpg
-updated: 2026-07-14
+updated: 2026-07-17
 ---
 
 # hook.scad（OpenSCAD 模型版本史）
@@ -173,6 +173,18 @@ ZH: 现行入口模型只按已经存在的 family（家族）分组：`accessor
 
 EN: Rail reference images now live in `raw/rail/`; the keyhole-specific photo lives in `raw/accessories/hook-keyhole9/`; current accessory design pages live in `wiki/accessories/`. The shared interface remains at `lib/rail-mount.scad` and its geometry is unchanged by this path-only refactor.
 ZH: 轨道参考图现位于 `raw/rail/`；钥匙孔专属照片位于 `raw/accessories/hook-keyhole9/`；现行配件设计页位于 `wiki/accessories/`。共享接口仍位于 `lib/rail-mount.scad`，本次纯路径重构未改变其几何。
+
+## v8 — Separate J-Hook Helper Library（v8 — 拆分 J 勾辅助库，2026-07-17）
+
+EN: `j_hook_body()` moved unchanged from `lib/rail-mount.scad` to `lib/j-hook.scad`. Classic, Wide 25, and the skill example now include the J helper; all other accessories continue to include the fixed rail library directly. The J helper includes its sibling rail library, following OpenSCAD's calling-library-relative lookup semantics. See [library-architecture](../topics/library-architecture.md).
+ZH: `j_hook_body()` 未改几何地从 `lib/rail-mount.scad` 迁入 `lib/j-hook.scad`。Classic、Wide 25 与 skill 示例现 include J 辅助库；其他配件继续直接 include 固定轨道库。J 辅助库按照 OpenSCAD 相对 calling library（调用库）的查找语义，引入同目录的轨道库。参见 [library-architecture](../topics/library-architecture.md)。
+
+- EN: The production and skill copies of both libraries are byte-identical.
+  ZH: 两个库各自的 production（正式）与 skill 副本均逐字节一致。
+- EN: Full regression covered seven production accessories plus the skill example; every result was warning-free `Manifold` / `NoError` / genus 0.
+  ZH: 全量回归覆盖 7 个正式配件及 skill 示例；所有结果均为零 warning 的 `Manifold` / `NoError` / genus 0。
+- EN: All eight STL SHA-256 hashes matched the pre-refactor files exactly, so the refactor is geometry-neutral.
+  ZH: 8 个 STL 的 SHA-256 均与重构前文件完全一致，因此本次重构不改变几何。
 
 ## Open Items（待办）
 
