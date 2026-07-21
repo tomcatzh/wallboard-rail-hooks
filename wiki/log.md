@@ -431,3 +431,15 @@ ZH: 所有 wiki 操作的 append-only（只追加）时间顺序 log（日志）
   ZH: 用户确认 Round 6 Ultra Short 卡入轨道的效果非常好，并判断其承重优于长板的轨道单独承载路径。已更新配件页面与索引，关闭无载轨道就位问题，并将 Ultra Short 定为当前优先的紧凑候选。
 - EN: Recorded the mechanics boundary explicitly: a shorter perpendicular lever arm reduces torque (`τ=r⊥F`), supporting the shorter local plate/root path; however, the unchanged 25 mm horizontal reach and removed wall contact mean the numeric capacity advantage still requires progressive load testing. No geometry or render output changed.
   ZH: 已明确记录力学边界：更短的垂直有效力臂会降低力矩（`τ=r⊥F`），支持更短的局部板身/根部路径；但 25 mm 水平悬出保持不变，且抵墙支点已删除，因此具体承重优势仍需逐级承载测试量化。未修改任何几何或渲染产物。
+
+## [2026-07-17] refactor | Separate the J-hook helper from the rail interface
+
+- EN: Moved unchanged `j_hook_body()` code from `lib/rail-mount.scad` into new `lib/j-hook.scad`; updated Classic, Wide 25, and the repository skill example to include the J helper. Non-J accessories still include the fixed rail interface directly. Added the byte-identical skill copy and documented both canonical pairs in `SKILL.md`, the READMEs, `wiki/topics/library-architecture.md`, `wiki/topics/render-validation-strategy.md`, `wiki/outputs/hook-scad-v1.md`, and `wiki/index.md`.
+  ZH: 将未改变的 `j_hook_body()` 代码从 `lib/rail-mount.scad` 迁入新建的 `lib/j-hook.scad`；Classic、Wide 25 与仓库 skill 示例改为 include J 辅助库。非 J 配件仍直接 include 固定轨道接口。新增逐字节一致的 skill 副本，并在 `SKILL.md`、双语 README、`wiki/topics/library-architecture.md`、`wiki/topics/render-validation-strategy.md`、`wiki/outputs/hook-scad-v1.md` 与 `wiki/index.md` 中记录两组 canonical pair（权威文件对）。
+- EN: At the user's request, rendered all seven production accessories and the skill example. Every target completed with no warning/assertion and reported `Manifold`, `NoError`, genus 0. All eight STL SHA-256 hashes matched their pre-refactor baselines exactly; both production/skill library pairs also pass `cmp -s`.
+  ZH: 按用户要求渲染全部 7 个正式配件及 skill 示例。每个目标均在零 warning/assertion 下完成，并报告 `Manifold`、`NoError`、genus 0。8 个 STL 的 SHA-256 全部与重构前基线完全一致；两组 production/skill 库文件也均通过 `cmp -s`。
+
+## [2026-07-21] query | Session start: full wiki read before new design
+
+- EN: Read `wiki/index.md`, `AGENTS.md`, both topic pages (`hook-replication-requirements`, `render-validation-strategy`, `library-architecture`), both entity pages (`rail-hook`, `mounting-rail`), `catalog/accessories.toml`, both production libraries, and the `wallboard-rail-mount` SKILL.md to re-establish project context. No pages changed; the user is preparing a new design.
+  ZH: 阅读了 `wiki/index.md`、`AGENTS.md`、三个 topic page（`hook-replication-requirements`、`render-validation-strategy`、`library-architecture`）、两个 entity page（`rail-hook`、`mounting-rail`）、`catalog/accessories.toml`、两个正式库以及 `wallboard-rail-mount` 的 SKILL.md，重新建立项目上下文。未修改任何页面；用户正准备开始新设计。
